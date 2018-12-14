@@ -51,6 +51,22 @@ cd path/to/my/project
 vagrant up --provision
 ```
 
+Bei Fehler 
+```
+"The VirtualBox VM was created with a user that doesn't match the current user running Vagrant. VirtualBox requires that the same userbe used to manage the VM that was created. Please re-run Vagrant withthat user. This is not a Vagrant issue.The UID used to create the VM was: 501 Your UID is: 0":
+```
+entweder creator_uid anpassen
+
+```
+nano .vagrant/machines/mediadb/virtualbox/creator_uid
+```
+oder .vagrant-Verzeichnis komplett löschen
+
+```
+rm -r .vagrant
+vagrant up --provision
+```
+
 Wenn Vagrant hochgefahren ist:
 
 ```
@@ -59,7 +75,7 @@ cd code
 php artisan migrate
 ```
 
-Webapp �ffnen
+Webapp öffnen
 http://192.168.10.10
 
 
