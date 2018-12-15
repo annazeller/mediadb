@@ -54,6 +54,12 @@ composer install
 Homestead.yaml erstellen:
 
 ```
+touch Homestead.yaml
+```
+
+Homestead.yaml bearbeiten
+
+```
 ip: 192.168.10.10
 memory: 2048
 cpus: 1
