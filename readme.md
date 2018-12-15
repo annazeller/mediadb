@@ -7,18 +7,33 @@
 * Node - https://nodejs.org/en/
 * Composer - https://getcomposer.org/doc/00-intro.md
 
+### Projekt installieren
 
-### Installation
-
-Repository clonen
-
+Repository clonen:
 ```
 git clone https://github.com/annazeller/mediadb.git
 ```
 
+Laravel dependencies installieren:
+```
+composer install
+```
+
+.env Datei erstellen (In der Konsole):
+```
+cp .env.example .env
+```
+
+App Key generieren
+```
+php artisan key:generate
+```
+
+### Installation
+
 SSH Key generieren
 
-1. Verzeichnis .ssh im Benutzerordner erstellen
+1. Verzeichnis .ssh im Benutzerordner erstellen (Code unten)
 2. Ins verzeichnis wechseln
 3. Key generieren
 4. Im aktuellen Verzeichnis ohne passphrase speichern
@@ -27,7 +42,6 @@ SSH Key generieren
  mkdir ~/.ssh
  cd ~/.ssh
  ssh-keygen.exe
-
 ```
 
 Ins Projektverzeichnis navigieren und dependencies mit composer und npm installieren:
