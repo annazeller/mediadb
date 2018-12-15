@@ -5,6 +5,12 @@
 /.vscode
 /nbproject
 npm-debug.log
-yarn-error.log
 .env
 .ssh
+.vagrant
+/public/hot
+/storage/*.key
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+yarn-error.log
