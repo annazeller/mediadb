@@ -51,11 +51,28 @@ npm install
 composer install
 ```
 
-Homestead.yaml anpassen:
+Homestead.yaml erstellen:
 
 ```
+ip: 192.168.10.10
+memory: 2048
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+keys:
+    - ~/.ssh/id_rsa
 folders:
-    map: path/to/my/projectdirectory
+    -
+        map: C:/Wamp/sites/mediadb #Hier eigenen Pfad zum Projekt eintragen
+        to: /home/vagrant/code
+sites:
+    -
+        map: homestead.test
+        to: /home/vagrant/code/public
+databases:
+    - homestead
+name: mediadb
+hostname: mediadb
 ```
 
 ## Starten
