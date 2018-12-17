@@ -24,11 +24,18 @@
         "laravel-mix": "^4.0.8",
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.15.2",
+        "sass-loader": "^7.1.0",
         "vue": "^2.5.17"
     },
     "dependencies": {
         "@babel/polyfill": "^7.0.0",
+        "child_process": "^1.0.2",
         "filepond": "^3.5.0",
-        "filepond-plugin-image-preview": "^3.1.4"
+        "filepond-plugin-image-preview": "^3.1.4",
+        "fs": "0.0.1-security",
+        "imagemin": "^6.0.0",
+        "sharp": "^0.21.1"
     }
 }

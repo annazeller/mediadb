@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-12">
+        <div class="row no-gutters">
+            <div class="col-8">
                 @if(session()->get('success'))
                     <div class="alert alert-success">
                         {{ session()->get('success') }}
@@ -31,6 +31,9 @@
                         </tr>
                     @endforeach
                 </table>
+            </div>
+            <div class="col-4">
+                Dateiinfo
             </div>
             <div class="col-12">
                 <a href="{{ route('file.create')}}" class="btn btn-primary">Neuen Eintrag hinzufügen</a>

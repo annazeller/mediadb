@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <input type="file">
+                    <input type="file" id="imageUpload">
                 </div>
             </div>
         </div>

@@ -57,3 +57,19 @@ FilePond.setOptions({
         }
     }
 });
+
+/*const sharp = require('sharp');
+const inputFile = document.getElementById('#imageUpload').value;
+
+let width = 100;
+let height = 100;
+let fileName = inputFile.split(/(\\|\/)/g).pop();
+
+sharp(inputFile).resize(width, height).toFile('storage/app/thumb'+fileName, function(err){
+    if(!err) {
+        console.log('Sharp funktoniert');
+    } else {
+        console.log(err);
+    }
+});*/
+
