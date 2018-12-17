@@ -19,11 +19,9 @@
                             </div><br />
                         @endif
                         <form method="post" action="{{ route('file.store') }}">
-                            <div class="form-group">
-                                @csrf
-                                <label for="name">Testame:</label>
-                                <input type="text" class="form-control" name="name"/>
-                            </div>
+                            @csrf
+                            <label for="name">Datei hinzufügen</label>
+                            <input type="file" name="name"/>
                             <button type="submit" class="btn btn-primary">Speichern</button>
                         </form>
                     </div>

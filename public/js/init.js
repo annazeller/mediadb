@@ -1,11 +1,10 @@
 $( document ).ready(function() {
-    const   card = $('.card'),
-            login = $('#login'),
+    const   login = $('#login'),
             loginForm = $('#loginForm'),
             registerForm = $('#registerForm'),
             register = $('#register');
 
-    card.hide();
+    register.hide();
     login.click(function(){
         registerForm.hide();
         loginForm.show();
