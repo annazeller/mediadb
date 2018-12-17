@@ -4,7 +4,7 @@ $( document ).ready(function() {
             registerForm = $('#registerForm'),
             register = $('#register');
 
-    register.hide();
+    registerForm.hide();
     login.click(function(){
         registerForm.hide();
         loginForm.show();
