@@ -110,6 +110,13 @@ Wenn Vagrant hochgefahren ist:
 vagrant ssh
 cd code
 php artisan migrate
+exit
+```
+
+JavaScript kompilieren:
+
+```
+npm run dev
 ```
 
 Webapp öffnen
