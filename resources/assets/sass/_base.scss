@@ -135,3 +135,9 @@ html, body {
   align-items: center;
   min-height: rem(300px);
 }
+
+.custom-file-input {
+  &.german {
+    content: "Durchsuchen";
+  }
+}

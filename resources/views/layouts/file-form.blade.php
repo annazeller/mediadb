@@ -10,7 +10,7 @@
                 <div class="col-6">
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" ref="file" name="file" class="custom-file-input" id="fileUploadLabel" aria-describedby="fileUpload" @change="addFile()">
+                            <input type="file" ref="file" name="file" class="custom-file-input german" id="fileUploadLabel" aria-describedby="fileUpload" @change="addFile()">
                             <label class="custom-file-label" for="fileUploadLabel"><span v-if="!attachment.name"><i class="fa fa-upload"></i> &emsp; Neue Datei hinzufügen</span><span class="file-name" v-if="attachment.name" v-html="attachment.name"></span></label>
                         </div>
                     </div>

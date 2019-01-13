@@ -9694,7 +9694,7 @@ input[type="button"].btn-block {
 }
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
-  content: "Browse";
+  content: "Durchsuchen";
 }
 
 .custom-file-input ~ .custom-file-label[data-browse]::after {
@@ -16438,4 +16438,8 @@ html, body {
       -ms-flex-align: center;
           align-items: center;
   min-height: 18.75rem;
+}
+
+.custom-file-input.german {
+  content: "Durchsuchen";
 }
