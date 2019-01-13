@@ -11,10 +11,12 @@
 |
 */
 
+Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+Route::get('/files/{type}/{id?}', 'FileController@index');
+
+Route::post('files/add', 'FileController@store');
+Route::post('files/edit/{id}', 'FileController@edit');
+Route::post('files/delete/{id}', 'FileController@destroy');
+
 Auth::routes();
-
-Route::get('/', 'HomeController@index')->name('home');
-
-Route::post('upload', 'UploadController@upload');
-
-Route::resource('file', 'FileController');

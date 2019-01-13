@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+let mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,23 +11,9 @@ const mix = require('laravel-mix');
  |
  */
 
- mix.webpackConfig({
- 	module: {
- 		rules: [
-	 		{
-	 			test: /\.jsx?$/,
-	 			exclude: /node_modules(?!\/foundation-sites)|bower_components/,
-	 			use: [
-		 			{
-		 				loader: 'babel-loader',
-		 				options: Config.babel(),
-		 			},
-	 			],
-	 		},
-	 	],
- 	},
+ mix.options({
+     processCssUrls: false
  });
 
-mix.js('resources/js/app.js', 'public/js')
-   .babel('public/js/app.js', 'public/js/app.es5.js')
-   .sass('resources/sass/app.scss', 'public/css');
+mix.js('resources/assets/js/app.js', 'public/js')
+   .sass('resources/assets/sass/app.scss', 'public/css');

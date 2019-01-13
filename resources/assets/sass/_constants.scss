@@ -1,0 +1,6 @@
+%border-radius {
+  @include border-radius(#{rem(2px)});
+}
+%box-shadow {
+  @include box-shadow(#{rem(0px)}, #{rem(0px)}, #{rem(10px)}, rgba($black,0.15));
+}

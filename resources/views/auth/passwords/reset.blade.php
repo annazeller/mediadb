@@ -1,65 +1,57 @@
-@extends('layouts.app')
+@extends('app')
 
 @section('content')
-<div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+        <div class="col-6">
+            <h2 class="title">Passwort zurücksetzen</h2>
+            <form method="POST" action="{{ route('password.request') }}">
+                {{ csrf_field() }}
+                <input type="hidden" class="input" name="token" value="{{ $token }}">
+                <div class="form-group">
+                    <label for="registerEmail">E-Mail-Adresse</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                        <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" id="registerEmail" value="{{ $email or old('email') }}" aria-describedby="registerEmailHelp" type="email" name="email" placeholder="E-Mail-Adresse">
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                {{ $errors->first('email') }}
+                            </span>
+                        @endif
+                    </div>
+                    <small id="registerEmailHelp" class="form-text text-muted">Bitte gib deine E-Mail-Adresse an.</small>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="registerPassword">Neues Passwort</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" aria-describedby="registerPasswordHelp" id="registerPassword" type="password" name="password" placeholder="Passwort">
+                        @if ($errors->has('password'))
+                            <span class="invalid-feedback" role="alert">
+                                {{ $errors->first('password') }}
+                            </span>
+                        @endif
+                    </div>
+                    <small id="registerPasswordHelp" class="form-text text-muted">Bitte wähle ein sicheres Passwort mit mindestens 6 Zeichen.</small>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Neues Passwort bestätigen</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        </div>
+                        <input id="password-confirm" type="password" aria-describedby="registerPasswordConfirmHelp" class="form-control" name="password_confirmation" placeholder="Passwort bestätigen">
+                    </div>
+                    <small id="registerPasswordConfirmHelp" class="form-text text-muted">Bitte gebe dein Passwort nochmal ein.</small>
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    Passwort zurücksetzen
+                </button>
+            </form>
         </div>
     </div>
-</div>
+
 @endsection
