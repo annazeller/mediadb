@@ -1,5 +1,4 @@
 @extends('app')
-
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -71,7 +70,7 @@
                     </h5>
                     <input class="form-control" v-if="file === editingFile" v-autofocus @keyup.enter="endEditing(file)" @blur="endEditing(file)" type="text" :placeholder="file.name" v-model="file.name">
                     Hochgeladen am:<br>
-                    <time datetime="1-1-2019">@{{ file.created_at }}</time>
+                    <time datetime="1.1.2019">@{{ file.created_at }}</time>
                 </div>
             </div>
         </div>

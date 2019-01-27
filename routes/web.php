@@ -18,4 +18,7 @@ Route::post('files/add', 'FileController@store');
 Route::post('files/edit/{id}', 'FileController@edit');
 Route::post('files/delete/{id}', 'FileController@destroy');
 
+Route::get('/search', 'SearchController@search');
+
+
 Auth::routes();

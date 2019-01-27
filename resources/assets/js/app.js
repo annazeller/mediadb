@@ -42,18 +42,19 @@ const app = new Vue({
             name: '',
             extension: ''
         },
-
         notification: false,
         showConfirm: false,
         modalActive: false,
         message: '',
-        errors: {}
+        errors: {},
     },
 
     methods: {
         isActive(tabItem) {
             return this.activeTab === tabItem;
         },
+
+
 
         setActive(tabItem) {
             this.activeTab = tabItem;
