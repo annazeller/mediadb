@@ -14,8 +14,7 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $files = File::where('name', $request->keywords)->get();
-//        $files = File::all();
+        $files = File::where('name', 'like', '%' . $request->get('keywords') . '%')->get();
         return response()->json($files);
     }
 }
