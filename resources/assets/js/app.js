@@ -188,9 +188,7 @@ const app = new Vue({
         },
 
         modalExif() {
-            console.log('Button clicked');
-            this.imageExif = this.$refs.imageExif.src;
-            // console.log(this.$refs.imageExif.src);
+            this.imageExif = this.$refs.imageExif;
             EXIF.getData(this.imageExif, function() {
                 console.log('image info', this);
                 console.log('exif data', this.exifdata);
