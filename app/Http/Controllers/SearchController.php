@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
+    /*public function index(){
+        return view('search.search');
+    }*/
+
     public function search(Request $request)
     {
-        $search = $request->get('search');
-        $files = DB::table('files')->where('name', 'like', '%'.$search.'%')->get();
-        return view('search.search', ['files' => $files]);
+        $files = File::where('name', $request->keywords)->get();
+//        $files = File::all();
+        return response()->json($files);
     }
 }

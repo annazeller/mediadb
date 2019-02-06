@@ -9,6 +9,9 @@ if (token) {
     console.error('CSRF token nicht gefunden: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+//Suche Component
+Vue.component('search', require('./components/search.vue'));
+
 const app = new Vue({
     el: '#app',
 
@@ -47,14 +50,14 @@ const app = new Vue({
         modalActive: false,
         message: '',
         errors: {},
+
     },
+
 
     methods: {
         isActive(tabItem) {
             return this.activeTab === tabItem;
         },
-
-
 
         setActive(tabItem) {
             this.activeTab = tabItem;
@@ -69,7 +72,7 @@ const app = new Vue({
             axios.get('files/' + type + '?page=' + page).then(result => {
                 this.loading = false;
                 this.files = result.data.data.data;
-                console.log(this.files);
+                // console.log(this.files);
                 this.pagination = result.data.pagination;
             }).catch(error => {
                 console.log(error);
@@ -242,5 +245,9 @@ const app = new Vue({
 
             return pages;
         }
-    }
+    },
 });
+
+
+
+
