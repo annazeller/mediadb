@@ -1,5 +1,6 @@
 window.Vue = require('vue');
 window.axios = require('axios');
+window.EXIF = require('exif-js');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -16,11 +17,11 @@ const app = new Vue({
     el: '#app',
 
     directives: {
-            'autofocus': {
-                inserted(el) {
-                    el.focus();
-                }
+        'autofocus': {
+            inserted(el) {
+                el.focus();
             }
+        }
     },
 
     data: {
@@ -188,6 +189,14 @@ const app = new Vue({
         showModal(file) {
             this.file = file;
             this.modalActive = true;
+        },
+
+        modalExif() {
+            this.imageExif = this.$refs.imageExif;
+            EXIF.getData(this.imageExif, function() {
+                console.log('image info', this);
+                console.log('exif data', this.exifdata);
+            });
         },
 
         closeModal() {
