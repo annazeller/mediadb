@@ -1,5 +1,6 @@
 window.Vue = require('vue');
 window.axios = require('axios');
+window.EXIF = require('exif-js');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -13,11 +14,11 @@ const app = new Vue({
     el: '#app',
 
     directives: {
-            'autofocus': {
-                inserted(el) {
-                    el.focus();
-                }
+        'autofocus': {
+            inserted(el) {
+                el.focus();
             }
+        }
     },
 
     data: {
@@ -68,7 +69,7 @@ const app = new Vue({
             axios.get('files/' + type + '?page=' + page).then(result => {
                 this.loading = false;
                 this.files = result.data.data.data;
-                console.log(this.files);
+                // console.log(this.files);
                 this.pagination = result.data.pagination;
             }).catch(error => {
                 console.log(error);
@@ -184,6 +185,16 @@ const app = new Vue({
         showModal(file) {
             this.file = file;
             this.modalActive = true;
+        },
+
+        modalExif() {
+            console.log('Button clicked');
+            this.imageExif = this.$refs.imageExif.src;
+            // console.log(this.$refs.imageExif.src);
+            EXIF.getData(this.imageExif, function() {
+                console.log('image info', this);
+                console.log('exif data', this.exifdata);
+            });
         },
 
         closeModal() {
