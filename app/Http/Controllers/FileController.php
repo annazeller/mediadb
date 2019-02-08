@@ -24,7 +24,7 @@ class FileController extends Controller
      * @param  integer $id   File Id
      * @return object        Files list, JSON
      */
-    public function index($type, $id = null)
+    public function index($type, $id = null, Request $request)
     {
         $model = new File();
 

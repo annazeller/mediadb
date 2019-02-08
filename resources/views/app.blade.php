@@ -60,7 +60,6 @@
         <div class="row">
             <div class="col-12">
                 @if(Auth::check())
-                    <search></search>
                     @include('layouts.notification')
                     @include('layouts.file-form')
                     @include('layouts.confirm')

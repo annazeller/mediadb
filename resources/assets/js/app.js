@@ -9,10 +9,7 @@ if (token) {
 } else {
     console.error('CSRF token nicht gefunden: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
-//Suche Component
 Vue.component('search', require('./components/search.vue'));
-
 const app = new Vue({
     el: '#app',
 
@@ -46,14 +43,13 @@ const app = new Vue({
             name: '',
             extension: ''
         },
+
         notification: false,
         showConfirm: false,
         modalActive: false,
         message: '',
-        errors: {},
-
+        errors: {}
     },
-
 
     methods: {
         isActive(tabItem) {
@@ -254,9 +250,5 @@ const app = new Vue({
 
             return pages;
         }
-    },
+    }
 });
-
-
-
-
