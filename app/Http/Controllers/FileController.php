@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App;
 use App\File;
+use Image;
 
 class FileController extends Controller
 {
@@ -81,6 +82,7 @@ class FileController extends Controller
                 ]);
         }
 
+
         return response()->json(false);
     }
 
@@ -115,6 +117,36 @@ class FileController extends Controller
         return response()->json(false);
     }
 
+    public function peter($id, Request $request)
+    {
+
+        $file = File::where('id', $id)->where('user_id', Auth::id())->first();
+
+        $originalImage = $file->getName($file->type, $file->name, $file->extension);
+        $originalImagePath = Storage::get($originalImage);
+
+        $imageHeight = $request['imageHeight'];
+        $imageWidth = $request['imageWidth'];
+
+        if ($img = Image::make($originalImagePath)) {
+            return $img->resize($imageHeight, $imageWidth)->response();
+        }
+
+        
+
+
+        $originalImage = $file->getName($file->type, $file->name, $file->extension);
+        if($thumbnailImage = Image::make($originalImage)) {
+            return response()->json($thumbnailImage->save());
+        }
+
+        if(Image::make($filename)->resize($imageHeight, $imageWidth)) {
+            return response()->json($file->save());
+        }
+
+        return response()->json(false);
+
+    }
 
     /**
      * Delete file from disk and database

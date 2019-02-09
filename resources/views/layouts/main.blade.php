@@ -81,6 +81,11 @@
                     <input class="form-control" v-if="file === editingFile" v-autofocus @keyup.enter="endEditing(file)" @blur="endEditing(file)" type="text" :placeholder="file.name" v-model="file.name">
                     Hochgeladen am:<br>
                     <time datetime="1.1.2019">@{{ file.created_at }}</time>
+                    <time datetime="1-1-2019">@{{ file.created_at }}</time>
+                    <button type="button" class="btn btn-primary" @click="showModal(file)">
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                        &nbsp; Bearbeiten
+                    </button>
                 </div>
             </div>
         </div>
