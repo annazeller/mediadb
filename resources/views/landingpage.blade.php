@@ -60,13 +60,13 @@
 
       {{-- @yield('content') --}}
     </div>
-    <div section="hero">
+    <section class="hero">
       <div class="hero-Image">
         <h1>Digital Asset Management</h1>
         <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
           <a href="#" class="$btn"> Registrieren </a>
       </div>
-    </div>
+    </section>
 
     <footer>
       <div class="container">
