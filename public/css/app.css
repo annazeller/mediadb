@@ -16443,3 +16443,7 @@ html, body {
 .custom-file-input.german {
   content: "Durchsuchen";
 }
+
+.highlighted {
+  color: red;
+}

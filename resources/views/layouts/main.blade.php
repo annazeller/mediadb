@@ -1,5 +1,4 @@
 @extends('app')
-
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -19,6 +18,7 @@
             </ul>
         </div>
     </div>
+    <search></search>
     <div class="row">
         <div class="col-12 empty-dir" v-if="pagination.total == 0" v-cloak>
             <div>
@@ -31,7 +31,7 @@
             <span class="sr-only">Lädt...</span>
         </div>
         <div class="file-wrapper" :class="isVideo ? 'col-6'  : 'col-4'" v-for="file in files">
-            <div class="card" >
+            {{--<div class="card" >
                 <button type="button" class="delete-file" title="Löschen" @click="prepareToDelete(file)">
                     <span aria-hidden="true"><i class="fas fa-trash"></i></span>
                 </button>
@@ -71,9 +71,9 @@
                     </h5>
                     <input class="form-control" v-if="file === editingFile" v-autofocus @keyup.enter="endEditing(file)" @blur="endEditing(file)" type="text" :placeholder="file.name" v-model="file.name">
                     Hochgeladen am:<br>
-                    <time datetime="1-1-2019">@{{ file.created_at }}</time>
+                    <time datetime="1.1.2019">@{{ file.created_at }}</time>
                 </div>
-            </div>
+            </div>--}}
         </div>
         <div class="col-6">
             <nav aria-label="Pagination" v-if="pagination.last_page > 1" v-cloak>
