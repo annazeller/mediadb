@@ -34,6 +34,7 @@ class FileController extends Controller
             $records_per_page = ($type == 'video') ? 6 : 15;
 
             $files = $model::where('type', $type)
+                            ->where('name', 'like', '%' . $request->get('keywords') . '%')
                             ->where('user_id', Auth::id())
                             ->orderBy('id', 'desc')->paginate($records_per_page);
 
@@ -131,6 +132,12 @@ class FileController extends Controller
         }
 
         return response()->json(false);
+    }
+
+    public function search(Request $request)
+    {
+        $files = DB::table('files')->where('name', 'like', '%' . $request->get('keywords') . '%')->get();
+        return response()->json($files);
     }
 
 }

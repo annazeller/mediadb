@@ -1,6 +1,16 @@
 @extends('app')
 @section('content')
     <div class="row">
+        <div class="col-3 mb-4">
+            <form class="navbar-form" role="search">
+                <div class="input-group add-on">
+                    <input class="form-control" v-model="keywords" placeholder="Suche" name="srch-term" id="srch-term" type="text">
+                    <div class="input-group-btn">
+                        <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="col-12">
             <ul class="nav nav-tabs nav-fill mb-3">
                 <li class="nav-item">
@@ -18,7 +28,6 @@
             </ul>
         </div>
     </div>
-    <search></search>
     <div class="row">
         <div class="col-12 empty-dir" v-if="pagination.total == 0" v-cloak>
             <div>
@@ -30,8 +39,8 @@
             <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
             <span class="sr-only">Lädt...</span>
         </div>
-        <div class="file-wrapper" :class="isVideo ? 'col-6'  : 'col-4'" v-for="file in files">
-            {{--<div class="card" >
+        <div class="file-wrapper" :class="isVideo ? 'col-6'  : 'col-4'" v-for="file in files" :key="file.id">
+            <div class="card" >
                 <button type="button" class="delete-file" title="Löschen" @click="prepareToDelete(file)">
                     <span aria-hidden="true"><i class="fas fa-trash"></i></span>
                 </button>
@@ -42,7 +51,7 @@
                     </div>
                     <div v-if="file.type == 'audio'">
                         <div class="file-header-wrapper">
-                            <img src="{{ asset('images/music.png') }}" alt="Audio image" id="audio_image">
+                            <img class="img-fluid" src="{{ asset('images/music.png') }}" alt="Audio image" id="audio_image">
                         </div>
                         <audio controls>
                             <source src="" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :type="'audio/' + file.extension">
@@ -57,7 +66,7 @@
                     </div>
                     <div v-if="file.type == 'document'" class="document-header-wrapper">
                         <div class="card-image-top">
-                            <img src="{{ asset('images/document.png') }}" alt="Audio image" id="audio_image">
+                            <img class="img-fluid" src="{{ asset('images/document.png') }}" alt="Document image" id="document_image">
                         </div>
                         <a class="btn btn-primary" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
                             <i class="fa fa-download" aria-hidden="true"></i>
@@ -73,7 +82,7 @@
                     Hochgeladen am:<br>
                     <time datetime="1.1.2019">@{{ file.created_at }}</time>
                 </div>
-            </div>--}}
+            </div>
         </div>
         <div class="col-6">
             <nav aria-label="Pagination" v-if="pagination.last_page > 1" v-cloak>

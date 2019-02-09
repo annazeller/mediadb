@@ -9,7 +9,7 @@ if (token) {
 } else {
     console.error('CSRF token nicht gefunden: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-Vue.component('search', require('./components/search.vue'));
+
 const app = new Vue({
     el: '#app',
 
@@ -22,8 +22,9 @@ const app = new Vue({
     },
 
     data: {
-        files: {},
-        file: {},
+        keywords: "",
+        files: [],
+        file: [],
 
         pagination: {},
         offset: 5,
@@ -69,7 +70,7 @@ const app = new Vue({
             axios.get('files/' + type + '?page=' + page).then(result => {
                 this.loading = false;
                 this.files = result.data.data.data;
-                // console.log(this.files);
+                console.log(this.files);
                 this.pagination = result.data.pagination;
             }).catch(error => {
                 console.log(error);
@@ -77,6 +78,15 @@ const app = new Vue({
             });
 
         },
+
+        fetch(type, id) {
+            axios.get('/files/' + type + '/?id=' + id, { params: { keywords: this.keywords } })
+                .then(result => {this.files = result.data.data.data;})
+                .then(response => this.files = response.data)
+                .catch(error => {});
+            console.log(this.files);
+        },
+
 
         getFiles(type) {
             this.setActive(type);
@@ -225,6 +235,7 @@ const app = new Vue({
 
     mounted() {
         this.fetchFile(this.activeTab, this.pagination.current_page);
+        this.fetch(this.activeTab)
     },
 
     computed: {
@@ -250,5 +261,11 @@ const app = new Vue({
 
             return pages;
         }
-    }
+    },
+
+    watch: {
+        keywords(after, before) {
+            this.fetch(this.activeTab);
+        }
+    },
 });

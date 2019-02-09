@@ -16412,6 +16412,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   width: 100%;
+  max-height: 18.75rem;
 }
 
 .file-wrapper .card .card-image-top .file-header-wrapper img {
