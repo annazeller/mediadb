@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        Diese entscheidung lässt sich nicht widerrufen.
+                        Diese Entscheidung lässt sich nicht widerrufen.
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -18,7 +18,7 @@
                         Ja, löschen
                     </button>
                     <button type="button" class="btn btn-danger" @click="cancelDeleting()">
-                        Nein, lieber behalten
+                        Nein, behalten
                     </button>
                 </div>
             </div>
