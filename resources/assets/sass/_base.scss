@@ -19,12 +19,17 @@ html, body {
 .card {
   position:relative;
 }
+
 .delete-file, .close-modal {
   top: rem(10px);
   right: rem(10px);
   position: absolute;
+}
+
+.delete-file, .close-modal, .edit-button {
   background: rgba($black, 0.5);
   border-radius: 99em;
+  cursor: pointer;
   font: {
     size: rem(15px);
   }
@@ -37,6 +42,9 @@ html, body {
   &:hover {
     color: $white;
     background: $danger;
+  }
+  &.hidden {
+    display: none;
   }
 }
 
@@ -83,6 +91,8 @@ html, body {
   }
   .modal-dialog {
     max-height: 85vh;
+    overflow-x: hidden;
+    overflow-y: auto;
     max-width: 80vh;
     min-height: unset;
     height: auto;
@@ -93,8 +103,23 @@ html, body {
       min-height: unset;
       height: 0;
     }
+    .modal-content, .modal-body {
+      max-height: 85vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
   }
 }
+
+.table {
+  td {
+    &.long-line {
+      word-break: break-word!important;
+    }
+  }
+}
+
+
 
 .pagination {
   margin-top: rem(30px);

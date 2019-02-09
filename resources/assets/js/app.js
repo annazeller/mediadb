@@ -1,6 +1,9 @@
 window.Vue = require('vue');
 window.axios = require('axios');
 window.EXIF = require('exif-js');
+window.piexif = require('piexifjs');
+window.piexif = require("piexifjs");
+// window.fs = require("fs");
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -36,6 +39,7 @@ const app = new Vue({
         formData: {},
         fileName: '',
         attachment: '',
+        editHidden: true,
 
         editingFile: {},
         deletingFile: {},
@@ -70,7 +74,6 @@ const app = new Vue({
             axios.get('files/' + type + '?page=' + page).then(result => {
                 this.loading = false;
                 this.files = result.data.data.data;
-                console.log(this.files);
                 this.pagination = result.data.pagination;
             }).catch(error => {
                 console.log(error);
@@ -84,7 +87,6 @@ const app = new Vue({
                 .then(result => {this.files = result.data.data.data;})
                 .then(response => this.files = response.data)
                 .catch(error => {});
-            console.log(this.files);
         },
 
 
@@ -198,18 +200,46 @@ const app = new Vue({
         },
 
         modalExif() {
-            this.imageExif = this.$refs.imageExif;
-            EXIF.getData(this.imageExif, function() {
-                const   array = EXIF.pretty(this),
-                        exifInfo = $(".modal-exif");
-                exifInfo.html(array);
-                exifInfo.html(function(i, oldHTML) {
-                    return oldHTML.replace(/\n/g, '<br/>');
-                });
+            this.showExif = this.$refs.imageExif.src;
+
+            function toDataUrl(url, callback) {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                    const reader = new FileReader();
+                    reader.onloadend = function() {
+                        callback(reader.result);
+                    };
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.send();
+            }
+            toDataUrl(this.showExif, function(base64) {
+                const exifObj = piexif.load(base64);
+                for (let ifd in exifObj) {
+                    if (ifd === "thumbnail") {
+                        continue;
+                    }
+                    const exifInfo = $(".modal-exif");
+                    exifInfo.append("<tr>" + "<th class='py-4 d-block'>" + ifd + "</th><th></th>" + "</tr>");
+                    for (let tag in exifObj[ifd]) {
+                        exifInfo.append("<tr>" + "<td>" + piexif.TAGS[ifd][tag]["name"] + ":</td><td class='long-line'>" + exifObj[ifd][tag] + "</td>" + "</tr>");
+                    }
+                }
             });
+
+            this.editHidden = false;
+        },
+
+        buttonEditExif() {
+
         },
 
         closeModal() {
+            const exifInfo = $(".modal-exif");
+            exifInfo.html("");
+            this.editHidden = true;
             this.modalActive = false;
             this.file = {};
         },
