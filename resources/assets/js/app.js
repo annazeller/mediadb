@@ -70,7 +70,6 @@ const app = new Vue({
             axios.get('files/' + type + '?page=' + page).then(result => {
                 this.loading = false;
                 this.files = result.data.data.data;
-                console.log(this.files);
                 this.pagination = result.data.pagination;
             }).catch(error => {
                 console.log(error);
@@ -84,7 +83,6 @@ const app = new Vue({
                 .then(result => {this.files = result.data.data.data;})
                 .then(response => this.files = response.data)
                 .catch(error => {});
-            console.log(this.files);
         },
 
 
