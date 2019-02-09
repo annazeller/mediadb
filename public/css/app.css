@@ -16448,3 +16448,17 @@ html, body {
 .highlighted {
   color: red;
 }
+
+body.landingpage {
+  background: #000;
+}
+
+body.landingpage .hero {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/slider.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
