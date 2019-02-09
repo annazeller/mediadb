@@ -200,8 +200,12 @@ const app = new Vue({
         modalExif() {
             this.imageExif = this.$refs.imageExif;
             EXIF.getData(this.imageExif, function() {
-                console.log('image info', this);
-                console.log('exif data', this.exifdata);
+                const   array = EXIF.pretty(this),
+                        exifInfo = $(".modal-exif");
+                exifInfo.html(array);
+                exifInfo.html(function(i, oldHTML) {
+                    return oldHTML.replace(/\n/g, '<br/>');
+                });
             });
         },
 

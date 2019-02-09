@@ -6,10 +6,19 @@
         </button>
         <div class="modal-content">
             <div class="modal-body">
-                <img class="img-fluid" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
+                <img class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
                 <button class="btn btn-primary" @click="modalExif()">Exif Daten anzeigen</button>
-                {{--<div class="image-data" ref="imageData" v-if="imageData.length" v-html="imageData"></div>
-                <div class="exif-data" ref="exifData" v-if="imageExif.length" v-html="imageExif"></div>--}}
+                {{--<table class="table modal-exif">
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                    </tbody>
+                </table>--}}
+                <div class="modal-exif"></div>
             </div>
         </div>
     </div>
