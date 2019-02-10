@@ -1,6 +1,6 @@
 #sidebar {
   position: relative;
-  z-index: 999;
+  z-index: 10;
   flex: 0;
   min-width: 12vw;
   height: 100%;
@@ -39,7 +39,7 @@
         weight: 400;
         size: rem(20px);
       }
-      svg {
+      img {
         width: rem(40px);
         height: auto;
         margin-bottom: 20px;
@@ -47,9 +47,9 @@
           width: auto;
           height: rem(40px);
         }
-        .cls-1 {
-          fill: transparent;
-          stroke: $custom-color-1;
+        display: none;
+        &.blue {
+          display: block;
         }
       }
       color: $custom-color-1;
@@ -59,9 +59,10 @@
         @extend %box-shadow;
         color: $custom-color-2;
         text-decoration: none;
-        svg {
-          .cls-1 {
-            stroke: $white;
+        img {
+          display: block;
+          &.blue {
+            display: none;
           }
         }
         //border-color: $custom-color-1;

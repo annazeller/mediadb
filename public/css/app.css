@@ -10200,7 +10200,7 @@ body#dashboard #app {
 }
 body#dashboard #app #sidebar {
   position: relative;
-  z-index: 999;
+  z-index: 10;
   flex: 0;
   min-width: 12vw;
   height: 100%;
@@ -10241,26 +10241,29 @@ body#dashboard #app #sidebar > ul > li {
   color: #589ff2;
   transition: all 200ms linear 0s;
 }
-body#dashboard #app #sidebar > ul > li svg {
+body#dashboard #app #sidebar > ul > li img {
   width: 2.5rem;
   height: auto;
   margin-bottom: 20px;
+  display: none;
 }
-body#dashboard #app #sidebar > ul > li svg.width {
+body#dashboard #app #sidebar > ul > li img.width {
   width: auto;
   height: 2.5rem;
 }
-body#dashboard #app #sidebar > ul > li svg .cls-1 {
-  fill: transparent;
-  stroke: #589ff2;
+body#dashboard #app #sidebar > ul > li img.blue {
+  display: block;
 }
 body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active {
   background: #589ff2;
   color: #dfe6ef;
   text-decoration: none;
 }
-body#dashboard #app #sidebar > ul > li:hover svg .cls-1, body#dashboard #app #sidebar > ul > li.active svg .cls-1 {
-  stroke: #fff;
+body#dashboard #app #sidebar > ul > li:hover img, body#dashboard #app #sidebar > ul > li.active img {
+  display: block;
+}
+body#dashboard #app #sidebar > ul > li:hover img.blue, body#dashboard #app #sidebar > ul > li.active img.blue {
+  display: none;
 }
 body#dashboard #app #content {
   position: relative;

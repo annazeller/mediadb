@@ -27,19 +27,23 @@
             </a>
             <ul>
                 <li :class="{'active': isActive('image')}" @click="getFiles('image')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title>image</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><rect class="cls-1" x="1" y="1" width="50" height="50" rx="5.56"/><circle class="cls-1" cx="16.28" cy="16.28" r="4.17"/><polyline class="cls-1" points="51 34.33 37.11 20.44 6.56 51"/></g></g></svg>
+                    <img src="{{ asset('images/image.svg') }}">
+                    <img class="blue" src="{{ asset('images/image-blue.svg') }}">
                     Bilder
                 </li>
                 <li :class="{'active': isActive('audio')}" @click="getFiles('audio')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title>music</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><path class="cls-1" d="M17.67,42.67V6.56L51,1V37.11"/><circle class="cls-1" cx="9.33" cy="42.67" r="8.33"/><circle class="cls-1" cx="42.67" cy="37.11" r="8.33"/></g></g></svg>
+                    <img src="{{ asset('images/music.svg') }}">
+                    <img class="blue" src="{{ asset('images/music-blue.svg') }}">
                     Musik
                 </li>
                 <li :class="{'active': isActive('video')}" @click="getFiles('video')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 33.82"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title>video</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><polygon class="cls-1" points="51 5.54 35.09 16.91 51 28.27 51 5.54"/><rect class="cls-1" x="1" y="1" width="34.09" height="31.82" rx="4.55"/></g></g></svg>
+                    <img src="{{ asset('images/video.svg') }}">
+                    <img class="blue" src="{{ asset('images/video-blue.svg') }}">
                     Videos
                 </li>
                 <li :class="{'active': isActive('document')}" @click="getFiles('document')">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 42 52"><defs><style>.cls-1{fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title>document</title><g id="Ebene_2" data-name="Ebene 2"><g id="Ebene_1-2" data-name="Ebene 1"><path class="cls-1" d="M23.5,1H6A5,5,0,0,0,1,6V46a5,5,0,0,0,5,5H36a5,5,0,0,0,5-5V18.5Z"/><polyline class="cls-1" points="23.5 1 23.5 18.5 41 18.5"/></g></g></svg>
+                    <img class="width" src="{{ asset('images/document.svg') }}">
+                    <img class="width blue" src="{{ asset('images/document-blue.svg') }}">
                     Dokumente
                 </li>
             </ul>
