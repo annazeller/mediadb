@@ -20,3 +20,7 @@ Route::post('files/delete/{id}', 'FileController@destroy');
 
 
 Auth::routes();
+
+Route::post('/post', 'MetaController@iptc');
+
+Route::get('/iptctest', 'MetaController@index');
