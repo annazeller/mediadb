@@ -55,19 +55,10 @@
             </div>
         </div>
     </nav>
-<<<<<<< HEAD
-
-    {{--
-    <div class="container" id="app">
-      @yield('content')
-=======
     <div class="container" id="app">
         {{-- @yield('content') --}}
->>>>>>> d7f72ccceceede5f462db84db4cd83117052acd0
     </div>
-    --}}
     <section class="hero">
-<<<<<<< HEAD
       <div class="hero-Image">
         <h1>Digital Asset Management</h1>
         <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
@@ -90,13 +81,11 @@
           </div>
         </div>
       </div>
-=======
-        <div class="hero-Image">
-            <h1>Digital Asset Management</h1>
-            <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
-                <a href="#" class="btn btn-default"> Registrieren </a>
-        </div>
->>>>>>> d7f72ccceceede5f462db84db4cd83117052acd0
+    <div class="hero-Image">
+        <h1>Digital Asset Management</h1>
+        <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
+        <a href="#" class="btn btn-default"> Registrieren </a>
+    </div>
     </section>
     <footer>
         <div class="container">
