@@ -1,6 +1,6 @@
 #sidebar {
   position: relative;
-  z-index: 999;
+  z-index: 10;
   flex: 0;
   min-width: 12vw;
   height: 100%;
@@ -24,40 +24,48 @@
     list-style: none;
     height: calc(100vh - (105px + 60px));
     & > li {
-      display: block;
       min-height: 25%;
       height: 25%;
-      a {
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding: rem(20px);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        font: {
-          family: $font-header;
-          weight: 400;
-          size: rem(20px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: rem(20px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font: {
+        family: $font-header;
+        weight: 400;
+        size: rem(20px);
+      }
+      img {
+        width: rem(40px);
+        height: auto;
+        margin-bottom: 20px;
+        &.width {
+          width: auto;
+          height: rem(40px);
         }
+        display: none;
+        &.blue {
+          display: block;
+        }
+      }
+      color: $custom-color-1;
+      @include transition(all 200ms linear 0s);
+      &:hover, &.active {
+        background: $custom-color-1;
+        @extend %box-shadow;
+        color: $custom-color-2;
+        text-decoration: none;
         img {
-          width: rem(40px);
-          height: auto;
-          margin-bottom: 20px;
-          &.width {
-            width: auto;
-            height: rem(40px);
+          display: block;
+          &.blue {
+            display: none;
           }
         }
-        color: $white;
-        @include transition(all 200ms linear 0s);
-        &:hover, &.active {
-          background: $custom-color-1;
-          @extend %box-shadow;
-          text-decoration: none;
-          //border-color: $custom-color-1;
-        }
+        //border-color: $custom-color-1;
       }
     }
   }
@@ -76,7 +84,7 @@
     display: block;
     @extend %box-shadow;
     padding: rem(20px 50px);
-    background: $custom-color-3;
+    background: $custom-color-2;
     .navbar-form {
       position: relative;
       .search-input {
@@ -115,12 +123,12 @@
           justify-content: center;
           align-items: center;
           a {
-            color: $white;
+            color: $custom-color-1;
             display: inline-block;
             padding: rem(20px);
             @include transition(all 200ms linear 0s);
             &:hover {
-              color: $custom-color-5;
+              color: $custom-color-1;
             }
           }
           .dropdown-menu {
@@ -128,14 +136,17 @@
             left: auto;
             border: none;
             @extend %boxLook;
-            top: calc(100% + #{rem(11px)});
+            top: calc(100% + #{rem(19px)});
             padding: 0;
 
             .dropdown-item {
               padding: rem(20px);
-              color: $custom-color-2;
+              color: $custom-color-1;
+              background: $custom-color-2;
+              @include transition(all 200ms linear 0s);
               &:hover {
-                color: $custom-color-1;
+                background: $custom-color-1;
+                color: $custom-color-2;
               }
             }
           }
@@ -146,7 +157,7 @@
   .sub-navbar {
     @extend %box-shadow;
     padding: rem(20px 50px);
-    background: #e1e1e1;
+    background: #eff3f8;
     height: auto;
     .filter-bar {
       flex: 0;
@@ -155,7 +166,7 @@
       .filter-button {
         margin-right: rem(20px);
         padding: rem(20px);
-        color: $custom-color-3;
+        color: $custom-color-1;
         background: $white;
         white-space: nowrap;
         border: none;
@@ -167,7 +178,8 @@
           margin: 0;
         }
         &:hover {
-          background-color: $custom-color-2;
+          color: $white;
+          background-color: $custom-color-1;
         }
       }
     }
@@ -208,10 +220,15 @@
         & > button {
           border: none;
           @extend %boxLook;
-          background: $custom-color-2;
+          background: $custom-color-1;
           color: $white;
           padding: rem(20px);
           margin-left: rem(20px);
+          @include transition(all 200ms linear 0s);
+          cursor: pointer;
+          &:hover {
+            background: darken($custom-color-1, 10%);
+          }
         }
       }
     }

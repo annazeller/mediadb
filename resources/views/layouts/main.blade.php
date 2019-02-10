@@ -40,10 +40,6 @@
                         <div class="card-image-top">
                             <img class="img-fluid" src="{{ asset('images/document.png') }}" alt="Document image" id="document_image">
                         </div>
-                        <a class="btn btn-primary" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
-                            <i data-feather="download"></i>
-                            &nbsp;Herunterladen
-                        </a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -58,11 +54,15 @@
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </button>
+                        <a class="mt-3 btn btn-primary" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
+                            <i data-feather="download"></i>
+                            &nbsp;Herunterladen
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 d-flex justify-content-center align-items-center">
             <nav aria-label="Pagination" v-if="pagination.last_page > 1" v-cloak>
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" @click.prevent="changePage(1)" :disabled="pagination.current_page <= 1" href="#">Erste Seite</a></li>

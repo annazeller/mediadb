@@ -16,36 +16,35 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body id="dashboard">
+<body class="not-loaded" id="dashboard">
+    <div id="loader">
+        Seite Lädt...
+    </div>
     <div id="app">
         <div id="sidebar">
             <a href="/" id="logo">
                 MediaDB
             </a>
             <ul>
-                <li>
-                    <a href="#" :class="{'active': isActive('image')}" @click="getFiles('image')">
-                        <img class="navi-image" src="{{ asset('images/image.svg') }}">
-                        Bilder
-                    </a>
+                <li :class="{'active': isActive('image')}" @click="getFiles('image')">
+                    <img src="{{ asset('images/image.svg') }}">
+                    <img class="blue" src="{{ asset('images/image-blue.svg') }}">
+                    Bilder
                 </li>
-                <li>
-                    <a href="#" :class="{'active': isActive('audio')}" @click="getFiles('audio')">
-                        <img class="navi-image" src="{{ asset('images/music.svg') }}">
-                        Musik
-                    </a>
+                <li :class="{'active': isActive('audio')}" @click="getFiles('audio')">
+                    <img src="{{ asset('images/music.svg') }}">
+                    <img class="blue" src="{{ asset('images/music-blue.svg') }}">
+                    Musik
                 </li>
-                <li>
-                    <a href="#" :class="{'active': isActive('video')}" @click="getFiles('video')">
-                        <img class="navi-image" src="{{ asset('images/video.svg') }}">
-                        Videos
-                    </a>
+                <li :class="{'active': isActive('video')}" @click="getFiles('video')">
+                    <img src="{{ asset('images/video.svg') }}">
+                    <img class="blue" src="{{ asset('images/video-blue.svg') }}">
+                    Videos
                 </li>
-                <li>
-                    <a href="#" :class="{'active': isActive('document')}" @click="getFiles('document')">
-                        <img class="navi-image width" src="{{ asset('images/document.svg') }}">
-                        Dokumente
-                    </a>
+                <li :class="{'active': isActive('document')}" @click="getFiles('document')">
+                    <img class="width" src="{{ asset('images/document.svg') }}">
+                    <img class="width blue" src="{{ asset('images/document-blue.svg') }}">
+                    Dokumente
                 </li>
             </ul>
         </div>
