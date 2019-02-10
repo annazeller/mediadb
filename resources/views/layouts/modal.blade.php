@@ -12,6 +12,10 @@
                     <button type="button" ref="editButton" class="edit-button" :class="{'hidden': editHidden }" @click="buttonEditExif()" title="Bilddetails Bearbeiten">
                         <span aria-hidden="true"><i data-feather="edit-2"></i></span>
                     </button>
+                    <form id="imagesourceform" class="form-horizontal" method="post" action="/postimage">
+                        <input type="hidden" id="imageInput" name="imagesource">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    </form>
                 </div>
                 <table class="table table-striped">
                     <tbody class="modal-exif">

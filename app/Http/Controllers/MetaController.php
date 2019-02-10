@@ -12,9 +12,13 @@ class MetaController extends Controller
 {
     public function index()
     {
-        return view('layouts.meta', compact('iptc'));
+        return view('layouts.meta');
     }
 
+    public function getimage(Request $request){
+        $imagesource = $request['imagesource'];
+        return redirect('/iptc')->with("status", $imagesource);
+    }
     public function iptc(Request $request){
 
         $object_name = $request->input('object_name');
@@ -49,7 +53,8 @@ class MetaController extends Controller
         $local_caption = $request->input('local_caption');
         $caption_writer = $request->input('caption_writer');
 
-        $contents = storage_path('test.jpg');
+        $imagesource = $request->input('imagesource');
+        $contents = storage_path($imagesource);
 
         $iptc = new Iptc($contents);
         if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }

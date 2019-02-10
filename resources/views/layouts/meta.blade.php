@@ -1,4 +1,10 @@
+@if (session("status"))
+    <div class="d-none alert alert-success">
+        {{ session("status") }}
+    </div>
+@endif
 <form class="form-horizontal" method="post" action="/post">
+    <input name="imagesource" type="hidden" value="{{ session("status") }}">
     <div class="form-group">
         <label for="rec" class="col-lg-2 control-label">
            Objektname
