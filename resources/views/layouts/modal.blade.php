@@ -12,13 +12,17 @@
                     <button type="button" ref="editButton" class="edit-button" :class="{'hidden': editHidden }" @click="buttonEditExif()" title="Bilddetails Bearbeiten">
                         <span aria-hidden="true"><i data-feather="edit-2"></i></span>
                     </button>
+                    <form id="imagesourceform" class="form-horizontal" method="post" action="/postimage">
+                        <input type="hidden" id="imageInput" name="imagesource">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    </form>
                 </div>
                 <table class="table table-striped">
                     <tbody class="modal-exif">
                     </tbody>
                 </table>
                 <div>
-                    <form id="editWithJimp" action="#" method="#" @submit.prevent="editWithJimp(file)">
+                    {{--<form id="editWithJimp" action="#" method="#" @submit.prevent="editWithJimp(file)">
                         <div class="input-group">
                             <label for="imageWidth">Breite</label>
                             <input type="text" class="form-control" id="imageWidth" v-model="imageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
@@ -36,7 +40,7 @@
                             <small id="heightHelp" class="form-text text-muted">Bitte gib die gewünschte Bildhöhe an.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </form>--}}
                 </div>
             </div>
         </div>

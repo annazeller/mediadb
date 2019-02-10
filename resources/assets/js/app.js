@@ -236,9 +236,12 @@ const app = new Vue({
         },
 
         buttonEditExif() {
-
-
-
+            let image = $('.modal-image').attr('src');
+            console.log(image);
+            image = image.replace('http://192.168.10.10/storage/','app/public/');
+            console.log(image);
+            $('#imageInput').val(image);
+            $('#imagesourceform').submit();
         },
 
         closeModal() {
