@@ -32,7 +32,7 @@ class FileController extends Controller
         if (!is_null($id)) {
             $response = $model::findOrFail($id);
         } else {
-            $records_per_page = ($type == 'video') ? 6 : 15;
+            $records_per_page = ($type == 'video') ? 6 : 10;
 
             $files = $model::where('type', $type)
                             ->where('name', 'like', '%' . $request->get('keywords') . '%')

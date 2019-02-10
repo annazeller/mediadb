@@ -1,5 +1,32 @@
 html, body {
   height: 100%;
+  &.not-loaded {
+    overflow: hidden;
+  }
+}
+
+#loader {
+  .not-loaded & {
+    display: flex;
+    visibility: visible;
+  }
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: $custom-color-1;
+  display: none;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  font: {
+    size: rem(50px);
+    family: $font-header;
+    weight: 400;
+  }
+  color: $white;
+  z-index: 999999;
 }
 
 #message {
@@ -127,6 +154,11 @@ html, body {
 
 .pagination {
   margin-top: rem(30px);
+  @extend %boxLook;
+  overflow: hidden;
+  a {
+    border: none!important;
+  }
 }
 
 // vue animation

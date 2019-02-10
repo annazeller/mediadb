@@ -24,50 +24,47 @@
     list-style: none;
     height: calc(100vh - (105px + 60px));
     & > li {
-      display: block;
       min-height: 25%;
       height: 25%;
-      a {
-        border-top: 1px solid rgba(255,255,255,0.1);
-        padding: rem(20px);
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        font: {
-          family: $font-header;
-          weight: 400;
-          size: rem(20px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: rem(20px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font: {
+        family: $font-header;
+        weight: 400;
+        size: rem(20px);
+      }
+      svg {
+        width: rem(40px);
+        height: auto;
+        margin-bottom: 20px;
+        &.width {
+          width: auto;
+          height: rem(40px);
         }
+        .cls-1 {
+          fill: transparent;
+          stroke: $custom-color-1;
+        }
+      }
+      color: $custom-color-1;
+      @include transition(all 200ms linear 0s);
+      &:hover, &.active {
+        background: $custom-color-1;
+        @extend %box-shadow;
+        color: $custom-color-2;
+        text-decoration: none;
         svg {
-          width: rem(40px);
-          height: auto;
-          margin-bottom: 20px;
-          &.width {
-            width: auto;
-            height: rem(40px);
-          }
           .cls-1 {
-            fill: transparent;
-            stroke: $custom-color-1;
+            stroke: $white;
           }
         }
-        color: $custom-color-1;
-        @include transition(all 200ms linear 0s);
-        &:hover, &.active {
-          background: $custom-color-1;
-          @extend %box-shadow;
-          color: $custom-color-2;
-          text-decoration: none;
-          svg {
-            .cls-1 {
-              stroke: $white;
-            }
-          }
-          //border-color: $custom-color-1;
-        }
+        //border-color: $custom-color-1;
       }
     }
   }

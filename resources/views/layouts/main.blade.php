@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 d-flex justify-content-center align-items-center">
             <nav aria-label="Pagination" v-if="pagination.last_page > 1" v-cloak>
                 <ul class="pagination">
                     <li class="page-item"><a class="page-link" @click.prevent="changePage(1)" :disabled="pagination.current_page <= 1" href="#">Erste Seite</a></li>

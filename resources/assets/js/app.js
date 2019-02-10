@@ -301,7 +301,9 @@ const app = new Vue({
 
     mounted() {
         this.fetchFile(this.activeTab, this.pagination.current_page);
-        this.fetch(this.activeTab)
+        this.fetch(this.activeTab);
+        console.log('ready!');
+        $('body').removeClass('not-loaded');
     },
 
     computed: {
