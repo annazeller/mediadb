@@ -1,13 +1,14 @@
 window.Vue = require('vue');
 window.axios = require('axios');
-window.EXIF = require('exif-js');
 window.piexif = require('piexifjs');
 window.Jimp = require('jimp');
+const feather = require('feather-icons');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] =
+        token.content;
 } else {
     console.error('CSRF token nicht gefunden: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
@@ -235,6 +236,8 @@ const app = new Vue({
         },
 
         buttonEditExif() {
+
+
 
         },
 

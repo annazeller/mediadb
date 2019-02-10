@@ -1,5 +1,13 @@
+body {
+  font: {
+    family: $font-text;
+    weight: 400;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font: {
-    family: 'Karla', sans-serif;
+    family: $font-header;
+    weight: 500;
   }
 }

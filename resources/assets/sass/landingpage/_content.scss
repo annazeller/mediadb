@@ -1,15 +1,6 @@
-body {
-  &.landingpage {
-    background: $black;
-    .hero {
-      width: 100vw;
-      height: 100vh;
-      background-image: url('../images/slider.png');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-
-    }
-  }
+.hero {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background: url('../images/slider.png') no-repeat fixed center center;
 }

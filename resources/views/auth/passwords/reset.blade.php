@@ -11,7 +11,7 @@
                     <label for="registerEmail">E-Mail-Adresse</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <span class="input-group-text"><i data-feather="mail"></i></span>
                         </div>
                         <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" id="registerEmail" value="{{ $email or old('email') }}" aria-describedby="registerEmailHelp" type="email" name="email" placeholder="E-Mail-Adresse">
                         @if ($errors->has('email'))
@@ -26,7 +26,7 @@
                     <label for="registerPassword">Neues Passwort</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <span class="input-group-text"><i data-feather="lock"></i></span>
                         </div>
                         <input class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" aria-describedby="registerPasswordHelp" id="registerPassword" type="password" name="password" placeholder="Passwort">
                         @if ($errors->has('password'))
@@ -41,7 +41,7 @@
                     <label for="registerPassword">Neues Passwort bestätigen</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <span class="input-group-text"><i data-feather="lock"></i></span>
                         </div>
                         <input id="password-confirm" type="password" aria-describedby="registerPasswordConfirmHelp" class="form-control" name="password_confirmation" placeholder="Passwort bestätigen">
                     </div>
