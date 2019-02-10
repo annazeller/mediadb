@@ -22,7 +22,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    height: calc(100vh - (105px + 60px));
+    height: calc(100vh - (105px));
     & > li {
       min-height: 25%;
       height: 25%;
@@ -71,185 +71,213 @@
   }
 }
 #content {
-  position: relative;
-  z-index: 1;
   flex: 1;
-  height: 100%;
-  max-height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  .navbar {
-    display: block;
-    @extend %box-shadow;
-    padding: rem(20px 50px);
-    background: $custom-color-2;
-    .navbar-form {
-      position: relative;
-      .search-input {
-        border: none;
-        @extend %boxLook;
-        background: $white;
-        padding: rem(20px);
-        width: 100%;
-      }
-      .search-submit {
-        position: absolute;
-        top: 32px;
-        right: 0;
-        @include transform(translateY(-50%));
-        color: $custom-color-2;
-        border: none;
-        background: transparent;
-        padding: 20px;
-        cursor: pointer;
-        @include transition(all 200ms linear 0s);
-        &:focus, &:active, &:hover {
-          outline: none;
-          box-shadow: none;
-          color: $custom-color-1;
+  #inner-content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    height: 100%;
+    max-height: calc(100% - 60px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    .navbar {
+      display: block;
+      @extend %box-shadow;
+      padding: rem(20px 50px);
+      background: $custom-color-2;
+      .navbar-form {
+        position: relative;
+        .search-input {
+          border: none;
+          @extend %boxLook;
+          background: $white;
+          padding: rem(20px);
+          width: 100%;
+        }
+        .search-submit {
+          position: absolute;
+          top: 32px;
+          right: 0;
+          @include transform(translateY(-50%));
+          color: $custom-color-2;
+          border: none;
+          background: transparent;
+          padding: 20px;
+          cursor: pointer;
+          @include transition(all 200ms linear 0s);
+          &:focus, &:active, &:hover {
+            outline: none;
+            box-shadow: none;
+            color: $custom-color-1;
+          }
         }
       }
-    }
-    #navbarNav {
-      height: 100%;
-      ul.navbar-nav {
+      #navbarNav {
         height: 100%;
-        margin-left: auto;
-        li {
+        ul.navbar-nav {
           height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          a {
-            color: $custom-color-1;
-            display: inline-block;
-            padding: rem(20px);
-            @include transition(all 200ms linear 0s);
-            &:hover {
+          margin-left: auto;
+          li {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a {
               color: $custom-color-1;
-            }
-          }
-          .dropdown-menu {
-            right: 0;
-            left: auto;
-            border: none;
-            @extend %boxLook;
-            top: calc(100% + #{rem(19px)});
-            padding: 0;
-
-            .dropdown-item {
+              display: inline-block;
               padding: rem(20px);
-              color: $custom-color-1;
-              background: $custom-color-2;
               @include transition(all 200ms linear 0s);
               &:hover {
-                background: $custom-color-1;
-                color: $custom-color-2;
+                color: $custom-color-1;
+              }
+            }
+            .dropdown-menu {
+              right: 0;
+              left: auto;
+              border: none;
+              @extend %boxLook;
+              top: calc(100% + #{rem(19px)});
+              padding: 0;
+
+              .dropdown-item {
+                padding: rem(20px);
+                color: $custom-color-1;
+                background: $custom-color-2;
+                @include transition(all 200ms linear 0s);
+                &:hover {
+                  background: $custom-color-1;
+                  color: $custom-color-2;
+                }
               }
             }
           }
         }
       }
     }
-  }
-  .sub-navbar {
-    @extend %box-shadow;
-    padding: rem(20px 50px);
-    background: #eff3f8;
-    height: auto;
-    .filter-bar {
-      flex: 0;
-      display: flex;
-      height: 100%;
-      .filter-button {
-        margin-right: rem(20px);
-        padding: rem(20px);
-        color: $custom-color-1;
-        background: $white;
-        white-space: nowrap;
-        border: none;
-        @extend %boxLook;
-        display: inline-block;
-        cursor: pointer;
-        @include transition(all 200ms linear 0s);
-        &:last-child {
-          margin: 0;
-        }
-        &:hover {
-          color: $white;
-          background-color: $custom-color-1;
+    .sub-navbar {
+      @extend %box-shadow;
+      padding: rem(20px 50px);
+      background: #eff3f8;
+      height: auto;
+      .filter-bar {
+        flex: 0;
+        display: flex;
+        height: 100%;
+        .filter-button {
+          margin-right: rem(20px);
+          padding: rem(20px);
+          color: $custom-color-1;
+          background: $white;
+          white-space: nowrap;
+          border: none;
+          @extend %boxLook;
+          display: inline-block;
+          cursor: pointer;
+          @include transition(all 200ms linear 0s);
+          &:last-child {
+            margin: 0;
+          }
+          &:hover {
+            color: $white;
+            background-color: $custom-color-1;
+          }
         }
       }
-    }
-    .search-items {
-      flex: 1;
-      .upload-form {
-        display: flex;
-        justify-content: space-between;
-        & > input {
-          padding: rem(20px);
-          @extend %boxLook;
-          border: none;
-          flex-grow: 1;
-          margin-right: rem(20px);
-          min-width: 60%;
-        }
-        .custom-file {
-          height: 100%;
-          min-height: rem(64px);
-          @extend %boxLook;
+      .search-items {
+        flex: 1;
+        .upload-form {
+          display: flex;
+          justify-content: space-between;
           & > input {
-            cursor: pointer;
-          }
-          & > label {
+            padding: rem(20px);
             @extend %boxLook;
             border: none;
             flex-grow: 1;
-            background: $white;
-            margin: 0;
-            height: 100%;
-            padding: rem(20px);
-            cursor: pointer;
+            margin-right: rem(20px);
+            min-width: 60%;
           }
-          .custom-file-label::after {
-            display: none;
+          .custom-file {
+            height: 100%;
+            min-height: rem(64px);
+            @extend %boxLook;
+            & > input {
+              cursor: pointer;
+            }
+            & > label {
+              @extend %boxLook;
+              border: none;
+              flex-grow: 1;
+              background: $white;
+              margin: 0;
+              height: 100%;
+              padding: rem(20px);
+              cursor: pointer;
+            }
+            .custom-file-label::after {
+              display: none;
+            }
+          }
+          & > button {
+            border: none;
+            @extend %boxLook;
+            background: $custom-color-1;
+            color: $white;
+            padding: rem(20px);
+            margin-left: rem(20px);
+            @include transition(all 200ms linear 0s);
+            cursor: pointer;
+            &:hover {
+              background: darken($custom-color-1, 10%);
+            }
           }
         }
-        & > button {
-          border: none;
-          @extend %boxLook;
-          background: $custom-color-1;
+      }
+    }
+    #page-layout {
+      height: 100%;
+      max-height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: rem(50px 0);
+      & > .container-fluid {
+        padding: rem(0 50px);
+      }
+      .card {
+        @extend %boxLook;
+        overflow: hidden;
+        border: none;
+      }
+    }
+  }
+  footer {
+    height: rem(60px);
+    padding: rem(0 50px);
+    .meta-nav {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: right;
+      display: inline-flex;
+      & > li {
+        & > a {
           color: $white;
-          padding: rem(20px);
-          margin-left: rem(20px);
+          display: block;
+          line-height: 60px;
+          padding: rem(0 20px);
           @include transition(all 200ms linear 0s);
-          cursor: pointer;
           &:hover {
-            background: darken($custom-color-1, 10%);
+            text-decoration: none;
+            color: $custom-color-2;
+            background: $custom-color-1;
           }
         }
       }
     }
   }
-  #page-layout {
-    height: 100%;
-    max-height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: rem(50px 0);
-    & > .container-fluid {
-      padding: rem(0 50px);
-    }
-    .card {
-      @extend %boxLook;
-      overflow: hidden;
-      border: none;
-    }
-    .btn {
-      @extend %boxLook;
-      padding: rem(10px 20px);
-    }
-  }
+}
+.btn {
+  @extend %boxLook;
+  padding: rem(10px 20px);
 }

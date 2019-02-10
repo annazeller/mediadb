@@ -13,6 +13,9 @@
         </div>
         <div class="file-wrapper" :class="isVideo ? 'col-6'  : 'col-4'" v-for="file in files" :key="file.id">
             <div class="card" >
+                <a class="download-file" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
+                    <span aria-hidden="true"><i data-feather="download"></i></span>
+                </a>
                 <button type="button" class="delete-file" title="Löschen" @click="prepareToDelete(file)">
                     <span aria-hidden="true"><i data-feather="trash"></i></span>
                 </button>
@@ -54,10 +57,6 @@
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </button>
-                        <a class="mt-3 btn btn-primary" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
-                            <i data-feather="download"></i>
-                            &nbsp;Herunterladen
-                        </a>
                     </div>
                 </div>
             </div>
