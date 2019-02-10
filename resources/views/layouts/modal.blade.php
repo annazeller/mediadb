@@ -18,7 +18,7 @@
                     </tbody>
                 </table>
                 <div>
-                    <form id="editWithJimp" action="#" method="#" @submit.prevent="editWithJimp(file)">
+                    {{--<form id="editWithJimp" action="#" method="#" @submit.prevent="editWithJimp(file)">
                         <div class="input-group">
                             <label for="imageWidth">Breite</label>
                             <input type="text" class="form-control" id="imageWidth" v-model="imageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
@@ -36,7 +36,7 @@
                             <small id="heightHelp" class="form-text text-muted">Bitte gib die gewünschte Bildhöhe an.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </form>--}}
                 </div>
             </div>
         </div>

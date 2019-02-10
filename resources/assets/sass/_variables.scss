@@ -18,11 +18,8 @@ $gray-900: #212529 !default;
 $black:    #000 !default;
 
 //Custom Theme
-$custom-color-1: #0F172B;
-$custom-color-2: #589ff2;
-$custom-color-3: $custom-color-2;
-$custom-color-4: $custom-color-2;
-$custom-color-5: $custom-color-2;
+$custom-color-1: #589ff2;
+$custom-color-2: #dfe6ef;
 
 //Fonts
 $font-header: 'Nunito', sans-serif;
@@ -78,12 +75,12 @@ $colors: map-merge(
                 $colors
 );
 
-$primary:       $custom-color-2 !default;
+$primary:       $custom-color-1 !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
-$danger:        $custom-color-5 !default;
+$danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 

@@ -41,7 +41,7 @@
           weight: 400;
           size: rem(20px);
         }
-        img {
+        svg {
           width: rem(40px);
           height: auto;
           margin-bottom: 20px;
@@ -49,13 +49,23 @@
             width: auto;
             height: rem(40px);
           }
+          .cls-1 {
+            fill: transparent;
+            stroke: $custom-color-1;
+          }
         }
-        color: $white;
+        color: $custom-color-1;
         @include transition(all 200ms linear 0s);
         &:hover, &.active {
           background: $custom-color-1;
           @extend %box-shadow;
+          color: $custom-color-2;
           text-decoration: none;
+          svg {
+            .cls-1 {
+              stroke: $white;
+            }
+          }
           //border-color: $custom-color-1;
         }
       }
@@ -76,7 +86,7 @@
     display: block;
     @extend %box-shadow;
     padding: rem(20px 50px);
-    background: $custom-color-3;
+    background: $custom-color-2;
     .navbar-form {
       position: relative;
       .search-input {
@@ -115,12 +125,12 @@
           justify-content: center;
           align-items: center;
           a {
-            color: $white;
+            color: $custom-color-1;
             display: inline-block;
             padding: rem(20px);
             @include transition(all 200ms linear 0s);
             &:hover {
-              color: $custom-color-5;
+              color: $custom-color-1;
             }
           }
           .dropdown-menu {
@@ -128,14 +138,17 @@
             left: auto;
             border: none;
             @extend %boxLook;
-            top: calc(100% + #{rem(11px)});
+            top: calc(100% + #{rem(19px)});
             padding: 0;
 
             .dropdown-item {
               padding: rem(20px);
-              color: $custom-color-2;
+              color: $custom-color-1;
+              background: $custom-color-2;
+              @include transition(all 200ms linear 0s);
               &:hover {
-                color: $custom-color-1;
+                background: $custom-color-1;
+                color: $custom-color-2;
               }
             }
           }
@@ -146,7 +159,7 @@
   .sub-navbar {
     @extend %box-shadow;
     padding: rem(20px 50px);
-    background: #e1e1e1;
+    background: #eff3f8;
     height: auto;
     .filter-bar {
       flex: 0;
@@ -155,7 +168,7 @@
       .filter-button {
         margin-right: rem(20px);
         padding: rem(20px);
-        color: $custom-color-3;
+        color: $custom-color-1;
         background: $white;
         white-space: nowrap;
         border: none;
@@ -167,7 +180,8 @@
           margin: 0;
         }
         &:hover {
-          background-color: $custom-color-2;
+          color: $white;
+          background-color: $custom-color-1;
         }
       }
     }
@@ -208,10 +222,15 @@
         & > button {
           border: none;
           @extend %boxLook;
-          background: $custom-color-2;
+          background: $custom-color-1;
           color: $white;
           padding: rem(20px);
           margin-left: rem(20px);
+          @include transition(all 200ms linear 0s);
+          cursor: pointer;
+          &:hover {
+            background: darken($custom-color-1, 10%);
+          }
         }
       }
     }
