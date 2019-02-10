@@ -56,4 +56,9 @@
 @import "base";
 
 //Landingpage
-@import "landingpage/content";
+body {
+  &.landingpage {
+    background: $black;
+    @import "landingpage/content";
+  }
+}

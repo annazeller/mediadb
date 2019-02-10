@@ -17,7 +17,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="landingpage">
-    <nav class="navbar mb-6 navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="/">MediaDB</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,18 +56,35 @@
         </div>
     </nav>
 
+    {{--
     <div class="container" id="app">
-
-      {{-- @yield('content') --}}
+      @yield('content')
     </div>
+    --}}
     <section class="hero">
       <div class="hero-Image">
         <h1>Digital Asset Management</h1>
         <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
-          <a href="#" class="$btn"> Registrieren </a>
+          <a href="#" class="btn"> Registrieren </a>
       </div>
     </section>
-
+    <section class="About">
+      <div class="container">
+        <div class="row">
+          <div class="col-6 pr-3">
+            <h1>Features</h1>
+            <p>
+              MediaDB ist die intuitive Dateiverwaltung für Marketing-Teams, die endlich Struktur und Ordnung in ihr
+              Medienarchiv bringen wollen. Mit MediaDB organisieren Nutzer ihre Mediendateien einfach stressfrei,
+              greifen deutlich schneller auf ihren Medienpool zu und teilen Inhalte gezielt.
+            <p>
+          </div>
+          <div class="col-6">
+            <img class="img-fluid" src="../images/asset.png" alt="DAM its cool">
+          </div>
+        </div>
+      </div>
+    </section>
     <footer>
       <div class="container">
         Test
