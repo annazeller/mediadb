@@ -40,7 +40,7 @@
                     @else
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-user"></span> &nbsp;
+                                <i data-feather="user"></i>&nbsp;
                                 {{ Auth::user()->name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -55,13 +55,19 @@
             </div>
         </div>
     </nav>
+<<<<<<< HEAD
 
     {{--
     <div class="container" id="app">
       @yield('content')
+=======
+    <div class="container" id="app">
+        {{-- @yield('content') --}}
+>>>>>>> d7f72ccceceede5f462db84db4cd83117052acd0
     </div>
     --}}
     <section class="hero">
+<<<<<<< HEAD
       <div class="hero-Image">
         <h1>Digital Asset Management</h1>
         <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
@@ -84,11 +90,18 @@
           </div>
         </div>
       </div>
+=======
+        <div class="hero-Image">
+            <h1>Digital Asset Management</h1>
+            <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
+                <a href="#" class="btn btn-default"> Registrieren </a>
+        </div>
+>>>>>>> d7f72ccceceede5f462db84db4cd83117052acd0
     </section>
     <footer>
-      <div class="container">
-        Test
-      </div>
+        <div class="container">
+            Test
+        </div>
     </footer>
 
     <!-- Scripts -->

@@ -2,10 +2,6 @@ html, body {
   height: 100%;
 }
 
-#app {
-  padding-bottom: rem(40px);
-}
-
 #message {
   margin-bottom: rem(20px);
   .delete {
@@ -45,6 +41,10 @@ html, body {
   }
   &.hidden {
     display: none;
+  }
+  svg {
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -102,6 +102,10 @@ html, body {
     &:before, &:after {
       min-height: unset;
       height: 0;
+    }
+    .modal-content {
+      border: none;
+      @extend %boxLook;
     }
     .modal-content, .modal-body {
       max-height: 85vh;

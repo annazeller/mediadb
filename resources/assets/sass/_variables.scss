@@ -17,6 +17,18 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
+//Custom Theme
+$custom-color-1: #0F172B;
+$custom-color-2: #589ff2;
+$custom-color-3: $custom-color-2;
+$custom-color-4: $custom-color-2;
+$custom-color-5: $custom-color-2;
+
+//Fonts
+$font-header: 'Nunito', sans-serif;
+$font-text: 'Source Sans Pro', sans-serif;
+
+
 $grays: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $grays: map-merge(
@@ -66,12 +78,12 @@ $colors: map-merge(
                 $colors
 );
 
-$primary:       $blue !default;
+$primary:       $custom-color-2 !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
-$danger:        $red !default;
+$danger:        $custom-color-5 !default;
 $light:         $gray-100 !default;
 $dark:          $gray-800 !default;
 

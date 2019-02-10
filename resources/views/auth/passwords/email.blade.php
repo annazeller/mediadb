@@ -17,7 +17,7 @@
                     <label for="loginEmail">E-Mail-Adresse</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            <span class="input-group-text"><i data-feather="mail"></i></span>
                         </div>
                         <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" id="loginEmail" type="email" aria-describedby="emailHelp" name="email" placeholder="E-Mail" value="{{ old('email') }}" required>
                         @if ($errors->has('email'))
