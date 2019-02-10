@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" aria-label="Dateiname" placeholder="Gewünschten Dateinamen hier eintragen" v-model="fileName">
+                        <input type="text" class="form-control" aria-label="Dateiname" placeholder="Gewünschter Dateiname hier eintragen" v-model="fileName">
                     </div>
                 </div>
                 <div class="col-6">

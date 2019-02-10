@@ -16299,8 +16299,12 @@ html, body {
   top: 0.625rem;
   right: 0.625rem;
   position: absolute;
+}
+
+.delete-file, .close-modal, .edit-button {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 99em;
+  cursor: pointer;
   font-size: 0.9375rem;
   width: 1.875rem;
   height: 1.875rem;
@@ -16312,9 +16316,13 @@ html, body {
   transform: all 200ms linear 0s;
 }
 
-.delete-file:hover, .close-modal:hover {
+.delete-file:hover, .close-modal:hover, .edit-button:hover {
   color: #fff;
   background: #8e2800;
+}
+
+.delete-file.hidden, .close-modal.hidden, .edit-button.hidden {
+  display: none;
 }
 
 .card audio {
@@ -16372,6 +16380,8 @@ html, body {
 
 .modal-custom .modal-dialog {
   max-height: 85vh;
+  overflow-x: hidden;
+  overflow-y: auto;
   max-width: 80vh;
   min-height: unset;
   height: auto;
@@ -16383,6 +16393,16 @@ html, body {
 .modal-custom .modal-dialog:before, .modal-custom .modal-dialog:after {
   min-height: unset;
   height: 0;
+}
+
+.modal-custom .modal-dialog .modal-content, .modal-custom .modal-dialog .modal-body {
+  max-height: 85vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.table td.long-line {
+  word-break: break-word !important;
 }
 
 .pagination {
@@ -16447,4 +16467,18 @@ html, body {
 
 .highlighted {
   color: red;
+}
+
+body.landingpage {
+  background: #000;
+}
+
+body.landingpage .hero {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/slider.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }

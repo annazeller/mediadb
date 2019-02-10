@@ -1,0 +1,15 @@
+body {
+  &.landingpage {
+    background: $black;
+    .hero {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('../images/slider.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+
+    }
+  }
+}

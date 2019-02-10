@@ -1,6 +1,8 @@
 window.Vue = require('vue');
 window.axios = require('axios');
 window.EXIF = require('exif-js');
+window.piexif = require('piexifjs');
+window.Jimp = require('jimp');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -36,6 +38,7 @@ const app = new Vue({
         formData: {},
         fileName: '',
         attachment: '',
+        editHidden: true,
 
         editingFile: {},
         deletingFile: {},
@@ -44,6 +47,9 @@ const app = new Vue({
             name: '',
             extension: ''
         },
+
+        imageWidth: '',
+        imageHeight: '',
 
         notification: false,
         showConfirm: false,
@@ -105,7 +111,7 @@ const app = new Vue({
             axios.post('files/add', this.formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then(response => {
                     this.resetForm();
-                    this.showNotification('File successfully upload!', true);
+                    this.showNotification('Datei erfolgreich hochgeladen!', true);
                     this.fetchFile(this.activeTab);
                 })
                 .catch(error => {
@@ -132,12 +138,12 @@ const app = new Vue({
         deleteFile() {
             axios.post('files/delete/' + this.deletingFile.id)
                 .then(response => {
-                    this.showNotification('File successfully deleted!', true);
+                    this.showNotification('Datei erfolgreich gelöscht.', true);
                     this.fetchFile(this.activeTab, this.pagination.current_page);
                 })
                 .catch(error => {
                     this.errors = error.response.data.errors();
-                    this.showNotification('Something went wrong! Please try again later.', false);
+                    this.showNotification('Es ist etwas schiefgelaufen. Bitte versuche es später noch einmal.', false);
                     this.fetchFile(this.activeTab, this.pagination.current_page);
                 });
 
@@ -162,7 +168,7 @@ const app = new Vue({
             axios.post('files/edit/' + file.id, formData)
                 .then(response => {
                     if (response.data === true) {
-                        this.showNotification('Filename successfully changed!', true);
+                        this.showNotification('Dateinamen erfolgreich geändert.', true);
                         var src = document.querySelector('[alt="' + file.name +'"]').getAttribute("src");
                         document.querySelector('[alt="' + file.name +'"]').setAttribute('src', src);
                     }
@@ -196,18 +202,46 @@ const app = new Vue({
         },
 
         modalExif() {
-            this.imageExif = this.$refs.imageExif;
-            EXIF.getData(this.imageExif, function() {
-                const   array = EXIF.pretty(this),
-                        exifInfo = $(".modal-exif");
-                exifInfo.html(array);
-                exifInfo.html(function(i, oldHTML) {
-                    return oldHTML.replace(/\n/g, '<br/>');
-                });
+            this.showExif = this.$refs.imageExif.src;
+
+            function toDataUrl(url, callback) {
+                const xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                    const reader = new FileReader();
+                    reader.onloadend = function() {
+                        callback(reader.result);
+                    };
+                    reader.readAsDataURL(xhr.response);
+                };
+                xhr.open('GET', url);
+                xhr.responseType = 'blob';
+                xhr.send();
+            }
+            toDataUrl(this.showExif, function(base64) {
+                const exifObj = piexif.load(base64);
+                for (let ifd in exifObj) {
+                    if (ifd === "thumbnail") {
+                        continue;
+                    }
+                    const exifInfo = $(".modal-exif");
+                    exifInfo.append("<tr>" + "<th class='py-4 d-block'>" + ifd + "</th><th></th>" + "</tr>");
+                    for (let tag in exifObj[ifd]) {
+                        exifInfo.append("<tr>" + "<td>" + piexif.TAGS[ifd][tag]["name"] + ":</td><td class='long-line'>" + exifObj[ifd][tag] + "</td>" + "</tr>");
+                    }
+                }
             });
+
+            this.editHidden = false;
+        },
+
+        buttonEditExif() {
+
         },
 
         closeModal() {
+            const exifInfo = $(".modal-exif");
+            exifInfo.html("");
+            this.editHidden = true;
             this.modalActive = false;
             this.file = {};
         },
@@ -232,6 +266,33 @@ const app = new Vue({
 
         clearErrors() {
             this.errors = {};
+        },
+
+        editWithJimp(file) {
+            this.file = file;
+            console.log("edit with jimp");
+
+            let formData = new FormData();
+            formData.append('imageHeight', this.imageHeight);
+            formData.append('imageWidth', this.imageWidth);
+
+            axios.post('files/peter/' + file.id, formData).then(response => {
+                console.log(response.data);
+                window.open('files/peter/' + file.id);
+                if (response.data === true) {
+
+                    this.showNotification('Dateinamen erfolgreich geändert.', true);
+                }
+                if (response.data === false) {
+                    this.showNotification('Dateinamen nicht geändert.', true);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                this.errors = error.response.data.errors;
+                this.showNotification(error.response.data.message, false);
+                this.fetchFile(this.activeTab, this.pagination.current_page);
+            });
         }
     },
 
@@ -269,5 +330,5 @@ const app = new Vue({
         keywords(after, before) {
             this.fetch(this.activeTab);
         }
-    },
+    }
 });
