@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,600,600i,700,700i|Source+Sans+Pro:300,300i,400,400i,600,600i);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito:600,600i|Source+Sans+Pro:400,400i);@charset "UTF-8";
 :root {
   --blue: #225378;
   --indigo: #6610f2;
@@ -9939,11 +9939,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
-body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
+body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
   border-radius: 0.125rem;
 }
 
-body#dashboard #app #content #inner-content .sub-navbar, body#dashboard #app #content #inner-content .navbar, body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active, body#dashboard #app #sidebar, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
+body#dashboard #app #content #inner-content .sub-navbar, body#dashboard #app #content #inner-content .navbar, body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active, body#dashboard #app #sidebar, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
   -ms-box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   -o-box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
@@ -9956,7 +9956,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Nunito", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 html, body {
@@ -10177,6 +10177,33 @@ html.not-loaded, body.not-loaded {
 
 .custom-file-input.german {
   content: "Durchsuchen";
+}
+
+#exif-table {
+  background: #fafafa;
+  overflow: hidden;
+}
+#exif-table tr:nth-child(odd) {
+  background-color: transparent;
+}
+#exif-table tr:nth-child(even) {
+  background-color: rgba(223, 230, 239, 0.5);
+}
+#exif-table td:nth-child(1) {
+  width: 15%;
+  font-family: "Nunito", sans-serif;
+}
+#exif-table td:nth-child(2) {
+  width: 50%;
+}
+#exif-table td:nth-child(3) {
+  width: calc(100% - 15% - 50%);
+}
+#exif-table input {
+  border: none;
+  background: #fff;
+  padding: 1.25rem;
+  width: 100%;
 }
 
 .highlighted {

@@ -21,11 +21,14 @@ class MetaController extends Controller
         $imageSource = $request['imageSource'];
         $imageName = $request['imageName'];
         $path = storage_path($imageSource);
-        $documenttitle = Image::make($path)->iptc(' DocumentTitle');
+        $exif = Image::make($path)->exif();
+        $exif = serialize($exif);
+        $documenttitle = Image::make($path)->iptc('DocumentTitle');
         $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
         $subcategories = Image::make($path)->iptc('Subcategories');
         $keywords = Image::make($path)->iptc('Keywords');
+        $keywords = implode(', ', $keywords);
         $specialinstructions = Image::make($path)->iptc('SpecialInstructions');
         $autor = Image::make($path)->iptc('AuthorByline');
         $city = Image::make($path)->iptc('City');
@@ -37,13 +40,13 @@ class MetaController extends Controller
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return redirect('/iptc')->with("imageName", $imageName)->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
+        return redirect('/iptc')->with("exif", $exif)->with("imageName", $imageName)->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
     }
 
     public function iptc(Request $request){
 
         $object_name = $request->input('object_name');
-        $priority = $request->input('priority');
+        $urgency = $request->input('urgency');
         $category = $request->input('category');
         $supplemental_category = $request->input('supplemental_category');
         $keywords = $request->input('keywords');
@@ -67,7 +70,7 @@ class MetaController extends Controller
 
         $iptc = new Iptc($contents);
         if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }
-        if(!empty($priority)) { $iptc->set(Iptc::PRIORITY , array($priority)); }
+        if(!empty($urgency)) { $iptc->set(Iptc::PRIORITY , array($urgency)); }
         if(!empty($category)) {
             $iptc->set(Iptc::CATEGORY, array($category));
             $filecategory = File::where('name', $imageName)->where('user_id', Auth::id())->first();
