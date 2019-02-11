@@ -9,20 +9,10 @@
                 <div class="row">
                     <div class="col-md-8">
                         <img class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
-                        <div class="my-3 d-flex align-items-center justify-content-between">
-                            <button class="btn btn-primary" @click="modalExif()">Bilddetails anzeigen</button>
-                            <button type="button" ref="editButton" class="edit-button" :class="{'hidden': editHidden }" @click="buttonEditExif()" title="Bilddetails Bearbeiten">
-                                <span aria-hidden="true"><i data-feather="edit-2"></i></span>
-                            </button>
-                        </div>
-                        <table class="table table-striped">
-                            <tbody class="modal-exif">
-                            </tbody>
-                        </table>
                     </div>
                     <div class="col-md-4">
                         <div>
-                            <form id="export" action="#" method="#" @submit.prevent="export(file)">
+                            {{--<form id="export" action="#" method="#" @submit.prevent="export(file)">
                                 <div><h2>Exportieren</h2>
                                 </div>
                                 <div class="form-group">
@@ -57,7 +47,7 @@
                                       <option>pdf</option>
                                     </select>
                                   </div>
-                                  <div class="form-group">
+                                <div class="form-group">
                                     <label for="colorspace">Farbraum </label>
                                     <select class="form-control" id="colorspace" v-model="colorspace">
                                       <option value="COLORSPACE_RGB">RGB</option>
@@ -70,7 +60,7 @@
                                     </select>
                                   </div>
                                 <button type="submit" class="btn btn-primary">Exportieren</button>
-                            </form>
+                            </form>--}}
                         </div>
                     </div>
                 </div>
