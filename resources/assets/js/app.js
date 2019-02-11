@@ -51,6 +51,8 @@ const app = new Vue({
 
         imageWidth: '',
         imageHeight: '',
+        //format: '',
+        //colorspace: '',
 
         notification: false,
         showConfirm: false,
@@ -285,24 +287,45 @@ const app = new Vue({
             this.errors = {};
         },
 
-        editWithJimp(file) {
+        export(file) {
             this.file = file;
-            console.log("edit with jimp");
 
             let formData = new FormData();
             formData.append('imageHeight', this.imageHeight);
             formData.append('imageWidth', this.imageWidth);
+            //formData.append('format', this.format);
+            //formData.append('colorspace', this.colorspace);
 
-            axios.post('files/peter/' + file.id, formData).then(response => {
+
+            axios.post('files/export/' + file.id, formData, {
+                responseType: "blob"
+            }).then(response => {
                 console.log(response.data);
-                window.open('files/peter/' + file.id);
-                if (response.data === true) {
+                
+                 let blob = response.data,
+                    downloadUrl = window.URL.createObjectURL(blob),
+                    filename = "",
+                    disposition = response.headers["content-disposition"];
 
-                    this.showNotification('Dateinamen erfolgreich geändert.', true);
+                if (disposition && disposition.indexOf("attachment") !== -1) {
+                    let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+                        matches = filenameRegex.exec(disposition);
+
+                    if (matches != null && matches[1]) {
+                        filename = matches[1].replace(/['"]/g, "");
+                    }
                 }
-                if (response.data === false) {
-                    this.showNotification('Dateinamen nicht geändert.', true);
+
+                let a = document.createElement("a");
+                if (typeof a.download === "undefined") {
+                    window.location.href = downloadUrl;
+                } else {
+                    a.href = downloadUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
                 }
+                
             })
             .catch(error => {
                 console.log(error);
