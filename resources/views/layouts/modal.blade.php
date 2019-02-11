@@ -8,13 +8,14 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-8">
-                        <img class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
+                        <img id="imageSource" class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
                         <button @click="buttonEditExif()" class="mt-3 btn btn-primary">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </button>
                         <form id="imageSourceForm" method="post" action="/postimage">
                             <input type="hidden" id="imageInput" name="imageSource">
+                            <input type="hidden" id="imageName" name="imageName">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         </form>
                     </div>

@@ -15,9 +15,9 @@ Bildunterschrift: {{ session("caption") }} <br>
 Erstellungs-Datum: {{ session("creationdate") }} <br>
 Erstellungs-Zeit: {{ session("creationtime") }} <br> <br>
 
-
 <form class="form-horizontal" method="post" action="/post">
     <input name="imageSource" type="hidden" value="{{ session("status") }}">
+    <input name="imageName" type="hidden" value="{{ session("imageName") }}">
     <div class="form-group">
         <label for="rec" class="col-lg-2 control-label">
            Objektname

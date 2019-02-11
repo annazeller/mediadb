@@ -202,6 +202,9 @@ const app = new Vue({
         showModal(file) {
             this.file = file;
             this.modalActive = true;
+            let imageName = this.file.name;
+            $('#imageName').val(imageName);
+
         },
 
         modalExif() {

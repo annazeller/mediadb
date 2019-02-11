@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Iptc;
 use Image;
+use App\File;
 use App\Category;
 
 class MetaController extends Controller
@@ -18,6 +19,7 @@ class MetaController extends Controller
 
     public function getimage(Request $request){
         $imageSource = $request['imageSource'];
+        $imageName = $request['imageName'];
         $path = storage_path($imageSource);
         $documenttitle = Image::make($path)->iptc(' DocumentTitle');
         $urgency = Image::make($path)->iptc('Urgency');
@@ -35,7 +37,7 @@ class MetaController extends Controller
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return redirect('/iptc')->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
+        return redirect('/iptc')->with("imageName", $imageName)->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
     }
 
     public function iptc(Request $request){
@@ -61,16 +63,20 @@ class MetaController extends Controller
         $imageSource = $request->input('imageSource');
         $contents = storage_path($imageSource);
 
+        $imageName = $request->input('imageName');
+
         $iptc = new Iptc($contents);
         if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }
         if(!empty($priority)) { $iptc->set(Iptc::PRIORITY , array($priority)); }
         if(!empty($category)) {
             $iptc->set(Iptc::CATEGORY, array($category));
+            $filecategory = File::where('name', $imageName)->where('user_id', Auth::id())->first();
+            $filecategory->category = $category;
+            $filecategory->save();
             if (Category::where('name', '=',$category)->exists()) {}
             else {
                 Category::create([
                     'name' => $category,
-                    'user_id' => Auth::id(),
                 ]);
             }
         }

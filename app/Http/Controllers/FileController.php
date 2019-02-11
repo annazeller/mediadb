@@ -11,7 +11,7 @@ use App\File;
 use Image;
 use Imagick;
 use Response;
-
+use App\Category;
 class FileController extends Controller
 {
     /**
@@ -39,6 +39,7 @@ class FileController extends Controller
 
             $files = $model::where('type', $type)
                             ->where('name', 'like', '%' . $request->get('keywords') . '%')
+                            /*->where('category',  $request->get('filter'))*/
                             ->where('user_id', Auth::id())
                             ->orderBy('id', 'desc')->paginate($records_per_page);
 
@@ -176,8 +177,8 @@ class FileController extends Controller
 
     public function filter()
     {
-        $categories = DB::table('categories')->get();
-        return view ('layouts.filter', compact($categories));
+        $categories = Category::all();
+        return view ('layouts.filter')->with("categories", $categories);
     }
 
 }

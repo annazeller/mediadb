@@ -97,15 +97,9 @@
                         <div class="row no-gutters">
                             <div class="col-4">
                                 <div class="filter-bar">
-                                    <div class="filter-button">
-                                        Option 1
-                                    </div>
-                                    <div class="filter-button">
-                                        Option 2
-                                    </div>
-                                    <div class="filter-button">
-                                        Option 3
-                                    </div>
+                                    @if(Auth::check())
+                                        {{--@include('layouts.filter')--}}
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-8">

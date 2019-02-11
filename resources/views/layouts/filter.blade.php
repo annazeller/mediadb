@@ -1,3 +1,5 @@
-@foreach ($categories as $categrory)
-    {{$category->name}}
-@endforeach
+<select>
+    @foreach ($categories as $category)
+        <option value="{{$category->name}}">{{$category->name}}</option>
+    @endforeach
+</select>
