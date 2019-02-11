@@ -9939,11 +9939,11 @@ h3 {
     border-color: #dee2e6;
   }
 }
-body#dashboard #app #content #page-layout .btn, body#dashboard #app #content #page-layout .card, body#dashboard #app #content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content .navbar .navbar-form .search-input, .pagination, .modal-custom .modal-dialog .modal-content {
+body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
   border-radius: 0.125rem;
 }
 
-body#dashboard #app #content .sub-navbar, body#dashboard #app #content .navbar, body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active, body#dashboard #app #sidebar, body#dashboard #app #content #page-layout .btn, body#dashboard #app #content #page-layout .card, body#dashboard #app #content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content .navbar .navbar-form .search-input, .pagination, .modal-custom .modal-dialog .modal-content {
+body#dashboard #app #content #inner-content .sub-navbar, body#dashboard #app #content #inner-content .navbar, body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active, body#dashboard #app #sidebar, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
   -ms-box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   -o-box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
@@ -10003,36 +10003,57 @@ html.not-loaded, body.not-loaded {
   position: relative;
 }
 
-.delete-file, .close-modal {
-  top: 0.625rem;
-  right: 0.625rem;
+.delete-file, .close-modal, .download-file {
+  top: 1.25rem;
+  right: 1.25rem;
   position: absolute;
 }
 
-.delete-file, .close-modal, .edit-button {
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 99em;
+.delete-file, .download-file {
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  transition: all 200ms linear 0s;
+}
+
+.delete-file, .close-modal, .edit-button, .download-file {
+  background: white;
   cursor: pointer;
   font-size: 0.9375rem;
-  width: 1.875rem;
-  height: 1.875rem;
-  color: #fff;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #589ff2;
   border: none;
   z-index: 1;
+  padding: 0;
   -webkit-transform: all 200ms linear 0s;
   -khtml-transform: all 200ms linear 0s;
   transform: all 200ms linear 0s;
 }
-.delete-file:hover, .close-modal:hover, .edit-button:hover {
+.delete-file:hover, .close-modal:hover, .edit-button:hover, .download-file:hover {
   color: #fff;
-  background: #8e2800;
+  background: #589ff2;
 }
-.delete-file.hidden, .close-modal.hidden, .edit-button.hidden {
+.delete-file.hidden, .close-modal.hidden, .edit-button.hidden, .download-file.hidden {
   display: none;
 }
-.delete-file svg, .close-modal svg, .edit-button svg {
-  width: 100%;
+.delete-file svg, .close-modal svg, .edit-button svg, .download-file svg {
+  width: 1.25rem;
   height: auto;
+}
+
+.download-file {
+  right: 4.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-file {
+  color: #8e2800;
+}
+.delete-file:hover {
+  background: #8e2800;
 }
 
 .card audio {
@@ -10118,10 +10139,15 @@ html.not-loaded, body.not-loaded {
 
 .file-wrapper {
   margin-bottom: 20px;
-  cursor: pointer;
 }
 .file-wrapper .card {
   height: 100%;
+  cursor: pointer;
+}
+.file-wrapper .card:hover > .delete-file, .file-wrapper .card:hover > .download-file {
+  visibility: visible;
+  opacity: 1;
+  top: 1.25rem;
 }
 .file-wrapper .card .card-image-top {
   flex: 1;
@@ -10196,7 +10222,7 @@ body#dashboard {
 body#dashboard #app {
   display: flex;
   overflow: hidden;
-  height: calc(100vh - 60px);
+  height: calc(100vh);
 }
 body#dashboard #app #sidebar {
   position: relative;
@@ -10222,7 +10248,7 @@ body#dashboard #app #sidebar > ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  height: calc(100vh - (105px + 60px));
+  height: calc(100vh - (105px));
 }
 body#dashboard #app #sidebar > ul > li {
   min-height: 25%;
@@ -10266,31 +10292,34 @@ body#dashboard #app #sidebar > ul > li:hover img.blue, body#dashboard #app #side
   display: none;
 }
 body#dashboard #app #content {
+  flex: 1;
+}
+body#dashboard #app #content #inner-content {
   position: relative;
   z-index: 1;
   flex: 1;
   height: 100%;
-  max-height: 100%;
+  max-height: calc(100% - 60px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
 }
-body#dashboard #app #content .navbar {
+body#dashboard #app #content #inner-content .navbar {
   display: block;
   padding: 1.25rem 3.125rem;
   background: #dfe6ef;
 }
-body#dashboard #app #content .navbar .navbar-form {
+body#dashboard #app #content #inner-content .navbar .navbar-form {
   position: relative;
 }
-body#dashboard #app #content .navbar .navbar-form .search-input {
+body#dashboard #app #content #inner-content .navbar .navbar-form .search-input {
   border: none;
   background: #fff;
   padding: 1.25rem;
   width: 100%;
 }
-body#dashboard #app #content .navbar .navbar-form .search-submit {
+body#dashboard #app #content #inner-content .navbar .navbar-form .search-submit {
   position: absolute;
   top: 32px;
   right: 0;
@@ -10304,61 +10333,61 @@ body#dashboard #app #content .navbar .navbar-form .search-submit {
   cursor: pointer;
   transition: all 200ms linear 0s;
 }
-body#dashboard #app #content .navbar .navbar-form .search-submit:focus, body#dashboard #app #content .navbar .navbar-form .search-submit:active, body#dashboard #app #content .navbar .navbar-form .search-submit:hover {
+body#dashboard #app #content #inner-content .navbar .navbar-form .search-submit:focus, body#dashboard #app #content #inner-content .navbar .navbar-form .search-submit:active, body#dashboard #app #content #inner-content .navbar .navbar-form .search-submit:hover {
   outline: none;
   box-shadow: none;
   color: #589ff2;
 }
-body#dashboard #app #content .navbar #navbarNav {
+body#dashboard #app #content #inner-content .navbar #navbarNav {
   height: 100%;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav {
   height: 100%;
   margin-left: auto;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li a {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li a {
   color: #589ff2;
   display: inline-block;
   padding: 1.25rem;
   transition: all 200ms linear 0s;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li a:hover {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li a:hover {
   color: #589ff2;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li .dropdown-menu {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu {
   right: 0;
   left: auto;
   border: none;
   top: calc(100% + 1.1875rem);
   padding: 0;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li .dropdown-menu .dropdown-item {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu .dropdown-item {
   padding: 1.25rem;
   color: #589ff2;
   background: #dfe6ef;
   transition: all 200ms linear 0s;
 }
-body#dashboard #app #content .navbar #navbarNav ul.navbar-nav li .dropdown-menu .dropdown-item:hover {
+body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu .dropdown-item:hover {
   background: #589ff2;
   color: #dfe6ef;
 }
-body#dashboard #app #content .sub-navbar {
+body#dashboard #app #content #inner-content .sub-navbar {
   padding: 1.25rem 3.125rem;
   background: #eff3f8;
   height: auto;
 }
-body#dashboard #app #content .sub-navbar .filter-bar {
+body#dashboard #app #content #inner-content .sub-navbar .filter-bar {
   flex: 0;
   display: flex;
   height: 100%;
 }
-body#dashboard #app #content .sub-navbar .filter-bar .filter-button {
+body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button {
   margin-right: 1.25rem;
   padding: 1.25rem;
   color: #589ff2;
@@ -10369,35 +10398,35 @@ body#dashboard #app #content .sub-navbar .filter-bar .filter-button {
   cursor: pointer;
   transition: all 200ms linear 0s;
 }
-body#dashboard #app #content .sub-navbar .filter-bar .filter-button:last-child {
+body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button:last-child {
   margin: 0;
 }
-body#dashboard #app #content .sub-navbar .filter-bar .filter-button:hover {
+body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button:hover {
   color: #fff;
   background-color: #589ff2;
 }
-body#dashboard #app #content .sub-navbar .search-items {
+body#dashboard #app #content #inner-content .sub-navbar .search-items {
   flex: 1;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form {
   display: flex;
   justify-content: space-between;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form > input {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input {
   padding: 1.25rem;
   border: none;
   flex-grow: 1;
   margin-right: 1.25rem;
   min-width: 60%;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file {
   height: 100%;
   min-height: 4rem;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file > input {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > input {
   cursor: pointer;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file > label {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label {
   border: none;
   flex-grow: 1;
   background: #fff;
@@ -10406,10 +10435,10 @@ body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file
   padding: 1.25rem;
   cursor: pointer;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form .custom-file .custom-file-label::after {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .custom-file-label::after {
   display: none;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form > button {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button {
   border: none;
   background: #589ff2;
   color: #fff;
@@ -10418,26 +10447,46 @@ body#dashboard #app #content .sub-navbar .search-items .upload-form > button {
   transition: all 200ms linear 0s;
   cursor: pointer;
 }
-body#dashboard #app #content .sub-navbar .search-items .upload-form > button:hover {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button:hover {
   background: #2984ee;
 }
-body#dashboard #app #content #page-layout {
+body#dashboard #app #content #inner-content #page-layout {
   height: 100%;
   max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 3.125rem 0;
 }
-body#dashboard #app #content #page-layout > .container-fluid {
+body#dashboard #app #content #inner-content #page-layout > .container-fluid {
   padding: 0 3.125rem;
 }
-body#dashboard #app #content #page-layout .card {
+body#dashboard #app #content #inner-content #page-layout .card {
   overflow: hidden;
   border: none;
 }
-body#dashboard #app #content #page-layout .btn {
-  padding: 0.625rem 1.25rem;
-}
-body#dashboard footer {
+body#dashboard #app #content footer {
   height: 3.75rem;
+  padding: 0 3.125rem;
+}
+body#dashboard #app #content footer .meta-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-align: right;
+  display: inline-flex;
+}
+body#dashboard #app #content footer .meta-nav > li > a {
+  color: #fff;
+  display: block;
+  line-height: 60px;
+  padding: 0 1.25rem;
+  transition: all 200ms linear 0s;
+}
+body#dashboard #app #content footer .meta-nav > li > a:hover {
+  text-decoration: none;
+  color: #dfe6ef;
+  background: #589ff2;
+}
+body#dashboard #app .btn {
+  padding: 0.625rem 1.25rem;
 }

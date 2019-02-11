@@ -43,35 +43,56 @@ html, body {
   position:relative;
 }
 
-.delete-file, .close-modal {
-  top: rem(10px);
-  right: rem(10px);
+.delete-file, .close-modal, .download-file {
+  top: rem(20px);
+  right: rem(20px);
   position: absolute;
 }
+.delete-file, .download-file {
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  @include transition(all 200ms linear 0s);
+}
 
-.delete-file, .close-modal, .edit-button {
-  background: rgba($black, 0.5);
-  border-radius: 99em;
+.delete-file, .close-modal, .edit-button, .download-file {
+  background: rgba($white, 1);
+  @extend %boxLook;
   cursor: pointer;
   font: {
     size: rem(15px);
   }
-  width: rem(30px);
-  height: rem(30px);
-  color: $white;
+  width: rem(40px);
+  height: rem(40px);
+  color: $custom-color-1;
   border: none;
   z-index: 1;
+  padding: 0;
   @include transform(all 200ms linear 0s);
   &:hover {
     color: $white;
-    background: $danger;
+    background: $custom-color-1;
   }
   &.hidden {
     display: none;
   }
   svg {
-    width: 100%;
+    width: rem(20px);
     height: auto;
+  }
+}
+
+.download-file {
+  right: rem(70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-file {
+  color: $danger;
+  &:hover {
+    background: $danger;
   }
 }
 
@@ -168,9 +189,16 @@ html, body {
 
 .file-wrapper {
   margin-bottom: $grid-gutter-width;
-  cursor:pointer;
   .card {
     height: 100%;
+    cursor:pointer;
+    &:hover {
+      & > .delete-file, & > .download-file {
+        visibility: visible;
+        opacity: 1;
+        top: rem(20px);
+      }
+    }
     .card-image-top {
       flex: 1;
       .file-header-wrapper {
