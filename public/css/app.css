@@ -10191,13 +10191,16 @@ html.not-loaded, body.not-loaded {
 }
 #exif-table td:nth-child(1) {
   width: 15%;
+  max-width: 15%;
   font-family: "Nunito", sans-serif;
 }
 #exif-table td:nth-child(2) {
   width: 50%;
+  max-width: 50%;
 }
 #exif-table td:nth-child(3) {
   width: calc(100% - 15% - 50%);
+  max-width: calc(100% - 15% - 50%);
 }
 #exif-table input {
   border: none;
