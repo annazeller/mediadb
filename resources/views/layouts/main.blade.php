@@ -53,14 +53,6 @@
                     <div>
                         Hochgeladen am:<br>
                         <time datetime="1-1-2019">@{{ file.created_at }}</time><br>
-                        <button @click="buttonEditExif()" class="mt-3 btn btn-primary">
-                            <i data-feather="edit-2"></i>
-                            &nbsp; Bearbeiten
-                        </button>
-                        <form id="imageSourceForm" method="post" action="/postimage">
-                            <input type="hidden" id="imageInput" name="imageSource">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        </form>
                     </div>
                 </div>
             </div>
