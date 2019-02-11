@@ -20,7 +20,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-md-4">
+                    {{--<div class="col-md-4">
                         <div>
                             <form id="export" action="#" method="#" @submit.prevent="export(file)">
                                 <div><h2>Exportieren</h2>
@@ -72,7 +72,7 @@
                                 <button type="submit" class="btn btn-primary">Exportieren</button>
                             </form>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
             </div>
         </div>

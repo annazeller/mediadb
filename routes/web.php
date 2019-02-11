@@ -18,12 +18,13 @@ Route::post('files/add', 'FileController@store');
 Route::post('files/edit/{id}', 'FileController@edit');
 Route::post('files/export/{id}', 'FileController@export');
 Route::post('files/delete/{id}', 'FileController@destroy');
-
+Route::get('/filter', 'FileController@filter');
 
 Auth::routes();
 
 Route::post('/postimage', 'MetaController@getimage');
 
 Route::post('/post', 'MetaController@iptc');
+
 
 Route::get('/iptc', 'MetaController@index');

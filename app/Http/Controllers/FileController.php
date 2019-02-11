@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use App;
 use App\File;
 use Image;
@@ -173,10 +174,10 @@ class FileController extends Controller
         return response()->json(false);
     }
 
-    public function search(Request $request)
+    public function filter()
     {
-        $files = DB::table('files')->where('name', 'like', '%' . $request->get('keywords') . '%')->get();
-        return response()->json($files);
+        $categories = DB::table('categories')->get();
+        return view ('layouts.filter', compact($categories));
     }
 
 }
