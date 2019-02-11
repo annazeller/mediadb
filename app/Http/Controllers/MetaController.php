@@ -58,8 +58,8 @@ class MetaController extends Controller
         $caption = $request->input('caption');
         $caption_writer = $request->input('caption_writer');
 
-        $imagesource = $request->input('imagesource');
-        $contents = storage_path($imagesource);
+        $imageSource = $request->input('imageSource');
+        $contents = storage_path($imageSource);
 
         $iptc = new Iptc($contents);
         if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use App;
 use App\File;
 use Image;
+use Imagick;
+use Response;
 
 class FileController extends Controller
 {
@@ -117,35 +119,40 @@ class FileController extends Controller
         return response()->json(false);
     }
 
-    public function peter($id, Request $request)
+    public function export($id, Request $request)
     {
 
-        $file = File::where('id', $id)->where('user_id', Auth::id())->first();
+        /*$file = File::where('id', $id)->where('user_id', Auth::id())->first();
 
         $originalImage = $file->getName($file->type, $file->name, $file->extension);
         $originalImagePath = Storage::get($originalImage);
 
+        $image = public_path('images/download.' . $file->extension);
+
         $imageHeight = $request['imageHeight'];
         $imageWidth = $request['imageWidth'];
-
-        if ($img = Image::make($originalImagePath)) {
-            return $img->resize($imageHeight, $imageWidth)->response();
-        }
+        $format = $request['format'];
+        $colorspace = $request['colorspace'];
 
         
+        if ($img = Image::make($originalImagePath)) {
 
+            $img->resize($imageWidth,$imageHeight);
+            $img->encode($format);
+            $img->save($image);
+            
+            //$this->generateCmykImage(public_path('images/download.' . $file->extension));
 
-        $originalImage = $file->getName($file->type, $file->name, $file->extension);
-        if($thumbnailImage = Image::make($originalImage)) {
-            return response()->json($thumbnailImage->save());
+            $i = new Imagick($image);
+            $i->setRegistry('temporary-path', '/efs');
+            $i->transformImageColorspace(Imagick::$colorspace);
+            $i->writeImage($image);
+            $i->clear();
+
+            return response()->download($image, $file->name);//->deleteFileAfterSend(true);
         }
 
-        if(Image::make($filename)->resize($imageHeight, $imageWidth)) {
-            return response()->json($file->save());
-        }
-
-        return response()->json(false);
-
+        return response()->json(false);*/
     }
 
     /**

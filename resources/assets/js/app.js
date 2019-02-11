@@ -2,7 +2,7 @@ window.Vue = require('vue');
 window.axios = require('axios');
 window.piexif = require('piexifjs');
 window.Jimp = require('jimp');
-const feather = require('feather-icons');
+window.EXIF = require('exif-js');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -51,6 +51,8 @@ const app = new Vue({
 
         imageWidth: '',
         imageHeight: '',
+        //format: '',
+        //colorspace: '',
 
         notification: false,
         showConfirm: false,
@@ -203,8 +205,8 @@ const app = new Vue({
         },
 
         modalExif() {
-            this.showExif = this.$refs.imageExif.src;
-
+            // PIEXIF
+            /*this.showExif = this.$refs.imageExif.src;
             function toDataUrl(url, callback) {
                 const xhr = new XMLHttpRequest();
                 xhr.onload = function() {
@@ -230,18 +232,29 @@ const app = new Vue({
                         exifInfo.append("<tr>" + "<td>" + piexif.TAGS[ifd][tag]["name"] + ":</td><td class='long-line'>" + exifObj[ifd][tag] + "</td>" + "</tr>");
                     }
                 }
-            });
+            });*/
+
+            // EXIF.js
+            /*this.imageExif = this.$refs.imageExif;
+            EXIF.getData(this.imageExif, function() {
+                const   array = EXIF.pretty(this),
+                    exifInfo = $(".modal-exif");
+                exifInfo.html(array);
+                exifInfo.html(function(i, oldHTML) {
+                    return oldHTML.replace(/\n/g, '<br/>');
+                });
+            });*/
 
             this.editHidden = false;
         },
 
         buttonEditExif() {
-            let image = $('.modal-image').attr('src');
+            let image = $('#imageSource').attr('src');
             console.log(image);
             image = image.replace('http://192.168.10.10/storage/','app/public/');
             console.log(image);
             $('#imageInput').val(image);
-            $('#imagesourceform').submit();
+            $('#imageSourceForm').submit();
         },
 
         closeModal() {
@@ -274,24 +287,45 @@ const app = new Vue({
             this.errors = {};
         },
 
-        editWithJimp(file) {
+        export(file) {
             this.file = file;
-            console.log("edit with jimp");
 
             let formData = new FormData();
             formData.append('imageHeight', this.imageHeight);
             formData.append('imageWidth', this.imageWidth);
+            //formData.append('format', this.format);
+            //formData.append('colorspace', this.colorspace);
 
-            axios.post('files/peter/' + file.id, formData).then(response => {
+
+            axios.post('files/export/' + file.id, formData, {
+                responseType: "blob"
+            }).then(response => {
                 console.log(response.data);
-                window.open('files/peter/' + file.id);
-                if (response.data === true) {
+                
+                 let blob = response.data,
+                    downloadUrl = window.URL.createObjectURL(blob),
+                    filename = "",
+                    disposition = response.headers["content-disposition"];
 
-                    this.showNotification('Dateinamen erfolgreich geändert.', true);
+                if (disposition && disposition.indexOf("attachment") !== -1) {
+                    let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+                        matches = filenameRegex.exec(disposition);
+
+                    if (matches != null && matches[1]) {
+                        filename = matches[1].replace(/['"]/g, "");
+                    }
                 }
-                if (response.data === false) {
-                    this.showNotification('Dateinamen nicht geändert.', true);
+
+                let a = document.createElement("a");
+                if (typeof a.download === "undefined") {
+                    window.location.href = downloadUrl;
+                } else {
+                    a.href = downloadUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
                 }
+                
             })
             .catch(error => {
                 console.log(error);

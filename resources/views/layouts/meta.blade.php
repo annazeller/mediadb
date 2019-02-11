@@ -1,4 +1,3 @@
-
 Objektname: {{ session("documenttitle") }} <br>
 Priorität: {{ session("urgency") }}<br>
 Kategorie: {{ session("category") }} <br>
