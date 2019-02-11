@@ -17,7 +17,7 @@ Erstellungs-Zeit: {{ session("creationtime") }} <br> <br>
 
 
 <form class="form-horizontal" method="post" action="/post">
-    <input name="imagesource" type="hidden" value="{{ session("status") }}">
+    <input name="imageSource" type="hidden" value="{{ session("status") }}">
     <div class="form-group">
         <label for="rec" class="col-lg-2 control-label">
            Objektname

@@ -17,8 +17,8 @@ class MetaController extends Controller
     }
 
     public function getimage(Request $request){
-        $imagesource = $request['imagesource'];
-        $path = storage_path($imagesource);
+        $imageSource = $request['imageSource'];
+        $path = storage_path($imageSource);
         $documenttitle = Image::make($path)->iptc(' DocumentTitle');
         $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
@@ -35,7 +35,7 @@ class MetaController extends Controller
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return redirect('/iptc')->with("status", $imagesource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
+        return redirect('/iptc')->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
     }
 
     public function iptc(Request $request){

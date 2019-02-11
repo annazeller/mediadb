@@ -20,7 +20,7 @@
                     </div>
                     {{--<div class="col-md-4">
                         <div>
-                            {{--<form id="export" action="#" method="#" @submit.prevent="export(file)">
+                            <form id="export" action="#" method="#" @submit.prevent="export(file)">
                                 <div><h2>Exportieren</h2>
                                 </div>
                                 <div class="form-group">
@@ -68,7 +68,7 @@
                                     </select>
                                   </div>
                                 <button type="submit" class="btn btn-primary">Exportieren</button>
-                            </form>--}}
+                            </form>
                         </div>
                     </div>--}}
                 </div>
