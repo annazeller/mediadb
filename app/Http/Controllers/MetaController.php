@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Iptc;
-
+use Image;
 
 class MetaController extends Controller
 {
@@ -17,8 +17,12 @@ class MetaController extends Controller
 
     public function getimage(Request $request){
         $imagesource = $request['imagesource'];
-        return redirect('/iptc')->with("status", $imagesource);
+        $path = storage_path($imagesource);
+        $iptc = Image::make($path)->iptc();
+        $iptc = serialize($iptc);
+        return redirect('/iptc')->with("status", $imagesource)->with("iptc", $iptc);
     }
+
     public function iptc(Request $request){
 
         $object_name = $request->input('object_name');

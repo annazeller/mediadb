@@ -1,3 +1,9 @@
+@if (session("iptc"))
+    <div class="alert alert-success">
+        {{ session("iptc") }}
+    </div>
+@endif
+
 @if (session("status"))
     <div class="d-none alert alert-success">
         {{ session("status") }}
