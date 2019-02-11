@@ -2,7 +2,7 @@ window.Vue = require('vue');
 window.axios = require('axios');
 window.piexif = require('piexifjs');
 window.Jimp = require('jimp');
-const feather = require('feather-icons');
+window.EXIF = require('exif-js');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -203,8 +203,8 @@ const app = new Vue({
         },
 
         modalExif() {
-            this.showExif = this.$refs.imageExif.src;
-
+            // PIEXIF
+            /*this.showExif = this.$refs.imageExif.src;
             function toDataUrl(url, callback) {
                 const xhr = new XMLHttpRequest();
                 xhr.onload = function() {
@@ -230,18 +230,29 @@ const app = new Vue({
                         exifInfo.append("<tr>" + "<td>" + piexif.TAGS[ifd][tag]["name"] + ":</td><td class='long-line'>" + exifObj[ifd][tag] + "</td>" + "</tr>");
                     }
                 }
-            });
+            });*/
+
+            // EXIF.js
+            /*this.imageExif = this.$refs.imageExif;
+            EXIF.getData(this.imageExif, function() {
+                const   array = EXIF.pretty(this),
+                    exifInfo = $(".modal-exif");
+                exifInfo.html(array);
+                exifInfo.html(function(i, oldHTML) {
+                    return oldHTML.replace(/\n/g, '<br/>');
+                });
+            });*/
 
             this.editHidden = false;
         },
 
         buttonEditExif() {
-            let image = $('.modal-image').attr('src');
+            let image = $('#imageSource').attr('src');
             console.log(image);
             image = image.replace('http://192.168.10.10/storage/','app/public/');
             console.log(image);
             $('#imageInput').val(image);
-            $('#imagesourceform').submit();
+            $('#imageSourceForm').submit();
         },
 
         closeModal() {

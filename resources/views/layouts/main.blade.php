@@ -21,8 +21,8 @@
                 </button>
                 <div class="card-image-top">
                     <div class="file-header-wrapper" v-if="file.type == 'image'" @click="showModal(file)">
-                        <img v-if="file === editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + savedFile.type + '/' + savedFile.name + '.' + savedFile.extension" :alt="file.name">
-                        <img v-if="file !== editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
+                        <img id="imageSource" v-if="file === editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + savedFile.type + '/' + savedFile.name + '.' + savedFile.extension" :alt="file.name">
+                        <img id="imageSource" v-if="file !== editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
                     </div>
                     <div v-if="file.type == 'audio'">
                         <div class="file-header-wrapper">
@@ -53,10 +53,14 @@
                     <div>
                         Hochgeladen am:<br>
                         <time datetime="1-1-2019">@{{ file.created_at }}</time><br>
-                        <button type="button" class="mt-3 btn btn-primary" @click="showModal(file)">
+                        <button @click="buttonEditExif()" class="mt-3 btn btn-primary">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </button>
+                        <form id="imageSourceForm" method="post" action="/postimage">
+                            <input type="hidden" id="imageInput" name="imageSource">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        </form>
                     </div>
                 </div>
             </div>

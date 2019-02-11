@@ -16,11 +16,11 @@ class MetaController extends Controller
     }
 
     public function getimage(Request $request){
-        $imagesource = $request['imagesource'];
-        $path = storage_path($imagesource);
+        $imageSource = $request['imageSource'];
+        $path = storage_path($imageSource);
         $iptc = Image::make($path)->iptc();
         $iptc = serialize($iptc);
-        return redirect('/iptc')->with("status", $imagesource)->with("iptc", $iptc);
+        return redirect('/iptc')->with("status", $imageSource)->with("iptc", $iptc);
     }
 
     public function iptc(Request $request){
@@ -57,8 +57,8 @@ class MetaController extends Controller
         $local_caption = $request->input('local_caption');
         $caption_writer = $request->input('caption_writer');
 
-        $imagesource = $request->input('imagesource');
-        $contents = storage_path($imagesource);
+        $imageSource = $request->input('imageSource');
+        $contents = storage_path($imageSource);
 
         $iptc = new Iptc($contents);
         if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }

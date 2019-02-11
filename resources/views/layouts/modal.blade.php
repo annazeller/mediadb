@@ -7,22 +7,22 @@
         <div class="modal-content">
             <div class="modal-body">
                 <img class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
-                <div class="my-3 d-flex align-items-center justify-content-between">
+                {{--<div class="my-3 d-flex align-items-center justify-content-between">
                     <button class="btn btn-primary" @click="modalExif()">Bilddetails anzeigen</button>
                     <button type="button" ref="editButton" class="edit-button" :class="{'hidden': editHidden }" @click="buttonEditExif()" title="Bilddetails Bearbeiten">
                         <span aria-hidden="true"><i data-feather="edit-2"></i></span>
                     </button>
-                    <form id="imagesourceform" class="form-horizontal" method="post" action="/postimage">
-                        <input type="hidden" id="imageInput" name="imagesource">
+                    <form id="imageSourceForm" class="form-horizontal" method="post" action="/postimage">
+                        <input type="hidden" id="imageInput" name="imageSource">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
-                </div>
-                <table class="table table-striped">
+                </div>--}}
+                {{--<table class="table table-striped">
                     <tbody class="modal-exif">
                     </tbody>
-                </table>
-                <div>
-                    {{--<form id="editWithJimp" action="#" method="#" @submit.prevent="editWithJimp(file)">
+                </table>--}}
+                {{--<div>
+                    <form id="editWithJimp" action="#" method="#" @submit.prevent="editWithJimp(file)">
                         <div class="input-group">
                             <label for="imageWidth">Breite</label>
                             <input type="text" class="form-control" id="imageWidth" v-model="imageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
@@ -40,8 +40,8 @@
                             <small id="heightHelp" class="form-text text-muted">Bitte gib die gewünschte Bildhöhe an.</small>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>--}}
-                </div>
+                    </form>
+                </div>--}}
             </div>
         </div>
     </div>
