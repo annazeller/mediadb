@@ -232,4 +232,43 @@ html, body {
   }
 }
 
+.detailed-image {
+  @extend %boxLook;
+}
+
+#exif-table {
+  @extend %boxLook;
+  background: #fafafa;
+  overflow: hidden;
+  tr {
+    &:nth-child(odd) {
+      background-color: transparent;
+    }
+    &:nth-child(even) {
+      background-color: rgba($custom-color-2, 0.5);
+    }
+  }
+  td {
+    &:nth-child(1) {
+      width: 15%;
+      font: {
+        family: $font-header;
+      }
+    }
+    &:nth-child(2) {
+      width: 50%;
+    }
+    &:nth-child(3) {
+      width: calc(100% - 15% - 50%);
+    }
+  }
+  input {
+    border: none;
+    @extend %boxLook;
+    background: $white;
+    padding: rem(20px);
+    width: 100%;
+  }
+}
+
 .highlighted { color: red }

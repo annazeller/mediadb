@@ -1,8 +1,8 @@
 window.Vue = require('vue');
 window.axios = require('axios');
-window.piexif = require('piexifjs');
-window.Jimp = require('jimp');
-window.EXIF = require('exif-js');
+// window.piexif = require('piexifjs');
+// window.Jimp = require('jimp');
+// window.EXIF = require('exif-js');
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
@@ -339,7 +339,6 @@ const app = new Vue({
     mounted() {
         this.fetchFile(this.activeTab, this.pagination.current_page);
         this.fetch(this.activeTab);
-        console.log('ready!');
         $('body').removeClass('not-loaded');
     },
 

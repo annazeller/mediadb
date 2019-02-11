@@ -26,5 +26,4 @@ Route::post('/postimage', 'MetaController@getimage');
 
 Route::post('/post', 'MetaController@iptc');
 
-
 Route::get('/iptc', 'MetaController@index');
