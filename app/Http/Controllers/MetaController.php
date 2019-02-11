@@ -22,7 +22,10 @@ class MetaController extends Controller
         $imageName = $request['imageName'];
         $path = storage_path($imageSource);
         $exif = Image::make($path)->exif();
-        $exif = serialize($exif);
+        $exif = serialize($exif); //Super ugly version of the given array
+
+        /*$exif = Image::make($path)->exif();
+        $exif = implode(', ', $exif);*/
         $documenttitle = Image::make($path)->iptc('DocumentTitle');
         $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
