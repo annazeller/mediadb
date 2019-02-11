@@ -28,7 +28,7 @@
                         <td>exif</td>
                         <td>
                             @if (session("exif"))
-                                {{ session("exif") }}
+                                {{ session("exif")[1] }}
                             @else
                                 <i>Kein Wert vorhanden</i>
                             @endif
