@@ -24,18 +24,18 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    {{--<tr>
                         <td>exif</td>
                         <td>
                             @if (session("exif"))
-                                {{ session("exif")[1] }}
+                                {{ session("exif") }}
                             @else
                                 <i>Kein Wert vorhanden</i>
                             @endif
                         </td>
                         <td>
                         </td>
-                    </tr>
+                    </tr>--}}
                     <tr>
                         <td>Objektname</td>
                         <td>
