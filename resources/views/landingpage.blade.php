@@ -17,17 +17,16 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="landingpage">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">MediaDB</a>
+            <img class="ci" src="../images/logo.png" alt="DAM its cool">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Startseite</a>
-                    </li>
+
+
                 </ul>
                 <ul class="navbar-nav">
                     @guest
@@ -82,12 +81,25 @@
           </div>
         </div>
       </div>
-
+      <div class="logos">
+      <img class="corporate" src="../images/logos.png" alt="DAM its cool">
+    </div>
     </section>
     <footer>
-        <div class="container">
-            Test
+      <div class="special">
+
+
+        <div class="Impressum">
+            Impressum
         </div>
+        <div class="Datenschutz">
+            Datenschutz
+        </div>
+        <div class="Haftungsausschuss">
+            Haftungsausschuss
+        </div>
+        </div>
+
     </footer>
 
     <!-- Scripts -->

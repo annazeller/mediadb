@@ -10235,9 +10235,24 @@ body.landingpage .hero .btn {
   border: 3px solid orange;
   margin-top: 50px;
 }
+body.landingpage .navbar {
+  background-color: black;
+  color: white;
+}
+body.landingpage .corporate {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  height: 50%;
+  width: 50%;
+}
 body.landingpage footer {
   height: 70px;
   background-color: black;
+}
+body.landingpage .special {
+  float: left;
 }
 body.landingpage .About {
   margin-top: 300px;
