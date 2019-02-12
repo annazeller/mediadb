@@ -68,7 +68,7 @@ html, body {
   border: none;
   z-index: 1;
   padding: 0;
-  @include transform(all 200ms linear 0s);
+  @include transition(all 200ms linear 0s);
   &:hover {
     color: $white;
     background: $custom-color-1;
@@ -80,6 +80,10 @@ html, body {
     width: rem(20px);
     height: auto;
   }
+}
+
+.close-modal {
+  background: #fafafa;
 }
 
 .download-file {
@@ -138,10 +142,10 @@ html, body {
     }
   }
   .modal-dialog {
-    max-height: 85vh;
+    max-height: 90vh;
     overflow-x: hidden;
     overflow-y: auto;
-    max-width: 80vh;
+    max-width: 95vw;
     min-height: unset;
     height: auto;
     margin: 0;
@@ -156,7 +160,7 @@ html, body {
       @extend %boxLook;
     }
     .modal-content, .modal-body {
-      max-height: 85vh;
+      max-height: 100%;
       overflow-x: hidden;
       overflow-y: auto;
     }
