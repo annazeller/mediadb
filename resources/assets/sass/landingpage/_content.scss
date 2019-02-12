@@ -23,21 +23,33 @@
   }
 }
 
-.About {
-  width: 100vw;
-  height: 100vh;
+
+.navbar {
+  background-color: black;
   color: white;
 }
 
-.row {
-margin-top: 300px;
+
+.corporate {
+display: block;
+margin-left: auto;
+margin-right: auto;
+margin-top: 200px;
+height: 50%;
+width: 50%;
 
 }
-
-.img-fluid {
-margin-left: 30px;
+footer {
+  height: 70px;
+  background-color: black;
+}
+.special {
+float: left;
 }
 
-.col-6 {
-
+.About {
+  margin-top: 300px;
+  width: 100vw;
+  height: 100vh;
+  color: black;
 }

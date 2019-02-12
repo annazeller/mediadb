@@ -17,17 +17,16 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="landingpage">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">MediaDB</a>
+            <img class="ci" src="../images/logo.png" alt="DAM its cool">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Startseite</a>
-                    </li>
+
+
                 </ul>
                 <ul class="navbar-nav">
                     @guest
@@ -56,7 +55,7 @@
         </div>
     </nav>
     <div class="container" id="app">
-         @yield('content') 
+        {{--  @yield('content') --}}
     </div>
     <section class="hero">
       <div class="hero-Image">
@@ -69,11 +68,12 @@
       <div class="container">
         <div class="row">
           <div class="col-6 pr-3">
-            <h1>Features</h1>
+            <h2>Mehr Zeit fürs Wesentliche</h2>
             <p>
               MediaDB ist die intuitive Dateiverwaltung für Marketing-Teams, die endlich Struktur und Ordnung in ihr
               Medienarchiv bringen wollen. Mit MediaDB organisieren Nutzer ihre Mediendateien einfach stressfrei,
-              greifen deutlich schneller auf ihren Medienpool zu und teilen Inhalte gezielt.
+              greifen deutlich schneller auf ihren Medienpool zu und teilen Inhalte gezielt. Jeder weiß zu jeder Zeit,
+              welche Medien für welche Zwecke genutzt werden dürfen. Teams arbeiten auch übergreifend besser zusammen: keine Flaschenhälse, keine Fehlerquellen.
             <p>
           </div>
           <div class="col-6">
@@ -81,16 +81,25 @@
           </div>
         </div>
       </div>
-    <div class="hero-Image">
-        <h1>Digital Asset Management</h1>
-        <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
-        <a href="#" class="btn btn-default"> Registrieren </a>
+      <div class="logos">
+      <img class="corporate" src="../images/logos.png" alt="DAM its cool">
     </div>
     </section>
     <footer>
-        <div class="container">
-            Test
+      <div class="special">
+
+
+        <div class="Impressum">
+            Impressum
         </div>
+        <div class="Datenschutz">
+            Datenschutz
+        </div>
+        <div class="Haftungsausschuss">
+            Haftungsausschuss
+        </div>
+        </div>
+
     </footer>
 
     <!-- Scripts -->
