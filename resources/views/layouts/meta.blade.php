@@ -64,14 +64,33 @@
                             <input type="text" value="{{ $subcategories }}" placeholder="Bitte Wert eintragen" name="supplemental_category" id="supplemental_category">
                         </td>
                     </tr>
-              {{--      <tr>
+                    <tr>
                         <td>Keywords</td>
-                        <td>{{ $keywords }}</td>
+                        <td>
+                            @if($keywords)
+                                @if(is_array($keywords))
+                                    {{--Array--}}
+                                    @foreach($keywords as $value)
+                                        {{ $value }}
+                                    @endforeach
+                                @endif
+                            @else
+                                Nicht vorhanden
+                            @endif
                         <td>
                             <label for="keywords">Neuen Wert festlegen</label>
-                            <input type="text" value="{{ $keywords }}" placeholder="Bitte Wert eintragen" name="keywords" id="keywords">
+                            @if($keywords)
+                                @if(is_array($keywords))
+                                    {{--Array--}}
+                                    @foreach($keywords as $value)
+                                        <input type="text" value="{{ $value }}" placeholder="Bitte Wert eintragen" name="keywords" id="keywords">
+                                    @endforeach
+                                @endif
+                            @else
+                                <input type="text" value="" placeholder="Bitte Wert eintragen" name="keywords" id="keywords">
+                            @endif
                         </td>
-                    </tr>--}}
+                    </tr>
                     <tr>
                         <td>Spezielle Anleitung</td>
                         <td>{{ $specialinstructions }}</td>

@@ -13,11 +13,6 @@
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </a>
-                       {{-- <form id="imageSourceForm" method="post" action="/postimage">
-                            <input type="hidden" id="imageInput" name="imageSource">
-                            <input type="hidden" id="imageName" name="imageName">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        </form>--}}
                     </div>
                     <div class="col-md-4">
                             <form id="exportieren" action="#" method="#" @submit.prevent="exportieren(file)">
