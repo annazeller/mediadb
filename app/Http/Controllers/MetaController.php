@@ -20,51 +20,41 @@ class MetaController extends Controller
         $filePath = '/storage/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension;
         $exif = Image::make($path)->exif();
         $documenttitle = Image::make($path)->iptc('DocumentTitle');
-        $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
         $subcategories = Image::make($path)->iptc('Subcategories');
         $keywords = Image::make($path)->iptc('Keywords');
-        $specialinstructions = Image::make($path)->iptc('SpecialInstructions');
         $autor = Image::make($path)->iptc('AuthorByline');
         $city = Image::make($path)->iptc('City');
-        $state = Image::make($path)->iptc('State');
         $country = Image::make($path)->iptc('Country');
-        $otr = Image::make($path)->iptc('OTR');
         $photosource= Image::make($path)->iptc('PhotoSource');
         $copyright = Image::make($path)->iptc('Copyright');
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return view('layouts.meta', compact('file','filePath', 'path', 'exif', 'documenttitle', 'urgency', 'category', 'subcategories', 'keywords',
-            'specialinstructions', 'autor','city', 'state', 'country', 'otr', 'photosource', 'copyright', 'caption', 'creationdate', 'creationtime' ));
+        return view('layouts.meta', compact('file','filePath', 'path', 'exif', 'documenttitle', 'category', 'subcategories', 'keywords',
+            'autor','city', 'country', 'photosource', 'copyright', 'caption', 'creationdate', 'creationtime' ));
     }
 
     public function iptc(Request $request){
         $object_name = $request->input('object_name');
-        $urgency = $request->input('urgency');
         $category = $request->input('category');
         $supplemental_category = $request->input('supplemental_category');
         $keywords = $request->input('keywords');
-        $special_instructions = $request->input('special_instructions');
         $created_date = $request->input('created_date');
         $created_time = $request->input('created_time');
         $creator = $request->input('creator');
         $city= $request->input('city');
-        $province_state= $request->input('province_state');
         $country= $request->input('country');
-        $original_transmission_reference = $request->input('original_transmission_reference');
         $source = $request->input('source');
         $copyright_string = $request->input('copyright_string');
         $caption = $request->input('caption');
-        $caption_writer = $request->input('caption_writer');
 
         $imageSource = $request->input('imageSource');
-
         $imageName = $request->input('imageName');
 
         $iptc = new Iptc($imageSource);
-        if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }
-        if(!empty($urgency)) { $iptc->set(Iptc::PRIORITY , array($urgency)); }
+        if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name));}
+        else{$iptc->set(Iptc::OBJECT_NAME, array(null));}
         if(!empty($category)) {
             $iptc->set(Iptc::CATEGORY, array($category));
             $filecategory = File::where('name', $imageName)->where('user_id', Auth::id())->first();
@@ -77,21 +67,29 @@ class MetaController extends Controller
                 ]);
             }
         }
-        if(!empty($supplemental_category)) { $iptc->set(Iptc::SUPPLEMENTAL_CATEGORY, array($supplemental_category)); }
+        else{$iptc->set(Iptc::CATEGORY, array(null));}
+        if(!empty($supplemental_category)) {$iptc->set(Iptc::SUPPLEMENTAL_CATEGORY, array($supplemental_category));}
+        else{$iptc->set(Iptc::SUPPLEMENTAL_CATEGORY, array(null));}
         if(!empty($keywords)) { $iptc->set(Iptc::KEYWORDS, array($keywords)); }
-        if(!empty($special_instructions)) { $iptc->set(Iptc::SPECIAL_INSTRUCTIONS , array($special_instructions)); }
+        else{$iptc->set(Iptc::KEYWORDS, array(null));}
         if(!empty($created_date)) { $iptc->set(Iptc::CREATED_DATE , array($created_date)); }
+        else{$iptc->set(Iptc::CREATED_DATE , array(null));}
         if(!empty($created_time)) { $iptc->set(Iptc::CREATED_TIME, array($created_time)); }
+        else{$iptc->set(Iptc::CREATED_TIME, array(null));}
         if(!empty($creator)) { $iptc->set(Iptc::CREATOR , array($creator)); }
+        else{$iptc->set(Iptc::CREATOR , array(null));}
         if(!empty($city)) { $iptc->set(Iptc::CITY, array($city)); }
-        if(!empty($province_state)) { $iptc->set(Iptc::PROVINCE_STATE, array($province_state)); }
+        else{$iptc->set(Iptc::CITY, array(null));}
         if(!empty($country)) { $iptc->set(Iptc::COUNTRY , array($country)); }
-        if(!empty($original_transmission_reference)) { $iptc->set(Iptc::ORIGINAL_TRANSMISSION_REFERENCE, array($original_transmission_reference)); }
+        else{$iptc->set(Iptc::COUNTRY , array(null));}
         if(!empty($source)) { $iptc->set(Iptc::SOURCE, array($source)); }
+        else{$iptc->set(Iptc::SOURCE, array(null));}
         if(!empty($copyright_string)) { $iptc->set(Iptc::COPYRIGHT_STRING, array($copyright_string)); }
+        else{$iptc->set(Iptc::COPYRIGHT_STRING, array(null));}
         if(!empty($caption)) { $iptc->set(Iptc::CAPTION, array($caption)); }
-        if(!empty($caption_writer)) { $iptc->set(Iptc::CAPTION_WRITER, array($caption_writer)); }
+        else{$iptc->set(Iptc::CAPTION, array(null));}
         $iptc->write();
         return redirect()->back();
     }
+
 }

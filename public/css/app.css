@@ -10213,6 +10213,16 @@ html.not-loaded, body.not-loaded {
   color: red;
 }
 
+td {
+  position: relative;
+}
+
+.clearInput {
+  position: absolute;
+  top: 62px;
+  right: 20px;
+}
+
 body.landingpage .hero {
   width: 100vw;
   height: 100vh;

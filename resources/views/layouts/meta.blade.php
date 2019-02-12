@@ -26,9 +26,7 @@
                     <tbody>
                     <tr>
                         <td>exif</td>
-                        <td>
-
-                        </td>
+                        <td>{{head($exif)}}</td>
                         <td>
                         </td>
                     </tr>
@@ -38,14 +36,9 @@
                         <td>
                             <label for="object_name">Neuen Wert festlegen</label>
                             <input type="text" value="{{ $documenttitle }}" placeholder="Bitte Wert eintragen" name="object_name" id="object_name">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Priorität</td>
-                        <td>{{ $urgency }}</td>
-                        <td>
-                            <label for="urgency">Neuen Wert festlegen</label>
-                            <input type="text" value="{{ $urgency }}" placeholder="Bitte Wert eintragen" name="urgency" id="urgency">
+                            <div class="clearInput" onclick="document.getElementById('object_name').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -54,6 +47,9 @@
                         <td>
                             <label for="category">Neuen Wert festlegen</label>
                             <input type="text" value="{{ $category }}" placeholder="Bitte Wert eintragen" name="category" id="category">
+                            <div class="clearInput" onclick="document.getElementById('category').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -62,6 +58,9 @@
                         <td>
                             <label for="supplemental_category">Neuen Wert festlegen</label>
                             <input type="text" value="{{ $subcategories }}" placeholder="Bitte Wert eintragen" name="supplemental_category" id="supplemental_category">
+                            <div class="clearInput" onclick="document.getElementById('supplemental_category').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -69,7 +68,6 @@
                         <td>
                             @if($keywords)
                                 @if(is_array($keywords))
-                                    {{--Array--}}
                                     @foreach($keywords as $value)
                                         {{ $value }}
                                     @endforeach
@@ -81,9 +79,11 @@
                             <label for="keywords">Neuen Wert festlegen</label>
                             @if($keywords)
                                 @if(is_array($keywords))
-                                    {{--Array--}}
                                     @foreach($keywords as $value)
                                         <input type="text" value="{{ $value }}" placeholder="Bitte Wert eintragen" name="keywords" id="keywords">
+                                        <div class="clearInput" onclick="document.getElementById('keywords').value = ''">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     @endforeach
                                 @endif
                             @else
@@ -92,19 +92,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Spezielle Anleitung</td>
-                        <td>{{ $specialinstructions }}</td>
-                        <td>
-                            <label for="special_instructions">Neuen Wert festlegen</label>
-                            <input type="text" value="{{ $specialinstructions }}" placeholder="Bitte Wert eintragen" name="special_instructions" id="special_instructions">
-                        </td>
-                    </tr>
-                    <tr>
                         <td>Autor</td>
                         <td>{{$autor}}</td>
                         <td>
                             <label for="creator">Neuen Wert festlegen</label>
                             <input type="text" value="{{$autor}}" placeholder="Bitte Wert eintragen" name="creator" id="creator">
+                            <div class="clearInput" onclick="document.getElementById('creator').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -113,14 +108,9 @@
                         <td>
                             <label for="city">Neuen Wert festlegen</label>
                             <input type="text" value="{{$city}}" placeholder="Bitte Wert eintragen" name="city" id="city">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Provinz/Staat</td>
-                        <td>$state</td>
-                        <td>
-                            <label for="province_state">Neuen Wert festlegen</label>
-                            <input type="text" value="{{$state}}" placeholder="Bitte Wert eintragen" name="province_state" id="province_state">
+                            <div class="clearInput" onclick="document.getElementById('city').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -129,22 +119,20 @@
                         <td>
                             <label for="country">Neuen Wert festlegen</label>
                             <input type="text" value="{{$country}}" placeholder="Bitte Wert eintragen" name="country" id="country">
+                            <div class="clearInput" onclick="document.getElementById('country').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Ursprüngliche Übertragungsreferenz</td>
-                        <td>{{$otr}}</td>
-                        <td>
-                            <label for="original_transmission_reference">Neuen Wert festlegen</label>
-                            <input type="text" value="{{$otr}}" placeholder="Bitte Wert eintragen" name="original_transmission_reference" id="original_transmission_reference">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Quelle</td>
+                        <td>Bildquelle</td>
                         <td>{{$photosource}}</td>
                         <td>
                             <label for="source">Neuen Wert festlegen</label>
                             <input type="text" value="{{$photosource}}" placeholder="Bitte Wert eintragen" name="source" id="source">
+                            <div class="clearInput" onclick="document.getElementById('source').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -153,6 +141,9 @@
                         <td>
                             <label for="copyright_string">Neuen Wert festlegen</label>
                             <input type="text" value="{{$copyright}}" placeholder="Bitte Wert eintragen" name="copyright_string" id="copyright_string">
+                            <div class="clearInput" onclick="document.getElementById('copyright_string').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -161,6 +152,9 @@
                         <td>
                             <label for="caption">Neuen Wert festlegen</label>
                             <input type="text" value="{{$caption}}" placeholder="Bitte Wert eintragen" name="caption" id="caption">
+                            <div class="clearInput" onclick="document.getElementById('caption').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -169,6 +163,9 @@
                         <td>
                             <label for="created_date">Neuen Wert festlegen</label>
                             <input type="text" value="{{$creationdate}}" placeholder="Bitte Wert eintragen" name="created_date" id="created_date">
+                            <div class="clearInput" onclick="document.getElementById('created_date').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -177,6 +174,9 @@
                         <td>
                             <label for="created_time">Neuen Wert festlegen</label>
                             <input type="text" value="{{$creationtime}}" placeholder="Bitte Wert eintragen" name="created_time" id="created_time">
+                            <div class="clearInput" onclick="document.getElementById('created_time').value = ''">
+                                <i data-feather="x"></i>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
