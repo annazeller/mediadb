@@ -23,10 +23,7 @@ class MetaController extends Controller
         $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
         $subcategories = Image::make($path)->iptc('Subcategories');
-/*        $keywords = Image::make($path)->iptc('Keywords');
-        if(!empty($keywords)) {
-            $keywords = implode(', ', $keywords);
-        }*/
+        $keywords = Image::make($path)->iptc('Keywords');
         $specialinstructions = Image::make($path)->iptc('SpecialInstructions');
         $autor = Image::make($path)->iptc('AuthorByline');
         $city = Image::make($path)->iptc('City');
