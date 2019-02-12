@@ -10215,6 +10215,16 @@ html.not-loaded, body.not-loaded {
   color: red;
 }
 
+td {
+  position: relative;
+}
+
+.clearInput {
+  position: absolute;
+  top: 62px;
+  right: 20px;
+}
+
 body.landingpage {
   background-color: #000;
 }
@@ -10237,16 +10247,30 @@ body.landingpage .hero .btn {
   border: 3px solid orange;
   margin-top: 50px;
 }
-body.landingpage .About {
-  width: 100vw;
-  height: 100vh;
+body.landingpage .navbar {
+  background-color: black;
   color: white;
 }
-body.landingpage .row {
-  margin-top: 300px;
+body.landingpage .corporate {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  height: 50%;
+  width: 50%;
 }
-body.landingpage .img-fluid {
-  margin-left: 30px;
+body.landingpage footer {
+  height: 70px;
+  background-color: black;
+}
+body.landingpage .special {
+  float: left;
+}
+body.landingpage .About {
+  margin-top: 300px;
+  width: 100vw;
+  height: 100vh;
+  color: black;
 }
 body#dashboard {
   background: #f1f1f1;

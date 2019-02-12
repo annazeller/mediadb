@@ -279,3 +279,13 @@ html, body {
 }
 
 .highlighted { color: red }
+
+td{
+  position: relative;
+}
+
+.clearInput{
+  position: absolute;
+  top:62px;
+  right: 20px;
+}
