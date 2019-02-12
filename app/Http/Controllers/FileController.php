@@ -124,37 +124,73 @@ class FileController extends Controller
     public function export($id, Request $request)
     {
 
-        /*$file = File::where('id', $id)->where('user_id', Auth::id())->first();
+        $file = File::where('id', $id)->where('user_id', Auth::id())->first();
 
         $originalImage = $file->getName($file->type, $file->name, $file->extension);
         $originalImagePath = Storage::get($originalImage);
-
-        $image = public_path('images/download.' . $file->extension);
 
         $imageHeight = $request['imageHeight'];
         $imageWidth = $request['imageWidth'];
         $format = $request['format'];
         $colorspace = $request['colorspace'];
+        $imagePath = public_path('images/temp/' . $file->name . '.' . $format);
+        
+        //$imagePathh = public_path('images/download.' . $file->extension);
 
         
         if ($img = Image::make($originalImagePath)) {
 
             $img->resize($imageWidth,$imageHeight);
             $img->encode($format);
-            $img->save($image);
+            //$img->save($imagePathh);
+            $img->save($imagePath);
             
             //$this->generateCmykImage(public_path('images/download.' . $file->extension));
 
-            $i = new Imagick($image);
-            $i->setRegistry('temporary-path', '/efs');
-            $i->transformImageColorspace(Imagick::$colorspace);
-            $i->writeImage($image);
+            $i = new Imagick($imagePath);
+
+            switch ($colorspace) {
+                case "RGB":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_RGB);
+                    break;
+                case "SRGB":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+                    break;
+                case "CMYK":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_CMYK);
+                    break;
+                case "GRAY":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_GRAY);
+                    break;
+                case "YUV":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_YUV);
+                    break;
+                case "HSL":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_HSL);
+                    break;
+                case "LAB":
+                    $i->transformImageColorspace(Imagick::COLORSPACE_LAB);
+                    break;
+            }
+            
+            $i->writeImage($imagePath);
             $i->clear();
 
-            return response()->download($image, $file->name);//->deleteFileAfterSend(true);
+            //return response()->json([ 'fileNameAndPath' => '/images/' . $file->name . '.' . $format]);
+            //return redirect()->to('/images/' . $file->name . '.' . $format);
+            return response()->json(true);
         }
 
-        return response()->json(false);*/
+        return response()->json(false);
+    }
+
+    public function download($filename, $fileextension) {
+        $imagePath = public_path('images/temp/' . $filename . '.' . $fileextension);
+        return response()->download($imagePath)->deleteFileAfterSend(true);
+    }
+
+    public function transformColorspace($image, $colorspace) {
+        
     }
 
     /**

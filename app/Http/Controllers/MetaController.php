@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 use App\Iptc;
 use Image;
 use App\File;
@@ -12,45 +12,21 @@ use App\Category;
 
 class MetaController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return view('layouts.meta');
-    }
-
-    public function getimage(Request $request){
-        $imageSource = $request['imageSource'];
-//        $imageName = $request['imageName'];
-        $path = storage_path($imageSource);
-        $iptcArrays = Image::make($path)->iptc();
-        return view('layouts.meta')->with("iptcArrays", $iptcArrays);
-
-//        echo '<tr>' . 'test123' . '</tr>';
-        /*echo '<td>' . implode(', ', $iptcValues) . '</td>';
-        echo '</tr>';*/
-
-        /*foreach ($iptcValues as $value){
-            echo'<tr>';
-            echo'<td>'. serialize($value) ."</td>";
-            echo'<tr>';
-        }*/
-//        echo print_r($exif);
-        /*foreach ($exif as $obj) {
-            echo print_r($obj);
-            //echo '<td>' . print_r($key) . print_r($value) . '</td>';
-        }*/
-
-//        $exif = serialize($exif); //Super ugly version of the given array
-
-        /*$exif = Image::make($path)->exif();
-        $exif = implode(', ', $exif);*/
-        /*$documenttitle = Image::make($path)->iptc('DocumentTitle');
+        $file = File::where('id', $id)->where('user_id', Auth::id())->first();
+        $user = Auth::user()->name;
+        $path = storage_path('app/public/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension);
+        $filePath = '/storage/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension;
+        $exif = Image::make($path)->exif();
+        $documenttitle = Image::make($path)->iptc('DocumentTitle');
         $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
         $subcategories = Image::make($path)->iptc('Subcategories');
-        $keywords = Image::make($path)->iptc('Keywords');
+/*        $keywords = Image::make($path)->iptc('Keywords');
         if(!empty($keywords)) {
             $keywords = implode(', ', $keywords);
-        }
+        }*/
         $specialinstructions = Image::make($path)->iptc('SpecialInstructions');
         $autor = Image::make($path)->iptc('AuthorByline');
         $city = Image::make($path)->iptc('City');
@@ -62,12 +38,11 @@ class MetaController extends Controller
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return redirect('/iptc')->with("exif", $exif)->with("imageName", $imageName)->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
-    */
+        return view('layouts.meta', compact('file','filePath', 'path', 'exif', 'documenttitle', 'urgency', 'category', 'subcategories', 'keywords',
+            'specialinstructions', 'autor','city', 'state', 'country', 'otr', 'photosource', 'copyright', 'caption', 'creationdate', 'creationtime' ));
     }
 
-    /*public function iptc(Request $request){
-
+    public function iptc(Request $request){
         $object_name = $request->input('object_name');
         $urgency = $request->input('urgency');
         $category = $request->input('category');
@@ -87,11 +62,10 @@ class MetaController extends Controller
         $caption_writer = $request->input('caption_writer');
 
         $imageSource = $request->input('imageSource');
-        $contents = storage_path($imageSource);
 
         $imageName = $request->input('imageName');
 
-        $iptc = new Iptc($contents);
+        $iptc = new Iptc($imageSource);
         if(!empty($object_name)) { $iptc->set(Iptc::OBJECT_NAME, array($object_name)); }
         if(!empty($urgency)) { $iptc->set(Iptc::PRIORITY , array($urgency)); }
         if(!empty($category)) {
@@ -121,6 +95,6 @@ class MetaController extends Controller
         if(!empty($caption)) { $iptc->set(Iptc::CAPTION, array($caption)); }
         if(!empty($caption_writer)) { $iptc->set(Iptc::CAPTION_WRITER, array($caption_writer)); }
         $iptc->write();
-        return redirect('/');
-    }*/
+        return redirect()->back();
+    }
 }
