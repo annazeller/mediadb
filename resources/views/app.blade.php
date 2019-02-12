@@ -18,7 +18,7 @@
 </head>
 <body class="not-loaded" id="dashboard">
     <div id="loader">
-        Seite Lädt...
+        Seite lädt...
     </div>
     <div id="app">
         <div id="sidebar">

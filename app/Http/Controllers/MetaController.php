@@ -19,14 +19,31 @@ class MetaController extends Controller
 
     public function getimage(Request $request){
         $imageSource = $request['imageSource'];
-        $imageName = $request['imageName'];
+//        $imageName = $request['imageName'];
         $path = storage_path($imageSource);
-        $exif = Image::make($path)->exif();
-        $exif = serialize($exif); //Super ugly version of the given array
+        $iptcArrays = Image::make($path)->iptc();
+        return view('layouts.meta')->with("iptcArrays", $iptcArrays);
+
+//        echo '<tr>' . 'test123' . '</tr>';
+        /*echo '<td>' . implode(', ', $iptcValues) . '</td>';
+        echo '</tr>';*/
+
+        /*foreach ($iptcValues as $value){
+            echo'<tr>';
+            echo'<td>'. serialize($value) ."</td>";
+            echo'<tr>';
+        }*/
+//        echo print_r($exif);
+        /*foreach ($exif as $obj) {
+            echo print_r($obj);
+            //echo '<td>' . print_r($key) . print_r($value) . '</td>';
+        }*/
+
+//        $exif = serialize($exif); //Super ugly version of the given array
 
         /*$exif = Image::make($path)->exif();
         $exif = implode(', ', $exif);*/
-        $documenttitle = Image::make($path)->iptc('DocumentTitle');
+        /*$documenttitle = Image::make($path)->iptc('DocumentTitle');
         $urgency = Image::make($path)->iptc('Urgency');
         $category = Image::make($path)->iptc('Category');
         $subcategories = Image::make($path)->iptc('Subcategories');
@@ -46,9 +63,10 @@ class MetaController extends Controller
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
         return redirect('/iptc')->with("exif", $exif)->with("imageName", $imageName)->with("status", $imageSource)->with("documenttitle", $documenttitle)->with("urgency", $urgency)->with("category", $category)->with("subcategories", $subcategories)->with("keywords", $keywords)->with("specialinstructions", $specialinstructions)->with("autor", $autor)->with("city", $city)->with("state", $state)->with("country", $country)->with("otr", $otr)->with("photosource", $photosource)->with("copyright", $copyright)->with("caption", $caption)->with("creationdate", $creationdate)->with("creationtime", $creationtime);
+    */
     }
 
-    public function iptc(Request $request){
+    /*public function iptc(Request $request){
 
         $object_name = $request->input('object_name');
         $urgency = $request->input('urgency');
@@ -104,5 +122,5 @@ class MetaController extends Controller
         if(!empty($caption_writer)) { $iptc->set(Iptc::CAPTION_WRITER, array($caption_writer)); }
         $iptc->write();
         return redirect('/');
-    }
+    }*/
 }

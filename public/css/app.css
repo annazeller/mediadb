@@ -10213,14 +10213,14 @@ html.not-loaded, body.not-loaded {
   color: red;
 }
 
+body.landingpage {
+  background-color: #000;
+}
 body.landingpage .hero {
   width: 100vw;
   height: 100vh;
-  background-image: url("../images/slider.png");
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url("../images/slider.png") no-repeat fixed center center;
   color: white;
   text-align: center;
   display: flex;

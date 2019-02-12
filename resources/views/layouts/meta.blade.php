@@ -1,6 +1,8 @@
 @extends('app')
 @section('content')
-    <div class="row mb-4">
+    <table class="table">
+    </table>
+    {{--<div class="row mb-4">
         <div class="col-6">
             <img src="https://picsum.photos/800/450/?random" class="detailed-image img-fluid">
         </div>
@@ -24,7 +26,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
+                    --}}{{--<tr>
                         <td>exif</td>
                         <td>
                             @if (session("exif"))
@@ -35,7 +37,7 @@
                         </td>
                         <td>
                         </td>
-                    </tr>
+                    </tr>--}}{{--
                     <tr>
                         <td>Objektname</td>
                         <td>
@@ -269,5 +271,5 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
         </div>
-    </div>
+    </div>--}}
 @endsection

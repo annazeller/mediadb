@@ -1,11 +1,8 @@
 .hero {
   width: 100vw;
   height: 100vh;
-  background-image: url('../images/slider.png');
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url('../images/slider.png') no-repeat fixed center center;
   color: white;
   text-align: center;
   display:flex;
@@ -18,8 +15,6 @@
     font-size: 1.5em;
     border: 3px solid orange;
     margin-top: 50px;
-
-
   }
 }
 
@@ -30,12 +25,11 @@
 }
 
 .row {
-margin-top: 300px;
-
+  margin-top: 300px;
 }
 
 .img-fluid {
-margin-left: 30px;
+  margin-left: 30px;
 }
 
 .col-6 {

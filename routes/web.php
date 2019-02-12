@@ -19,6 +19,7 @@ Route::post('files/edit/{id}', 'FileController@edit');
 Route::post('files/export/{id}', 'FileController@export');
 Route::post('files/delete/{id}', 'FileController@destroy');
 Route::get('/filter', 'FileController@filter');
+Route::get('/landingpage', 'HomeController@index');
 
 Auth::routes();
 

@@ -13,7 +13,7 @@
         </div>
         <div class="file-wrapper" :class="isVideo ? 'col-6'  : 'col-4'" v-for="file in files" :key="file.id">
             <div class="card" >
-                <a class="download-file" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank">
+                <a class="download-file" href="" :href="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" target="_blank" download>
                     <span aria-hidden="true"><i data-feather="download"></i></span>
                 </a>
                 <button type="button" class="delete-file" title="Löschen" @click="prepareToDelete(file)">
@@ -21,8 +21,10 @@
                 </button>
                 <div class="card-image-top">
                     <div class="file-header-wrapper" v-if="file.type == 'image'" @click="showModal(file)">
+                        <img v-if="file.extension === '.psd'" src="">
                         <img v-if="file === editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + savedFile.type + '/' + savedFile.name + '.' + savedFile.extension" :alt="file.name">
                         <img v-if="file !== editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
+
                     </div>
                     <div v-if="file.type == 'audio'">
                         <div class="file-header-wrapper">
