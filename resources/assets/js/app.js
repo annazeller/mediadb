@@ -251,13 +251,9 @@ const app = new Vue({
             this.editHidden = false;
         },
 
-        buttonEditExif() {
-            let image = $('#imageSource').attr('src');
-            console.log(image);
-            image = image.replace('http://192.168.10.10/storage/','app/public/');
-            console.log(image);
-            $('#imageInput').val(image);
-            $('#imageSourceForm').submit();
+        buttonEditExif(file) {
+            this.file = file;
+            axios.get('/iptc/' + file.id)
         },
 
         closeModal() {

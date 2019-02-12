@@ -9,16 +9,10 @@
                 <div class="row">
                     <div class="col-md-8">
                         <img id="imageSource" class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
-                        <img src="images/spinner.jpg" id="spinner" width="30px" style="visibility: hidden"/>
-                        <button @click="buttonEditExif()" class="mt-3 btn btn-primary">
+                        <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" href="/iptc/' + file.id'">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
-                        </button>
-                        <form id="imageSourceForm" method="post" action="/postimage">
-                            <input type="hidden" id="imageInput" name="imageSource">
-                            <input type="hidden" id="imageName" name="imageName">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        </form>
+                        </a>
                     </div>
                     <div class="col-md-4">
                             <form id="exportieren" action="#" method="#" @submit.prevent="exportieren(file)">
