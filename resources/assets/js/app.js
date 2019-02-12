@@ -51,8 +51,8 @@ const app = new Vue({
 
         imageWidth: '',
         imageHeight: '',
-        //format: '',
-        //colorspace: '',
+        format: '',
+        colorspace: '',
 
         notification: false,
         showConfirm: false,
@@ -286,25 +286,38 @@ const app = new Vue({
             this.errors = {};
         },
 
-        export(file) {
+        async exportieren(file) {
             this.file = file;
 
             let formData = new FormData();
             formData.append('imageHeight', this.imageHeight);
             formData.append('imageWidth', this.imageWidth);
-            //formData.append('format', this.format);
-            //formData.append('colorspace', this.colorspace);
+            formData.append('format', this.format);
+            formData.append('colorspace', this.colorspace);
+            console.log(this.imageHeight + " " + this.imageWidth + " " + this.format + " " + this.colorspace);
+            document.getElementById("spinner").style.visibility = "visible";
+            let a = await axios.post('files/export/' + file.id, formData);
+            console.log(a.status);
 
+            if (a.status == 200) {
+                document.getElementById("spinner").style.visibility = "hidden";
+                window.location = 'files/download/' + file.name + '/' + this.format
+            }
 
-            axios.post('files/export/' + file.id, formData, {
-                responseType: "blob"
-            }).then(response => {
-                console.log(response.data);
-                
-                 let blob = response.data,
-                    downloadUrl = window.URL.createObjectURL(blob),
-                    filename = "",
-                    disposition = response.headers["content-disposition"];
+            /*response => {
+                console.log(response.data.fileNameAndPath);
+                url = response.data.fileNameAndPath;
+                console.log(url);
+                let a = document.createElement("a");
+                a.href = url;
+                a.download = "";
+                document.body.appendChild(a);
+                a.click();
+
+                /*let blob = response.data,
+                            downloadUrl = window.URL.createObjectURL(blob),
+                            filename = "",
+                            disposition = response.headers["content-disposition"];
 
                 if (disposition && disposition.indexOf("attachment") !== -1) {
                     let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
@@ -317,21 +330,21 @@ const app = new Vue({
 
                 let a = document.createElement("a");
                 if (typeof a.download === "undefined") {
-                    window.location.href = downloadUrl;
+                    window.location.href = url;
                 } else {
-                    a.href = downloadUrl;
+                    a.href = url;
                     a.download = filename;
                     document.body.appendChild(a);
                     a.click();
-                }
+                }*/
                 
-            })
+            /*})
             .catch(error => {
                 console.log(error);
                 this.errors = error.response.data.errors;
                 this.showNotification(error.response.data.message, false);
                 this.fetchFile(this.activeTab, this.pagination.current_page);
-            });
+            });*/
         }
     },
 
