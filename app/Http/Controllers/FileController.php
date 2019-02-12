@@ -30,6 +30,7 @@ class FileController extends Controller
      */
     public function index($type, $id = null, Request $request)
     {
+        $categories = Category::all();
         $model = new File();
 
         if (!is_null($id)) {
@@ -52,7 +53,8 @@ class FileController extends Controller
                     'from' => $files->firstItem(),
                     'to' => $files->lastItem()
                 ],
-                'data' => $files
+                'data' => $files,
+                'categories' => $categories
             ];
         }
 
