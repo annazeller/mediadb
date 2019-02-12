@@ -20,6 +20,7 @@ Route::post('files/export/{id}', 'FileController@export');
 Route::get('files/download/{filename}/{fileextension}', 'FileController@download');
 Route::post('files/delete/{id}', 'FileController@destroy');
 Route::get('/filter', 'FileController@filter');
+Route::get('/landingpage', 'HomeController@index');
 
 Auth::routes();
 

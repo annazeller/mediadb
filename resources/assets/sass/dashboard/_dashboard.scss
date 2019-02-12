@@ -214,9 +214,33 @@
               height: 100%;
               padding: rem(20px);
               cursor: pointer;
+              overflow: hidden;
+              position: absolute;
             }
-            .custom-file-label::after {
-              display: none;
+            .to-long-overlay {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              width: 30px;
+              z-index: 2;
+              background: $white;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              svg {
+                width: rem(20px);
+                height: auto;
+              }
+            }
+            .custom-file-label {
+              .file-name {
+                position: relative;
+                z-index: 1;
+              }
+              &:after {
+                display: none;
+              }
             }
           }
           & > button {

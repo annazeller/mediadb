@@ -10026,9 +10026,7 @@ html.not-loaded, body.not-loaded {
   border: none;
   z-index: 1;
   padding: 0;
-  -webkit-transform: all 200ms linear 0s;
-  -khtml-transform: all 200ms linear 0s;
-  transform: all 200ms linear 0s;
+  transition: all 200ms linear 0s;
 }
 .delete-file:hover, .close-modal:hover, .edit-button:hover, .download-file:hover {
   color: #fff;
@@ -10040,6 +10038,10 @@ html.not-loaded, body.not-loaded {
 .delete-file svg, .close-modal svg, .edit-button svg, .download-file svg {
   width: 1.25rem;
   height: auto;
+}
+
+.close-modal {
+  background: #fafafa;
 }
 
 .download-file {
@@ -10098,10 +10100,10 @@ html.not-loaded, body.not-loaded {
   display: flex !important;
 }
 .modal-custom .modal-dialog {
-  max-height: 85vh;
+  max-height: 90vh;
   overflow-x: hidden;
   overflow-y: auto;
-  max-width: 80vh;
+  max-width: 95vw;
   min-height: unset;
   height: auto;
   margin: 0;
@@ -10116,7 +10118,7 @@ html.not-loaded, body.not-loaded {
   border: none;
 }
 .modal-custom .modal-dialog .modal-content, .modal-custom .modal-dialog .modal-body {
-  max-height: 85vh;
+  max-height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -10223,14 +10225,14 @@ td {
   right: 20px;
 }
 
+body.landingpage {
+  background-color: #000;
+}
 body.landingpage .hero {
   width: 100vw;
   height: 100vh;
-  background-image: url("../images/slider.png");
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url("../images/slider.png") no-repeat fixed center center;
   color: white;
   text-align: center;
   display: flex;
@@ -10488,8 +10490,30 @@ body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-fo
   height: 100%;
   padding: 1.25rem;
   cursor: pointer;
+  overflow: hidden;
+  position: absolute;
 }
-body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .custom-file-label::after {
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .to-long-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  z-index: 2;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .to-long-overlay svg {
+  width: 1.25rem;
+  height: auto;
+}
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .custom-file-label .file-name {
+  position: relative;
+  z-index: 1;
+}
+body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .custom-file-label:after {
   display: none;
 }
 body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button {

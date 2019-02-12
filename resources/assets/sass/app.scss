@@ -53,6 +53,7 @@
 
 body {
   &.landingpage {
+    background-color: $black;
     @import "landingpage/content";
   }
   &#dashboard {
