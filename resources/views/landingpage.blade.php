@@ -56,7 +56,7 @@
         </div>
     </nav>
     <div class="container" id="app">
-         @yield('content') 
+        {{--  @yield('content') --}}
     </div>
     <section class="hero">
       <div class="hero-Image">
@@ -69,11 +69,12 @@
       <div class="container">
         <div class="row">
           <div class="col-6 pr-3">
-            <h1>Features</h1>
+            <h2>Mehr Zeit fürs Wesentliche</h2>
             <p>
               MediaDB ist die intuitive Dateiverwaltung für Marketing-Teams, die endlich Struktur und Ordnung in ihr
               Medienarchiv bringen wollen. Mit MediaDB organisieren Nutzer ihre Mediendateien einfach stressfrei,
-              greifen deutlich schneller auf ihren Medienpool zu und teilen Inhalte gezielt.
+              greifen deutlich schneller auf ihren Medienpool zu und teilen Inhalte gezielt. Jeder weiß zu jeder Zeit,
+              welche Medien für welche Zwecke genutzt werden dürfen. Teams arbeiten auch übergreifend besser zusammen: keine Flaschenhälse, keine Fehlerquellen.
             <p>
           </div>
           <div class="col-6">
@@ -81,11 +82,7 @@
           </div>
         </div>
       </div>
-    <div class="hero-Image">
-        <h1>Digital Asset Management</h1>
-        <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
-        <a href="#" class="btn btn-default"> Registrieren </a>
-    </div>
+
     </section>
     <footer>
         <div class="container">
