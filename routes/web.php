@@ -22,6 +22,6 @@ Route::get('/filter', 'FileController@filter');
 
 Auth::routes();
 
-Route::post('/postimage', 'MetaController@getimage');
+/*Route::post('/postimage/', 'MetaController@getimage');*/
 Route::post('/post', 'MetaController@iptc');
-Route::get('/iptc', 'MetaController@index');
+Route::get('/iptc/{id}', 'MetaController@index');
