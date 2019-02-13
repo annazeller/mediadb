@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid p-0">
-        <div class="row w-100 no-gutters">
-            <div class="col-6">
+    <div class="container-fluid">
+        <div class="row w-100">
+            <div class="col-4">
                 <form class="navbar-form" role="search">
                     <input class="search-input" v-model="keywords" placeholder="Suche" name="srch-term" id="srch-term" type="text">
                     <button class="search-submit" type="submit"><i data-feather="search"></i></button>
