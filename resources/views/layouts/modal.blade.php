@@ -109,7 +109,7 @@
                             <div class="form-group">
                               <label for="icc">Farbprofil </label>
                               <select class="form-control" id="icc" v-model="icc">
-                                <option>sRGB_IEC61966-2-1.icc</option>
+                                <option>sRGB_IEC61966-2-1</option>
                                 <option>ISOcoated_v2_300_eci</option>
                                 <option>ISOcoated_v2_eci</option>
                                 <option>ISOuncoatedyellowish</option>

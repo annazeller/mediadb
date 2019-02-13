@@ -281,6 +281,8 @@ const app = new Vue({
                 } else {
                     window.location = 'files/download/' + file.name + '/' + this.format
                 }
+            } else {
+                document.getElementById("spinner1").style.visibility = "hidden";
             }
         },
 
@@ -300,6 +302,8 @@ const app = new Vue({
             if (a.status == 200) {
                 document.getElementById("spinner1").style.visibility = "hidden";
                 window.location = 'files/download/' + file.name + '/pdf'
+            } else {
+                document.getElementById("spinner1").style.visibility = "hidden";
             }
         }
     },
