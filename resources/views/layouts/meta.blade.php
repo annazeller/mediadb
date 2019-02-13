@@ -44,6 +44,7 @@
                                     </pre>
                                 </td>
                             </tr>
+                        @if($isJpg)
                             <tr>
                                 <td>Objektname</td>
                                 <td>{{ $documenttitle }}</td>
@@ -217,12 +218,15 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endif
                             </tbody>
                         </table>
+                        @if($isJpg)
                         <div class="d-flex align-items-center mt-4 justify-content-between">
                             <button type="reset" class="btn btn-danger">Abbrechen</button>
                             <button type="submit" class="btn btn-primary">Speichern</button>
                         </div>
+                        @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     </form>
                 </div>
