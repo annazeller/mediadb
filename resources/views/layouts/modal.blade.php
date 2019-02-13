@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <img id="imageSource" class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
-                        <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" href="/iptc/' + file.id'">
+                        <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/iptc/' + file.id">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </a>
@@ -56,14 +56,14 @@
                                                 <li>HSL</li>
                                                 <li>LAB</li>
                                             </ul>
-                                            <input type="hidden" id="colorspace" v-model="colorspace">
+                                            <input type="hidden" id="colorSpace" v-model="colorSpace">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Exportieren</button>
                         </form>--}}
-                        <form id="exportieren" action="#" method="#" @submit.prevent="exportieren(file)">
+                        <form id="exportieren" action="#" @submit.prevent="exportieren(file)">
                             <div>
                                 <h2>Exportieren</h2>
                             </div>
@@ -99,8 +99,8 @@
                                 </select>
                               </div>
                             <div class="form-group">
-                                <label for="colorspace">Farbraum </label>
-                                <select class="form-control" id="colorspace" v-model="colorspace">
+                                <label for="colorSpace">Farbraum </label>
+                                <select class="form-control" id="colorSpace" v-model="colorSpace">
                                   <option>RGB</option>
                                   <option>SRGB</option>
                                   <option>CMYK</option>

@@ -1,9 +1,5 @@
 @extends('app')
 @section('content')
-    @if(Auth::check())
-        @include('header.search')
-        @include('header.upload')
-    @endif
     <div id="page-layout">
         <div class="container-fluid">
             @if(Auth::check())
@@ -44,9 +40,11 @@
                                 <td>{{ $documenttitle }}</td>
                                 <td>
                                     <label for="object_name">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{ $documenttitle }}" placeholder="Bitte Wert eintragen" name="object_name" id="object_name">
-                                    <div class="clearInput" onclick="document.getElementById('object_name').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{ $documenttitle }}" placeholder="Bitte Wert eintragen" name="object_name" id="object_name" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -55,9 +53,11 @@
                                 <td>{{ $category }}</td>
                                 <td>
                                     <label for="category">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{ $category }}" placeholder="Bitte Wert eintragen" name="category" id="category">
-                                    <div class="clearInput" onclick="document.getElementById('category').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{ $category }}" placeholder="Bitte Wert eintragen" name="category" id="category" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -66,9 +66,11 @@
                                 <td>{{ $subcategories }}</td>
                                 <td>
                                     <label for="supplemental_category">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{ $subcategories }}" placeholder="Bitte Wert eintragen" name="supplemental_category" id="supplemental_category">
-                                    <div class="clearInput" onclick="document.getElementById('supplemental_category').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{ $subcategories }}" placeholder="Bitte Wert eintragen" name="supplemental_category" id="supplemental_category" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -89,9 +91,11 @@
                                     @if($keywords)
                                         @if(is_array($keywords))
                                             @foreach($keywords as $value)
-                                                <input type="text" value="{{ $value }}" placeholder="Bitte Wert eintragen" name="keywords" id="keywords">
-                                                <div class="clearInput" onclick="document.getElementById('keywords').value = ''">
-                                                    <i data-feather="x"></i>
+                                                <div class="position-relative">
+                                                    <input type="text" value="{{ $value }}" placeholder="Bitte Wert eintragen" name="keywords" id="keywords" class="inputToClear">
+                                                    <div class="clearInput" @click="clearInput()">
+                                                        <i data-feather="x"></i>
+                                                    </div>
                                                 </div>
                                             @endforeach
                                         @endif
@@ -105,9 +109,11 @@
                                 <td>{{$autor}}</td>
                                 <td>
                                     <label for="creator">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$autor}}" placeholder="Bitte Wert eintragen" name="creator" id="creator">
-                                    <div class="clearInput" onclick="document.getElementById('creator').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$autor}}" placeholder="Bitte Wert eintragen" name="creator" id="creator" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -116,9 +122,11 @@
                                 <td>{{$city}}</td>
                                 <td>
                                     <label for="city">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$city}}" placeholder="Bitte Wert eintragen" name="city" id="city">
-                                    <div class="clearInput" onclick="document.getElementById('city').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$city}}" placeholder="Bitte Wert eintragen" name="city" id="city" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -127,9 +135,11 @@
                                 <td>{{$country}}</td>
                                 <td>
                                     <label for="country">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$country}}" placeholder="Bitte Wert eintragen" name="country" id="country">
-                                    <div class="clearInput" onclick="document.getElementById('country').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$country}}" placeholder="Bitte Wert eintragen" name="country" id="country" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -138,9 +148,11 @@
                                 <td>{{$photosource}}</td>
                                 <td>
                                     <label for="source">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$photosource}}" placeholder="Bitte Wert eintragen" name="source" id="source">
-                                    <div class="clearInput" onclick="document.getElementById('source').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$photosource}}" placeholder="Bitte Wert eintragen" name="source" id="source" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -149,9 +161,11 @@
                                 <td>{{$copyright}}</td>
                                 <td>
                                     <label for="copyright_string">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$copyright}}" placeholder="Bitte Wert eintragen" name="copyright_string" id="copyright_string">
-                                    <div class="clearInput" onclick="document.getElementById('copyright_string').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$copyright}}" placeholder="Bitte Wert eintragen" name="copyright_string" id="copyright_string" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -160,9 +174,11 @@
                                 <td>{{$caption}}</td>
                                 <td>
                                     <label for="caption">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$caption}}" placeholder="Bitte Wert eintragen" name="caption" id="caption">
-                                    <div class="clearInput" onclick="document.getElementById('caption').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$caption}}" placeholder="Bitte Wert eintragen" name="caption" id="caption" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -171,9 +187,11 @@
                                 <td>{{$creationdate}}</td>
                                 <td>
                                     <label for="created_date">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$creationdate}}" placeholder="Bitte Wert eintragen" name="created_date" id="created_date">
-                                    <div class="clearInput" onclick="document.getElementById('created_date').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$creationdate}}" placeholder="Bitte Wert eintragen" name="created_date" id="created_date" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -182,9 +200,11 @@
                                 <td>{{$creationtime}}</td>
                                 <td>
                                     <label for="created_time">Neuen Wert festlegen</label>
-                                    <input type="text" value="{{$creationtime}}" placeholder="Bitte Wert eintragen" name="created_time" id="created_time">
-                                    <div class="clearInput" onclick="document.getElementById('created_time').value = ''">
-                                        <i data-feather="x"></i>
+                                    <div class="position-relative">
+                                        <input type="text" value="{{$creationtime}}" placeholder="Bitte Wert eintragen" name="created_time" id="created_time" class="inputToClear">
+                                        <div class="clearInput" @click="clearInput()">
+                                            <i data-feather="x"></i>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
