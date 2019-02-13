@@ -257,7 +257,8 @@ class FileController extends Controller
         if (($file->extension != "psd") and ($file->extension != "tif") and ($file->extension != "tiff")) {
             $mpdf->imageVars['imagepath'] = $originalImagePath;
         } else {
-            $thumbnailPath = storage_path('app/public/thumbnails/' . $file->name . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg');
+            $thumbnailPath1 = '/storage/thumbnails/' . $file->name . '_' . Auth::user()->name . '_' . Auth::id() . '.jpg';
+            $thumbnailPath = '<img src="' . $thumbnailPath1 . '" />';
             $mpdf->imageVars['imagepath'] = $thumbnailPath;
         }
 
@@ -270,7 +271,7 @@ class FileController extends Controller
         $mpdf->PDFXauto = true;
         $mpdf->PDFX = true;
         $mpdf->SetTitle($file->name);
-        $html = '<img src="var:imagepath" />';
+        $html = $thumbnailPath;
         $mpdf->WriteHTML($html);
         
         if ($mpdf->Output($pdfFilePath)) {
