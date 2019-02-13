@@ -31,7 +31,7 @@
                             <tbody>
                             <tr>
                                 <td>exif</td>
-                                <td>{{head($exif)}}</td>
+                                <td><pre>{{print_r($exif)}}</pre></td>
                                 <td>
                                 </td>
                             </tr>
