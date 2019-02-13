@@ -267,7 +267,6 @@ const app = new Vue({
             formData.append('imageHeight', this.imageHeight);
             formData.append('imageWidth', this.imageWidth);
             formData.append('format', this.format);
-
             formData.append('colorspace', this.colorspace);
             console.log(this.format);
 
