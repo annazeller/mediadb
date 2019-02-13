@@ -54,7 +54,7 @@ const app = new Vue({
         imageWidth: '',
         imageHeight: '',
         format: '',
-        colorSpace: '',
+        colorspace: '',
 
         pdfImageWidth: '',
         pdfImageHeight: '',
