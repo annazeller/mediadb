@@ -26,8 +26,10 @@ const app = new Vue({
 
     data: {
         keywords: "",
+        filter: null,
         files: [],
         file: [],
+        categories: [],
 
         pagination: {},
         offset: 5,
@@ -52,7 +54,7 @@ const app = new Vue({
         imageWidth: '',
         imageHeight: '',
         format: '',
-        colorspace: '',
+        colorSpace: '',
 
         pdfImageWidth: '',
         pdfImageHeight: '',
@@ -84,6 +86,7 @@ const app = new Vue({
                 this.loading = false;
                 this.files = result.data.data.data;
                 this.pagination = result.data.pagination;
+                this.categories = result.data.categories;
             }).catch(error => {
                 console.log(error);
                 this.loading = false;
@@ -92,16 +95,18 @@ const app = new Vue({
         },
 
         fetch(type, id) {
-            axios.get('/files/' + type + '/?id=' + id, { params: { keywords: this.keywords } })
+            axios.get('/files/' + type + '/?id=' + id, { params: { keywords: this.keywords, filter: this.filter} })
                 .then(result => {this.files = result.data.data.data;})
                 .then(response => this.files = response.data)
                 .catch(error => {});
+            console.log(this.filter);
         },
-
 
         getFiles(type) {
             this.setActive(type);
             this.fetchFile(type);
+            this.keywords = '';
+
 
             if (this.activeTab === 'video') {
                 this.isVideo = true;
@@ -207,52 +212,22 @@ const app = new Vue({
             this.file = file;
             this.modalActive = true;
             let imageName = this.file.name;
-            $('#imageName').val(imageName);
 
-        },
+            /*console.log(imageSource);
 
-        modalExif() {
-            // PIEXIF
-            /*this.showExif = this.$refs.imageExif.src;
-            function toDataUrl(url, callback) {
-                const xhr = new XMLHttpRequest();
-                xhr.onload = function() {
-                    const reader = new FileReader();
-                    reader.onloadend = function() {
-                        callback(reader.result);
-                    };
-                    reader.readAsDataURL(xhr.response);
+            let fileNew, img;
+            if ((fileNew = this.file)) {
+                img = new Image();
+                img.onload = function() {
+                    alert(this.width + " " + this.height);
                 };
-                xhr.open('GET', url);
-                xhr.responseType = 'blob';
-                xhr.send();
-            }
-            toDataUrl(this.showExif, function(base64) {
-                const exifObj = piexif.load(base64);
-                for (let ifd in exifObj) {
-                    if (ifd === "thumbnail") {
-                        continue;
-                    }
-                    const exifInfo = $(".modal-exif");
-                    exifInfo.append("<tr>" + "<th class='py-4 d-block'>" + ifd + "</th><th></th>" + "</tr>");
-                    for (let tag in exifObj[ifd]) {
-                        exifInfo.append("<tr>" + "<td>" + piexif.TAGS[ifd][tag]["name"] + ":</td><td class='long-line'>" + exifObj[ifd][tag] + "</td>" + "</tr>");
-                    }
-                }
-            });*/
+                img.onerror = function() {
+                    alert( "not a valid file: " + fileNew.type);
+                };
+                img.src = imageSource;
+            }*/
 
-            // EXIF.js
-            /*this.imageExif = this.$refs.imageExif;
-            EXIF.getData(this.imageExif, function() {
-                const   array = EXIF.pretty(this),
-                    exifInfo = $(".modal-exif");
-                exifInfo.html(array);
-                exifInfo.html(function(i, oldHTML) {
-                    return oldHTML.replace(/\n/g, '<br/>');
-                });
-            });*/
-
-            this.editHidden = false;
+            $('#imageName').val(imageName);
         },
 
         buttonEditExif(file) {
@@ -290,6 +265,14 @@ const app = new Vue({
             this.errors = {};
         },
 
+        clearInput() {
+            const closeButton = $('.clearInput');
+            closeButton.css('display', 'flex');
+            closeButton.click(function () {
+                $(this).parent().find('.inputToClear').val('');
+            });
+        },
+
         async exportieren(file) {
             this.file = file;
 
@@ -298,8 +281,10 @@ const app = new Vue({
             formData.append('imageHeight', this.imageHeight);
             formData.append('imageWidth', this.imageWidth);
             formData.append('format', this.format);
+
             formData.append('colorspace', this.colorspace);
             console.log(this.format);
+
             document.getElementById("spinner").style.visibility = "visible";
             let a = await axios.post('files/export/' + file.id, formData);
             console.log(a.status);
@@ -368,6 +353,9 @@ const app = new Vue({
     watch: {
         keywords(after, before) {
             this.fetch(this.activeTab);
-        }
+        },
+        filter(after, before) {
+            this.fetch(this.activeTab);
+        },
     }
 });

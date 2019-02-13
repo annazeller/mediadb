@@ -30,6 +30,7 @@ class FileController extends Controller
      */
     public function index($type, $id = null, Request $request)
     {
+        $categories = Category::all();
         $model = new File();
 
         if (!is_null($id)) {
@@ -39,7 +40,7 @@ class FileController extends Controller
 
             $files = $model::where('type', $type)
                             ->where('name', 'like', '%' . $request->get('keywords') . '%')
-                            /*->where('category',  $request->get('filter'))*/
+                            ->where('category','like', '%' .  $request->get('filter'). '%')
                             ->where('user_id', Auth::id())
                             ->orderBy('id', 'desc')->paginate($records_per_page);
 
@@ -52,7 +53,8 @@ class FileController extends Controller
                     'from' => $files->firstItem(),
                     'to' => $files->lastItem()
                 ],
-                'data' => $files
+                'data' => $files,
+                'categories' => $categories
             ];
         }
 
@@ -76,13 +78,12 @@ class FileController extends Controller
         $uploaded_file = $request->file('file');
         $original_ext = $uploaded_file->getClientOriginalExtension();
         $type = $file->getType($original_ext);
-
+        $category = "";
         if ($file->upload($type, $uploaded_file, $request['name'], $original_ext)) {
 
             if ($original_ext == 'psd') {
                 $img = Image::make($uploaded_file);
                 $img->encode('jpg');
-                //$img->save(storage_path('app/thumbnails/' . $request['name'] . '_' . Auth::id() .'.jpg'));
                 $img->save(storage_path('app/public/thumbnails/' . $request['name'] . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg'));
             }
 
@@ -90,7 +91,8 @@ class FileController extends Controller
                     'name' => $request['name'],
                     'type' => $type,
                     'extension' => $original_ext,
-                    'user_id' => Auth::id()
+                    'user_id' => Auth::id(),
+                    'category' => $category
                 ]);
         }
 
@@ -160,7 +162,12 @@ class FileController extends Controller
     public function exportFile($file,$imageWidth,$imageHeight,$format,$colorspace){
         $originalImage = $file->getName($file->type, $file->name, $file->extension);
         $originalImagePath = Storage::get($originalImage);
-
+        $imageHeight = $request['imageHeight'];
+        $imageWidth = $request['imageWidth'];
+        $format = $request['format'];
+        $colorspace = $request['colorspace'];
+        $imagePath = public_path('images/temp/' . $file->name . '.' . $format);
+        
         if ($img = Image::make($originalImagePath)) {
 
             if ($imageWidth && $imageHeight) {
@@ -174,6 +181,8 @@ class FileController extends Controller
             }
             $img->save($imagePath);
             
+
+            $i = new Imagick($imagePath);
             
             if ($colorspace) {
                 $i = new Imagick($imagePath);
@@ -235,6 +244,9 @@ class FileController extends Controller
 
         if ($file->extension != "psd") {
             $mpdf->imageVars['imagepath'] = $originalImagePath;
+        } else {
+            $thumbnailPath = storage_path('app/public/thumbnails/' . $file->name . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg');
+            $mpdf->imageVars['imagepath'] = $thumbnailPath;
         }
 
         $mpdf->imageVars['imageWidth'] = $imageWidth;
@@ -261,6 +273,7 @@ class FileController extends Controller
         $imagePath = public_path('images/temp/' . $filename . '.' . $fileextension);
         return response()->download($imagePath)->deleteFileAfterSend(true);
     }
+
 
     /**
      * Delete file from disk and database

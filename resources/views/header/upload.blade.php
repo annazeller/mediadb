@@ -4,7 +4,7 @@
             <div class="col-4">
                 <div class="filter-bar">
                     @if(Auth::check())
-                        {{--@include('layouts.filter')--}}
+                        @include('layouts.filter')
                     @endif
                 </div>
             </div>

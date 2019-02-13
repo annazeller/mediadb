@@ -9939,7 +9939,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
-body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
+.modal-custom .modal-dialog .modal-content .modal-image, .modal-custom .modal-dialog .modal-body .modal-image, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
   border-radius: 0.125rem;
 }
 
@@ -10103,7 +10103,8 @@ html.not-loaded, body.not-loaded {
   max-height: 90vh;
   overflow-x: hidden;
   overflow-y: auto;
-  max-width: 95vw;
+  max-width: 80vw;
+  width: 80vw;
   min-height: unset;
   height: auto;
   margin: 0;
@@ -10122,7 +10123,6 @@ html.not-loaded, body.not-loaded {
   overflow-x: hidden;
   overflow-y: auto;
 }
-
 .table td.long-line {
   word-break: break-word !important;
 }
@@ -10493,22 +10493,6 @@ body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-fo
   overflow: hidden;
   position: absolute;
 }
-body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .to-long-overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 30px;
-  z-index: 2;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .to-long-overlay svg {
-  width: 1.25rem;
-  height: auto;
-}
 body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file .custom-file-label .file-name {
   position: relative;
   z-index: 1;
@@ -10564,6 +10548,23 @@ body#dashboard #app #content footer .meta-nav > li > a:hover {
   text-decoration: none;
   color: #dfe6ef;
   background: #589ff2;
+}
+body#dashboard #app .clearInput {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  z-index: 2;
+  background: #fff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+}
+body#dashboard #app .clearInput svg {
+  width: 1.25rem;
+  height: auto;
 }
 body#dashboard #app .btn {
   padding: 0.625rem 1.25rem;
