@@ -55,7 +55,7 @@
         </div>
     </nav>
     <div class="container" id="app">
-        {{--  @yield('content') --}}
+         @yield('content')
     </div>
     <section class="hero">
       <div class="hero-Image">

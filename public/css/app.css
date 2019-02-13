@@ -9939,14 +9939,19 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.modal-custom .modal-dialog .modal-content .modal-image, .modal-custom .modal-dialog .modal-body .modal-image, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
+.modal-custom .modal-dialog .modal-content .modal-image, .modal-custom .modal-dialog .modal-body .modal-image, body#dashboard #app .filter-wrapper ul, body#dashboard #app .filter-wrapper, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file, .boxLook {
   border-radius: 0.125rem;
 }
 
-body#dashboard #app #content #inner-content .sub-navbar, body#dashboard #app #content #inner-content .navbar, body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active, body#dashboard #app #sidebar, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file {
+body#dashboard #app #content #inner-content .sub-navbar, body#dashboard #app #content #inner-content .navbar, body#dashboard #app #sidebar > ul > li:hover, body#dashboard #app #sidebar > ul > li.active, body#dashboard #app #sidebar, body#dashboard #app .filter-wrapper ul, body#dashboard #app .filter-wrapper, body#dashboard #app .btn, body#dashboard #app #content #inner-content #page-layout .card, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > button, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file > label, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form .custom-file, body#dashboard #app #content #inner-content .sub-navbar .search-items .upload-form > input, body#dashboard #app #content #inner-content .sub-navbar .filter-bar .filter-button, body#dashboard #app #content #inner-content .navbar #navbarNav ul.navbar-nav li .dropdown-menu, body#dashboard #app #content #inner-content .navbar .navbar-form .search-input, #exif-table input, #exif-table, .detailed-image, .pagination, .modal-custom .modal-dialog .modal-content, .delete-file, .close-modal, .edit-button, .download-file, .boxLook {
   -ms-box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   -o-box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
   box-shadow: 0.0625rem 0.0625rem 0.125rem rgba(0, 0, 0, 0.15);
+}
+
+.boxLook {
+  border: none;
+  background: #fff;
 }
 
 body {
@@ -10568,4 +10573,33 @@ body#dashboard #app .clearInput svg {
 }
 body#dashboard #app .btn {
   padding: 0.625rem 1.25rem;
+}
+body#dashboard #app .filter-wrapper {
+  width: 12.5rem;
+  background: #fff;
+  position: relative;
+  z-index: 4;
+}
+body#dashboard #app .filter-wrapper #filter-value {
+  display: block;
+  padding: 1.25rem;
+}
+body#dashboard #app .filter-wrapper ul {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  list-style: none;
+  width: 100%;
+}
+body#dashboard #app .filter-wrapper ul li {
+  cursor: pointer;
+  padding: 1.25rem;
+  border-top: 1px solid #dfe6ef;
+  transition: all 200ms linear 0s;
+}
+body#dashboard #app .filter-wrapper ul li:hover {
+  background-color: #dfe6ef;
 }
