@@ -85,6 +85,17 @@ class FileController extends Controller
                 $img = Image::make($uploaded_file);
                 $img->encode('jpg');
                 $img->save(storage_path('app/public/thumbnails/' . $request['name'] . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg'));
+            
+            }
+            if ($original_ext == 'tif') {        
+                $img = Image::make($uploaded_file);
+                $img->encode('jpg');
+                $img->save(storage_path('app/public/thumbnails/' . $request['name'] . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg'));
+            }
+            if ($original_ext == 'tiff') {
+                $img = Image::make($uploaded_file);
+                $img->encode('jpg');
+                $img->save(storage_path('app/public/thumbnails/' . $request['name'] . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg'));
             }
 
             return $file::create([
@@ -162,10 +173,7 @@ class FileController extends Controller
     public function exportFile($file,$imageWidth,$imageHeight,$format,$colorspace){
         $originalImage = $file->getName($file->type, $file->name, $file->extension);
         $originalImagePath = Storage::get($originalImage);
-        $imageHeight = $request['imageHeight'];
-        $imageWidth = $request['imageWidth'];
-        $format = $request['format'];
-        $colorspace = $request['colorspace'];
+
         $imagePath = public_path('images/temp/' . $file->name . '.' . $format);
         
         if ($img = Image::make($originalImagePath)) {

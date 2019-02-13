@@ -73,7 +73,7 @@ class Iptc
      *
      * @var array
      */
-    private $_allowedExt = array('jpg', 'jpeg', 'pjpeg');
+    private $_allowedExt = array('jpg', 'jpeg', 'pjpeg', 'tif', 'tiff');
     /**
      * Image name ex. /home/user/image.jpg
      *
