@@ -25,6 +25,35 @@
                     <form method="post" action="/post">
                         <input name="imageSource" type="hidden" value="{{ $path }}">
                         <input name="imageName" type="hidden" value="{{ $file->name }}">
+                        {{--<table id="exif-table" class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Wert</th>
+                                    <th scope="col">Bearbeiten</th>
+                                </tr>
+                                <tr>
+                                    <td>FileName</td>
+                                    <td>test.jpg</td>
+                                    <td>(other Stuff)</td>
+                                </tr>
+                                <tr>
+                                    <td>FileDateTime</td>
+                                    <td>1550019186</td>
+                                    <td>(other Stuff)</td>
+                                </tr>
+                                <tr>
+                                    <td>FileSize</td>
+                                    <td>78111</td>
+                                    <td>(other Stuff)</td>
+                                </tr>
+                                <tr>
+                                    <td>FileType</td>
+                                    <td>2</td>
+                                    <td>(other Stuff)</td>
+                                </tr>
+                            </thead>
+                        </table>--}}
                         <table id="exif-table" class="table">
                             <thead>
                             <tr>
@@ -47,6 +76,9 @@
                                             @endif
                                         @endforeach
                                     </pre>--}}
+                                    <pre>
+                                        {{ print_r($exifValues) }}
+                                    </pre>
                                 </td>
                             </tr>
                         @if($isJpg)

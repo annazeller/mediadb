@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script>
@@ -17,6 +19,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="landingpage">
+    {{--THOMAS MITCHELLS GESAMTER BEITRAG ZUR WEBAPP--}}
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <img class="ci" src="../images/logo.png" alt="DAM its cool">
