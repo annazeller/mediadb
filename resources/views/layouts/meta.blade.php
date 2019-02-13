@@ -6,6 +6,11 @@
                 @include('layouts.notification')
             @endif
             <div class="row mb-4">
+                <div class="col-12">
+                    <a href="/" class="btn btn-primary"><i class="mr-3" data-feather="arrow-left"></i>Zurück</a>
+                </div>
+            </div>
+            <div class="row mb-4">
                 <div class="col-6">
                     <img src="{{asset($filePath)}}" class="detailed-image img-fluid">
                 </div>
@@ -32,7 +37,7 @@
                             <tr>
                                 <td>Exif Data</td>
                                 <td>
-                                    <pre>
+                                    {{--<pre>
                                         @foreach($exifValues as $values)
                                             {{ print_r($values) }}
                                             @if(is_array($values))
@@ -41,7 +46,7 @@
                                                 @endforeach
                                             @endif
                                         @endforeach
-                                    </pre>
+                                    </pre>--}}
                                 </td>
                             </tr>
                         @if($isJpg)

@@ -1,3 +1,4 @@
+/*THOMAS MITCHELLS GESAMTER BEITRAG ZUR WEBAPP*/
 .hero {
   width: 100vw;
   height: 100vh;
@@ -8,22 +9,10 @@
   display:flex;
   justify-content: center;
   align-items: center;
-  .btn {
-    width: 200px;
-    color: orange;
-    text-decoration: none;
-    font-size: 1.5em;
-    border: 3px solid orange;
-    margin-top: 50px;
-  }
 }
-
-
-.navbar {
-  background-color: black;
-  color: white;
+.preview-image {
+  @extend %boxLook;
 }
-
 .corporate {
   display: block;
   margin-left: auto;
@@ -31,16 +20,7 @@
   margin-top: 200px;
   height: 50%;
   width: 50%;
-
 }
-footer {
-  height: 70px;
-  background-color: black;
-}
-.special {
-  float: left;
-}
-
 .About {
   margin-top: 300px;
   width: 100vw;

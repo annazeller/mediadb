@@ -218,7 +218,7 @@ const app = new Vue({
 
         buttonEditExif(file) {
             this.file = file;
-            axios.get('/iptc/' + file.id)
+            axios.get('/detailseite/' + file.id);
         },
 
         closeModal() {

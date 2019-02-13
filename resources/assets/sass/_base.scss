@@ -297,7 +297,6 @@ td{
 /* width */
 ::-webkit-scrollbar {
   width: rem(6px);
-  position: fixed;
 }
 
 /* Track */
@@ -315,4 +314,30 @@ td{
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: rgba($custom-color-1, 0.7);
+}
+
+footer {
+  height: rem(60px);
+  padding: rem(0 50px);
+  .meta-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+    display: inline-flex;
+    & > li {
+      & > a {
+        color: $white;
+        display: block;
+        line-height: 60px;
+        padding: rem(0 20px);
+        @include transition(all 200ms linear 0s);
+        &:hover {
+          text-decoration: none;
+          color: $custom-color-2;
+          background: $custom-color-1;
+        }
+      }
+    }
+  }
 }

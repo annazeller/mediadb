@@ -28,4 +28,4 @@ Auth::routes();
 
 /*Route::post('/postimage/', 'MetaController@getimage');*/
 Route::post('/post', 'MetaController@iptc');
-Route::get('/iptc/{id}', 'MetaController@index');
+Route::get('/detailseite/{id}', 'MetaController@index');

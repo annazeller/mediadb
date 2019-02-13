@@ -24,10 +24,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-
-
-                </ul>
                 <ul class="navbar-nav">
                     @guest
                         <li class="nav-item">
@@ -54,15 +50,17 @@
             </div>
         </div>
     </nav>
-    <div class="container" id="app">
-         @yield('content')
-    </div>
+
     <section class="hero">
-      <div class="hero-Image">
-        <h1>Digital Asset Management</h1>
-        <p> Die Zusammenarbeit im Team war noch nie so einfach <p>
-          <a href="#" class="btn"> Registrieren </a>
-      </div>
+        <div class="hero-Image">
+            <div class="container" id="app">
+                <div class="row">
+                            <h1>Digital Asset Management</h1>
+                            <p>DAM-Systeme waren noch nie so einfach!<p>
+                            @yield('content')
+                </div>
+            </div>
+        </div>
     </section>
     <section class="About">
       <div class="container">
@@ -77,7 +75,7 @@
             <p>
           </div>
           <div class="col-6">
-            <img class="img-fluid" src="../images/asset.png" alt="DAM its cool">
+            <img class="img-fluid preview-image" src="../images/asset.png" alt="DAM its cool">
           </div>
         </div>
       </div>
@@ -85,27 +83,32 @@
       <img class="corporate" src="../images/logos.png" alt="DAM its cool">
     </div>
     </section>
-    <footer>
-      <div class="special">
-
-
-        <div class="Impressum">
-            Impressum
+    <footer class="bg-dark navbar-dark text-light d-flex align-items-center justify-content-between">
+        <div>
+            &copy; Copyright 2019 MediaDB. Alle Rechte vorbehalten.
         </div>
-        <div class="Datenschutz">
-            Datenschutz
-        </div>
-        <div class="Haftungsausschuss">
-            Haftungsausschuss
-        </div>
-        </div>
-
+        <ul class="meta-nav">
+            <li>
+                <a href="#">
+                    Impressum
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    Datenschutz
+                </a>
+            </li>
+        </ul>
     </footer>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
