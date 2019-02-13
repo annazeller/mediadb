@@ -293,3 +293,26 @@ td{
   top:62px;
   right: 20px;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: rem(6px);
+  position: fixed;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $custom-color-2;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @include transition(all 200ms linear 0s);
+  background: rgba($custom-color-1, 0.7);
+  @extend %boxLook;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba($custom-color-1, 0.7);
+}

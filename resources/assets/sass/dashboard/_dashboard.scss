@@ -189,60 +189,58 @@
           }
         }
       }
-      .search-items {
-        flex: 1;
-        .upload-form {
-          display: flex;
-          justify-content: space-between;
+
+      .upload-form {
+        display: flex;
+        justify-content: space-between;
+        & > input {
+          padding: rem(20px);
+          @extend %boxLook;
+          border: none;
+          flex-grow: 1;
+          margin-right: rem(20px);
+          min-width: 60%;
+        }
+        .custom-file {
+          height: 100%;
+          min-height: rem(64px);
+          @extend %boxLook;
           & > input {
-            padding: rem(20px);
+            cursor: pointer;
+          }
+          & > label {
             @extend %boxLook;
             border: none;
             flex-grow: 1;
-            margin-right: rem(20px);
-            min-width: 60%;
-          }
-          .custom-file {
+            background: $white;
+            margin: 0;
             height: 100%;
-            min-height: rem(64px);
-            @extend %boxLook;
-            & > input {
-              cursor: pointer;
+            padding: rem(20px);
+            cursor: pointer;
+            overflow: hidden;
+            position: absolute;
+          }
+          .custom-file-label {
+            .file-name {
+              position: relative;
+              z-index: 1;
             }
-            & > label {
-              @extend %boxLook;
-              border: none;
-              flex-grow: 1;
-              background: $white;
-              margin: 0;
-              height: 100%;
-              padding: rem(20px);
-              cursor: pointer;
-              overflow: hidden;
-              position: absolute;
-            }
-            .custom-file-label {
-              .file-name {
-                position: relative;
-                z-index: 1;
-              }
-              &:after {
-                display: none;
-              }
+            &:after {
+              display: none;
             }
           }
-          & > button {
-            border: none;
-            @extend %boxLook;
-            background: $custom-color-1;
-            color: $white;
-            padding: rem(20px);
-            margin-left: rem(20px);
-            @include transition(all 200ms linear 0s);
-            cursor: pointer;
-            &:hover {
-              background: darken($custom-color-1, 10%);
-            }
+        }
+        & > button {
+          border: none;
+          @extend %boxLook;
+          background: $custom-color-1;
+          color: $white;
+          padding: rem(20px);
+          margin-left: rem(20px);
+          @include transition(all 200ms linear 0s);
+          cursor: pointer;
+          &:hover {
+            background: darken($custom-color-1, 10%);
           }
         }
       }
@@ -254,7 +252,7 @@
       overflow-y: auto;
       padding: rem(50px 0);
       & > .container-fluid {
-        padding: rem(0 50px);
+        padding: rem(0 44px 0 50px);
       }
       .card {
         @extend %boxLook;
@@ -340,6 +338,14 @@
       &:hover {
         background-color: $custom-color-2;
       }
+    }
+  }
+}
+
+.nav-tabs {
+  .nav-item {
+    &.active {
+      @extend %border-radius;
     }
   }
 }

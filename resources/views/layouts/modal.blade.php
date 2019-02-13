@@ -126,6 +126,9 @@
                           <div>
                             <br />
                             <h3>Metadaten</h3>
+                              <p>
+                                  Jetzt Metadaten bearbeiten!
+                              </p>
                           </div>
                           <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/iptc/' + file.id"  v-if="file.extension == 'jpg' || file.extension == 'tiff' || file.extension == 'tif'">
                             <i data-feather="edit-2"></i>
