@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <label for="imageWidth">Breite </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="imageWidth" v-model="imageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
+                                    <input type="text" class="form-control" id="imageWidth" v-model="imageWidth" aria-describedby="widthHelp" >
                                     <div class="input-group-append">
                                         <span class="input-group-text">px</span>
                                     </div>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label for="imageheight">Höhe </label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="imageHeight" v-model="imageHeight" aria-describedby="heightHelp" placeholder="Höhe aus File-Element ziehen?">
+                                    <input type="text" class="form-control" id="imageHeight" v-model="imageHeight" aria-describedby="heightHelp">
                                     <div class="input-group-append">
                                         <span class="input-group-text">px</span>
                                     </div>
@@ -91,7 +91,7 @@
                             <div class="form-group">
                               <label for="pdfImageWidth">Breite </label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="pdfImageWidth" v-model="pdfImageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
+                                <input type="text" class="form-control" id="pdfImageWidth" v-model="pdfImageWidth" aria-describedby="widthHelp" >
                                 <div class="input-group-append">
                                   <span class="input-group-text">mm</span>
                                 </div>
@@ -100,7 +100,7 @@
                             <div class="form-group">
                               <label for="pdfImageHeight">Höhe </label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="pdfImageHeight" v-model="pdfImageHeight" aria-describedby="heightHelp"  placeholder="Höhe aus File-Element ziehen?">
+                                <input type="text" class="form-control" id="pdfImageHeight" v-model="pdfImageHeight" aria-describedby="heightHelp"  >
                                 <div class="input-group-append">
                                     <span class="input-group-text">mm</span>
                                 </div>
