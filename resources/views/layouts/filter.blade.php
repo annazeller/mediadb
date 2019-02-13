@@ -1,5 +1,5 @@
-<select>
-    @foreach ($categories as $category)
-        <option value="{{$category->name}}">{{$category->name}}</option>
-    @endforeach
+Filtern nach Kategorie
+<select v-for="category in categories">
+    <option>@{{category.name}}</option>
 </select>
+

@@ -51,7 +51,6 @@
         <div id="content">
             <div id="inner-content">
                 @yield('content')
-
             </div>
             <footer class="bg-dark navbar-dark text-light d-flex align-items-center justify-content-between">
                 <div>

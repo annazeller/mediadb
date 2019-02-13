@@ -28,6 +28,7 @@ const app = new Vue({
         keywords: "",
         files: [],
         file: [],
+        categories: [],
 
         pagination: {},
         offset: 5,
@@ -80,6 +81,8 @@ const app = new Vue({
                 this.loading = false;
                 this.files = result.data.data.data;
                 this.pagination = result.data.pagination;
+                this.categories = result.data.categories;
+                console.log(this.categories);
             }).catch(error => {
                 console.log(error);
                 this.loading = false;
