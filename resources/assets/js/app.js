@@ -219,9 +219,9 @@ const app = new Vue({
                     alert( "not a valid file: " + fileNew.type);
                 };
                 img.src = imageSource;
-            }
+            }*/
 
-            $('#imageName').val(imageName);*/
+            $('#imageName').val(imageName);
         },
 
         buttonEditExif(file) {
