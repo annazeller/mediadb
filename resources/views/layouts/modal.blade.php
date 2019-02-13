@@ -10,7 +10,7 @@
                     <div class="col-md-7">
                         <img id="imageSource" class="img-fluid modal-image" ref="imageExif" 
                         
-                        v-if="Object.keys(file).length !== 0 && file.extension == 'psd'"
+                        v-if="Object.keys(file).length !== 0 && (file.extension === 'psd' || file.extension === 'tif' || file.extension === 'tiff')"
                           :src="'{{ asset('storage/thumbnails')}}' + '/' + file.name + '_' + '{{ Auth::user()->name . '_' . Auth::id() }}' + '.jpg'"
                           :alt="file.extension"
                         style="max-height: 80vh;">
@@ -127,10 +127,13 @@
                             <br />
                             <h3>Metadaten</h3>
                           </div>
-                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/iptc/' + file.id">
+                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/iptc/' + file.id"  v-if="file.extension == 'jpg' || file.extension == 'tiff' || file.extension == 'tif'">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                           </a>
+                          <p v-else>
+                            Für dieses Dateiformat steht die Metadatenbearbeitung nicht zur Verfügung.
+                          </p>
                         </div>
                       </div>
                     </div>
