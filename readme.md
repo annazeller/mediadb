@@ -104,18 +104,21 @@ Erneut hochfahren
 vagrant up --provision
 ```
 
-Wenn Vagrant hochgefahren ist, ImageMagick auf der Box installieren:
+Wenn Vagrant hochgefahren ist, ImageMagick auf der Box installieren und neu starten:
 
 ```
 vagrant ssh
 sudo apt-get update
 sudo apt-get install imagemagick
 sudo apt-get install php-imagick
+exit
+vagrant up --provision
 ```
 
-Migrations durchführen (dazu über SSH verbunden bleiben oder vorher erneut mit vagrant ssh verbinden)
+Migrations durchführen
 
 ```
+vagrant ssh
 cd code
 php artisan migrate
 exit
