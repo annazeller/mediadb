@@ -10287,7 +10287,6 @@ body.landingpage .hero {
   background-size: cover;
   background: url("../images/slider.png") no-repeat fixed center center;
   color: white;
-  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10507,7 +10506,6 @@ body#dashboard #app #content #inner-content .sub-navbar .upload-form > input {
   padding: 1.25rem;
   border: none;
   flex-grow: 1;
-  margin-right: 1.25rem;
   min-width: 60%;
 }
 body#dashboard #app #content #inner-content .sub-navbar .upload-form .custom-file {

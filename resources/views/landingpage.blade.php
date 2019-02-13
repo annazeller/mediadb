@@ -55,9 +55,11 @@
         <div class="hero-Image">
             <div class="container" id="app">
                 <div class="row">
-                            <h1>Digital Asset Management</h1>
-                            <p>DAM-Systeme waren noch nie so einfach!<p>
-                            @yield('content')
+                    <div class="col-6">
+                        <h1>Digital Asset Management</h1>
+                        <p>DAM-Systeme waren noch nie so einfach!<p>
+                    </div>
+                    @yield('content')
                 </div>
             </div>
         </div>

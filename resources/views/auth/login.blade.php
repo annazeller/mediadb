@@ -5,7 +5,7 @@
         @include('layouts.notification')
     @endif
     <div class="col-6">
-        <h2>Anmelden</h2>
+        {{--<h2>Anmelden</h2>--}}
         <form class="w-100" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="form-group">
