@@ -13,22 +13,20 @@
                         v-if="Object.keys(file).length !== 0 && file.extension == 'psd'"
                           :src="'{{ asset('storage/thumbnails')}}' + '/' + file.name + '_' + '{{ Auth::user()->name . '_' . Auth::id() }}' + '.jpg'"
                           :alt="file.extension"
-
+                        style="max-height: 80vh;">
+                        <img class="img-fluid modal-image" ref="imageExif" 
                         v-else-if="Object.keys(file).length !== 0" 
                           :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" 
                           :alt="file.extension" 
 
                         style="max-height: 80vh;">
-                        <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" href="/iptc/' + file.id'">
-                            <i data-feather="edit-2"></i>
-                            &nbsp; Bearbeiten
-                        </a>
                     </div>
                     <div class="col-md-5">
                       <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                           <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-bild" role="tab" aria-controls="nav-home" aria-selected="true">Bild</a>
                           <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-pdf" role="tab" aria-controls="nav-profile" aria-selected="false">PDF</a>
+                          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-meta" role="tab" aria-controls="nav-profile" aria-selected="false">Metadaten</a>
                         </div>
                       </nav>
                       <div class="tab-content" id="nav-tabContent">
@@ -123,6 +121,16 @@
                             <button type="submit" class="btn btn-primary">Exportieren</button>
                             <img src="/images/spinner.jpg" id="spinner1" width="20px" style="visibility:hidden;" />
                           </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-meta" role="tabpanel" aria-labelledby="nav-profile-tab">
+                          <div>
+                            <br />
+                            <h3>Metadaten</h3>
+                          </div>
+                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" href="/iptc/' + file.id'">
+                            <i data-feather="edit-2"></i>
+                            &nbsp; Bearbeiten
+                          </a>
                         </div>
                       </div>
                     </div>
