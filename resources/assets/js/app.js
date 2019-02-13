@@ -138,6 +138,12 @@ const app = new Vue({
             this.attachment = this.$refs.file.files[0];
         },
 
+        formattedDate(d){
+            let arr = d.split(/[- :]/);
+            let date = new Date(Date.UTC(arr[0], arr[1]-1, arr[2], arr[3], arr[4], arr[5]));
+            return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+        },
+
         prepareToDelete(file) {
             this.deletingFile = file;
             this.showConfirm = true;

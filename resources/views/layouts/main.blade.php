@@ -64,7 +64,7 @@
                             <input class="form-control" v-if="file === editingFile" v-autofocus @keyup.enter="endEditing(file)" @blur="endEditing(file)" type="text" :placeholder="file.name" v-model="file.name">
                             <div>
                                 Hochgeladen am:<br>
-                                <time datetime="1-1-2019">@{{ file.created_at }}</time><br>
+                                <time datetime="1-1-2019">@{{ formattedDate(file.created_at) }}</time><br>
                             </div>
                         </div>
                     </div>
