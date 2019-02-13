@@ -22,6 +22,9 @@ class MetaController extends Controller
         if ($file->extension == 'jpg') {
             $filePath = '/storage/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension;
             $isJpg = true;
+        } else if ($file->extension == 'JPG') {
+            $filePath = '/storage/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension;
+            $isJpg = false;
         } else {
             $filePath = '/storage/thumbnails/'. $file->name . '_' . $user . '_'. Auth::id(). '.jpg';
             $isJpg = false;
