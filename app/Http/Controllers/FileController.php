@@ -92,7 +92,7 @@ class FileController extends Controller
                     'type' => $type,
                     'extension' => $original_ext,
                     'user_id' => Auth::id(),
-                    'category' => $category
+                    'category' => $category,
                 ]);
         }
 
@@ -292,11 +292,4 @@ class FileController extends Controller
 
         return response()->json(false);
     }
-
-    public function filter()
-    {
-        $categories = Category::all();
-        return view ('layouts.filter')->with("categories", $categories);
-    }
-
 }
