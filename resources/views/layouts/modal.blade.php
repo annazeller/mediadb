@@ -57,25 +57,25 @@
                             <div class="form-group">
                                 <label for="format">Format </label>
                                 <select class="form-control" id="format" v-model="format">
-                                  <option>jpg</option>
-                                  <option>png</option>
-                                  <option>gif</option>
-                                  <option>tif</option>
-                                  <option>bmp</option>
-                                  <option>ico</option>
-                                  <option>psd</option>
+                                    <option>jpg</option>
+                                    <option>png</option>
+                                    <option>gif</option>
+                                    <option>tif</option>
+                                    <option>bmp</option>
+                                    <option>ico</option>
+                                    <option>psd</option>
                                 </select>
                               </div>
                             <div class="form-group">
                                 <label for="colorspace">Farbraum </label>
                                 <select class="form-control" id="colorspace" v-model="colorspace">
-                                  <option>RGB</option>
-                                  <option>SRGB</option>
-                                  <option>CMYK</option>
-                                  <option>GRAY</option>
-                                  <option>YUV</option>
-                                  <option>HSL</option>
-                                  <option>LAB</option>
+                                    <option>RGB</option>
+                                    <option>SRGB</option>
+                                    <option>CMYK</option>
+                                    <option>GRAY</option>
+                                    <option>YUV</option>
+                                    <option>HSL</option>
+                                    <option>LAB</option>
                                 </select>
                               </div>
                             <button type="submit" class="btn btn-primary">Exportieren</button>

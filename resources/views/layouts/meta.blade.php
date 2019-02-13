@@ -10,7 +10,7 @@
                     <img src="{{asset($filePath)}}" class="detailed-image img-fluid">
                 </div>
                 <div class="col-6">
-                    <h1>Bildname</h1>
+                    <h1>{{ $file->name }}</h1>
                     Bearbeitungsfunktionen blablabla
                 </div>
             </div>
@@ -30,9 +30,18 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>exif</td>
-                                <td><pre>{{print_r($exif)}}</pre></td>
+                                <td>Exif Data</td>
                                 <td>
+                                    <pre>
+                                        @foreach($exifValues as $values)
+                                            {{ print_r($values) }}
+                                            @if(is_array($values))
+                                                @foreach($values as $value)
+                                                    {{ print_r($value) }}
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    </pre>
                                 </td>
                             </tr>
                             <tr>

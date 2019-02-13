@@ -18,7 +18,7 @@ class MetaController extends Controller
         $user = Auth::user()->name;
         $path = storage_path('app/public/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension);
         $filePath = '/storage/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension;
-        $exif = Image::make($path)->exif();
+        $exifValues = Image::make($path)->exif();
         $documenttitle = Image::make($path)->iptc('DocumentTitle');
         $category = Image::make($path)->iptc('Category');
         $subcategories = Image::make($path)->iptc('Subcategories');
@@ -31,7 +31,7 @@ class MetaController extends Controller
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return view('layouts.meta', compact('file','filePath', 'path', 'exif', 'documenttitle', 'category', 'subcategories', 'keywords',
+        return view('layouts.meta', compact('file','filePath', 'path', 'exifValues', 'documenttitle', 'category', 'subcategories', 'keywords',
             'autor','city', 'country', 'photosource', 'copyright', 'caption', 'creationdate', 'creationtime' ));
     }
 
