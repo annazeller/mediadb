@@ -92,15 +92,15 @@ Bei Fehler
 ```
 "The VirtualBox VM was created with a user that doesn't match the current user running Vagrant. VirtualBox requires that the same userbe used to manage the VM that was created. Please re-run Vagrant withthat user. This is not a Vagrant issue.The UID used to create the VM was: 501 Your UID is: 0":
 ```
-entweder creator_uid anpassen
+creator_uid entsprechend anpassen:
 
 ```
 nano .vagrant/machines/mediadb/virtualbox/creator_uid
 ```
-oder .vagrant-Verzeichnis komplett löschen
+
+Erneut hochfahren
 
 ```
-rm -r .vagrant
 vagrant up --provision
 ```
 
