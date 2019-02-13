@@ -217,22 +217,6 @@
               overflow: hidden;
               position: absolute;
             }
-            .to-long-overlay {
-              position: absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              width: 30px;
-              z-index: 2;
-              background: $white;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              svg {
-                width: rem(20px);
-                height: auto;
-              }
-            }
             .custom-file-label {
               .file-name {
                 position: relative;
@@ -299,6 +283,24 @@
         }
       }
     }
+  }
+}
+
+.clearInput {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  z-index: 2;
+  background: $white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  svg {
+    width: rem(20px);
+    height: auto;
   }
 }
 .btn {

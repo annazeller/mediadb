@@ -145,7 +145,8 @@ html, body {
     max-height: 90vh;
     overflow-x: hidden;
     overflow-y: auto;
-    max-width: 95vw;
+    max-width: 80vw;
+    width: 80vw;
     min-height: unset;
     height: auto;
     margin: 0;
@@ -163,6 +164,9 @@ html, body {
       max-height: 100%;
       overflow-x: hidden;
       overflow-y: auto;
+      .modal-image {
+        @extend %border-radius;
+      }
     }
   }
 }

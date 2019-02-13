@@ -132,7 +132,7 @@ class FileController extends Controller
         $imageHeight = $request['imageHeight'];
         $imageWidth = $request['imageWidth'];
         $format = $request['format'];
-        $colorspace = $request['colorspace'];
+        $colorSpace = $request['colorSpace'];
         $imagePath = public_path('images/temp/' . $file->name . '.' . $format);
         
         //$imagePathh = public_path('images/download.' . $file->extension);
@@ -149,7 +149,7 @@ class FileController extends Controller
 
             $i = new Imagick($imagePath);
 
-            switch ($colorspace) {
+            switch ($colorSpace) {
                 case "RGB":
                     $i->transformImageColorspace(Imagick::COLORSPACE_RGB);
                     break;
@@ -189,7 +189,7 @@ class FileController extends Controller
         return response()->download($imagePath)->deleteFileAfterSend(true);
     }
 
-    public function transformColorspace($image, $colorspace) {
+    public function transformColorspace($image, $colorSpace) {
         
     }
 
