@@ -258,7 +258,7 @@ class FileController extends Controller
             $mpdf->imageVars['imagepath'] = $originalImagePath;
         } else {
             $thumbnailPath1 = '/storage/thumbnails/' . $file->name . '_' . Auth::user()->name . '_' . Auth::id() . '.jpg';
-            $thumbnailPath = '<img src="' . $thumbnailPath1 . '" />';
+            $thumbnailPath = '<img src="' . $thumbnailPath1 . '" width="' . $imageWidth . 'mm" height = "' . $imageHeight . 'mm" />';
             $mpdf->imageVars['imagepath'] = $thumbnailPath;
         }
 
