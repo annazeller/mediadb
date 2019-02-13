@@ -19,7 +19,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body class="landingpage">
-    {{--THOMAS MITCHELLS GESAMTER BEITRAG ZUR WEBAPP--}}
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <img class="ci" src="../images/logo.png" alt="DAM its cool">
