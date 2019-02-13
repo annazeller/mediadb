@@ -26,6 +26,7 @@ const app = new Vue({
 
     data: {
         keywords: "",
+        filter: null,
         files: [],
         file: [],
         categories: [],
@@ -82,7 +83,6 @@ const app = new Vue({
                 this.files = result.data.data.data;
                 this.pagination = result.data.pagination;
                 this.categories = result.data.categories;
-                console.log(this.categories);
             }).catch(error => {
                 console.log(error);
                 this.loading = false;
@@ -91,16 +91,18 @@ const app = new Vue({
         },
 
         fetch(type, id) {
-            axios.get('/files/' + type + '/?id=' + id, { params: { keywords: this.keywords } })
+            axios.get('/files/' + type + '/?id=' + id, { params: { keywords: this.keywords, filter: this.filter} })
                 .then(result => {this.files = result.data.data.data;})
                 .then(response => this.files = response.data)
                 .catch(error => {});
+            console.log(this.filter);
         },
-
 
         getFiles(type) {
             this.setActive(type);
             this.fetchFile(type);
+            this.keywords = '';
+
 
             if (this.activeTab === 'video') {
                 this.isVideo = true;
@@ -385,6 +387,9 @@ const app = new Vue({
     watch: {
         keywords(after, before) {
             this.fetch(this.activeTab);
-        }
+        },
+        filter(after, before) {
+            this.fetch(this.activeTab);
+        },
     }
 });

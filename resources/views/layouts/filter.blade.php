@@ -1,5 +1,6 @@
 Filtern nach Kategorie
-<select v-for="category in categories">
-    <option>@{{category.name}}</option>
+<select id="filter" v-model="filter" name="filter">
+    <option v-for="category in categories">@{{category.name}}</option>
 </select>
 
+@{{ filter }}

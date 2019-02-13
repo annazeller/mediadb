@@ -40,7 +40,7 @@ class FileController extends Controller
 
             $files = $model::where('type', $type)
                             ->where('name', 'like', '%' . $request->get('keywords') . '%')
-                            /*->where('category',  $request->get('filter'))*/
+                            ->where('category','like', '%' .  $request->get('filter'). '%')
                             ->where('user_id', Auth::id())
                             ->orderBy('id', 'desc')->paginate($records_per_page);
 
@@ -78,13 +78,14 @@ class FileController extends Controller
         $uploaded_file = $request->file('file');
         $original_ext = $uploaded_file->getClientOriginalExtension();
         $type = $file->getType($original_ext);
-
+        $category = "";
         if ($file->upload($type, $uploaded_file, $request['name'], $original_ext)) {
             return $file::create([
                     'name' => $request['name'],
                     'type' => $type,
                     'extension' => $original_ext,
-                    'user_id' => Auth::id()
+                    'user_id' => Auth::id(),
+                    'category' => $category
                 ]);
         }
 
