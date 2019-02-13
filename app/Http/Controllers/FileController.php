@@ -235,7 +235,11 @@ class FileController extends Controller
         $originalImage = $file->getName($file->type, $file->name, $file->extension);
         $originalImagePath = Storage::get($originalImage);
 
-        $iccFile = storage_path('app/icc/' . $icc . '.icc');
+        if ($icc) {
+            $iccFile = storage_path('app/icc/' . $icc . '.icc');
+        } else {
+            $iccFile = storage_path('app/icc/ISOcoated_v2_eci.icc');
+        }
 
         $pdfFilePath = public_path('images/temp/' . $file->name . '.pdf');
         
@@ -250,7 +254,7 @@ class FileController extends Controller
             ]);
         }
 
-        if ($file->extension != "psd") {
+        if (($file->extension != "psd") and ($file->extension != "tif") and ($file->extension != "tiff")) {
             $mpdf->imageVars['imagepath'] = $originalImagePath;
         } else {
             $thumbnailPath = storage_path('app/public/thumbnails/' . $file->name . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg');

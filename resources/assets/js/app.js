@@ -281,6 +281,8 @@ const app = new Vue({
                 } else {
                     window.location = 'files/download/' + file.name + '/' + this.format
                 }
+            } else {
+                document.getElementById("spinner1").style.visibility = "hidden";
             }
         },
 
