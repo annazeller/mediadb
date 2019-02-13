@@ -82,7 +82,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    .navbar {
+    .search-wrapper {
       display: block;
       @extend %box-shadow;
       padding: rem(20px 50px);
@@ -116,9 +116,13 @@
       }
       #navbarNav {
         height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
         ul.navbar-nav {
           height: 100%;
           margin-left: auto;
+          display: inline-block;
           li {
             height: 100%;
             display: flex;
@@ -127,7 +131,7 @@
             a {
               color: $custom-color-1;
               display: inline-block;
-              padding: rem(20px);
+              padding: rem(20px 0 20px 20px);
               @include transition(all 200ms linear 0s);
               &:hover {
                 color: $custom-color-1;

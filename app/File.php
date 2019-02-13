@@ -12,7 +12,7 @@ class File extends Model
         'name',  'type', 'extension', 'user_id', 'category',
     ];
 
-    public static $image_ext = ['jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPG', 'psd', 'tiff'];
+    public static $image_ext = ['jpg', 'jpeg', 'png', 'gif', 'PNG', 'JPG', 'psd', 'tiff', 'tif'];
     public static $audio_ext = ['mp3', 'ogg', 'mpga'];
     public static $video_ext = ['mp4', 'mpeg'];
     public static $document_ext = ['doc', 'docx', 'pdf', 'odt'];
