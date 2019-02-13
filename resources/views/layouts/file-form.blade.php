@@ -1,5 +1,5 @@
-<form id="new-file-form" action="#" method="#" @submit.prevent="submitForm">
-    <div class="upload-form">
+<form class="h-100" id="new-file-form" action="#" method="#" @submit.prevent="submitForm">
+    <div class="h-100 upload-form">
         <input type="text" aria-label="Dateiname" placeholder="Gewünschten Dateinamen hier eintragen" v-model="fileName">
         <div class="custom-file">
             <input type="file" ref="file" name="file" class="custom-file-input german" id="fileUploadLabel" aria-describedby="fileUpload" @change="addFile()">

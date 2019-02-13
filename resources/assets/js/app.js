@@ -27,6 +27,7 @@ const app = new Vue({
     data: {
         keywords: "",
         filter: null,
+        filterDefault: "Bitte auswählen",
         files: [],
         file: [],
         categories: [],
@@ -212,21 +213,6 @@ const app = new Vue({
             this.file = file;
             this.modalActive = true;
             let imageName = this.file.name;
-
-            /*console.log(imageSource);
-
-            let fileNew, img;
-            if ((fileNew = this.file)) {
-                img = new Image();
-                img.onload = function() {
-                    alert(this.width + " " + this.height);
-                };
-                img.onerror = function() {
-                    alert( "not a valid file: " + fileNew.type);
-                };
-                img.src = imageSource;
-            }*/
-
             $('#imageName').val(imageName);
         },
 

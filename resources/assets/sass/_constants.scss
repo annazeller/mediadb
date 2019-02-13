@@ -9,3 +9,8 @@
   @extend %border-radius;
   @extend %box-shadow;
 }
+.boxLook {
+  border: none;
+  background: $white;
+  @extend %boxLook;
+}

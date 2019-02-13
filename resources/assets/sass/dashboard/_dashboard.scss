@@ -307,3 +307,35 @@
   @extend %boxLook;
   padding: rem(10px 20px);
 }
+
+.filter-wrapper {
+  width: rem(200px);
+  @extend %boxLook;
+  background: $white;
+  position: relative;
+  z-index: 4;
+  #filter-value {
+    display: block;
+    padding: rem(20px);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    @extend %boxLook;
+    background: $white;
+    list-style: none;
+    width: 100%;
+    li {
+      cursor: pointer;
+      padding: rem(20px);
+      border-top: 1px solid $custom-color-2;
+      @include transition(all 200ms linear 0s);
+      &:hover {
+        background-color: $custom-color-2;
+      }
+    }
+  }
+}

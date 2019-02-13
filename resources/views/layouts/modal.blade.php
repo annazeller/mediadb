@@ -127,7 +127,7 @@
                             <br />
                             <h3>Metadaten</h3>
                           </div>
-                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" href="/iptc/' + file.id'">
+                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/iptc/' + file.id">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                           </a>

@@ -23,7 +23,7 @@
     <div id="app">
         <div id="sidebar">
             <a href="/" id="logo">
-                MediaDB
+                <img src="{{ asset('images/logo.png') }}" alt="Logo der MediaDB">
             </a>
             <ul>
                 <li :class="{'active': isActive('image')}" @click="getFiles('image')">
