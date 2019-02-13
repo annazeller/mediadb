@@ -15,8 +15,7 @@
                     <img src="{{asset($filePath)}}" class="detailed-image img-fluid">
                 </div>
                 <div class="col-6">
-                    <h1>{{ $file->name }}</h1>
-                    Bearbeitungsfunktionen blablabla
+                    <h1>{{ $file->name }}.{{ $fileextension }}</h1>
                 </div>
             </div>
             <div class="row">

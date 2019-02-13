@@ -130,7 +130,7 @@
                                   Jetzt Metadaten bearbeiten!
                               </p>
                           </div>
-                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/detailseite/' + file.id"  v-if="file.extension == 'jpg' || file.extension == 'tiff' || file.extension == 'tif'">
+                          <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/detailseite/' + file.id"  v-if="file.extension == 'jpg' || file.extension == 'JPG' || file.extension == 'tiff' || file.extension == 'tif'">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                           </a>
