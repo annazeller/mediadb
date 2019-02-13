@@ -55,7 +55,11 @@ const app = new Vue({
         imageWidth: '',
         imageHeight: '',
         format: '',
-        colorSpace: '',
+        colorspace: '',
+
+        pdfImageWidth: '',
+        pdfImageHeight: '',
+        icc: '',
 
         notification: false,
         showConfirm: false,
@@ -259,61 +263,45 @@ const app = new Vue({
             this.file = file;
 
             let formData = new FormData();
+            formData.append('type', 'file');
             formData.append('imageHeight', this.imageHeight);
             formData.append('imageWidth', this.imageWidth);
             formData.append('format', this.format);
-            formData.append('colorSpace', this.colorSpace);
-            console.log(this.imageHeight + " " + this.imageWidth + " " + this.format + " " + this.colorSpace);
+
+            formData.append('colorspace', this.colorspace);
+            console.log(this.format);
+
             document.getElementById("spinner").style.visibility = "visible";
             let a = await axios.post('files/export/' + file.id, formData);
             console.log(a.status);
 
             if (a.status == 200) {
                 document.getElementById("spinner").style.visibility = "hidden";
-                window.location = 'files/download/' + file.name + '/' + this.format
-            }
-
-            /*response => {
-                console.log(response.data.fileNameAndPath);
-                url = response.data.fileNameAndPath;
-                console.log(url);
-                let a = document.createElement("a");
-                a.href = url;
-                a.download = "";
-                document.body.appendChild(a);
-                a.click();
-
-                /*let blob = response.data,
-                            downloadUrl = window.URL.createObjectURL(blob),
-                            filename = "",
-                            disposition = response.headers["content-disposition"];
-
-                if (disposition && disposition.indexOf("attachment") !== -1) {
-                    let filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
-                        matches = filenameRegex.exec(disposition);
-
-                    if (matches != null && matches[1]) {
-                        filename = matches[1].replace(/['"]/g, "");
-                    }
-                }
-
-                let a = document.createElement("a");
-                if (typeof a.download === "undefined") {
-                    window.location.href = url;
+                if (!this.format) {
+                    window.location = 'files/download/' + file.name + '/' + file.extension
                 } else {
-                    a.href = url;
-                    a.download = filename;
-                    document.body.appendChild(a);
-                    a.click();
-                }*/
-                
-            /*})
-            .catch(error => {
-                console.log(error);
-                this.errors = error.response.data.errors;
-                this.showNotification(error.response.data.message, false);
-                this.fetchFile(this.activeTab, this.pagination.current_page);
-            });*/
+                    window.location = 'files/download/' + file.name + '/' + this.format
+                }
+            }
+        },
+
+        async pdfExportieren(file) {
+            this.file = file;
+
+            let formData = new FormData();
+            formData.append('type', 'pdf');
+            formData.append('pdfImageHeight', this.pdfImageHeight);
+            formData.append('pdfImageWidth', this.pdfImageWidth);
+            formData.append('icc', this.icc);
+            console.log(this.pdfImageHeight + " " + this.pdfImageWidth + " " + this.icc);
+            document.getElementById("spinner1").style.visibility = "visible";
+            let a = await axios.post('files/export/' + file.id, formData);
+            console.log(a.status);
+
+            if (a.status == 200) {
+                document.getElementById("spinner1").style.visibility = "hidden";
+                window.location = 'files/download/' + file.name + '/pdf'
+            }
         }
     },
 

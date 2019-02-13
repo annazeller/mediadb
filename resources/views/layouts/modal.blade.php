@@ -1,6 +1,6 @@
 <div class="modal-custom hidden" :class="{'visible' : modalActive}" >
     <div class="modal-background" @click="closeModal()"></div>
-    <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
         <button type="button" class="close-modal" title="Schließen" @click="closeModal()">
             <span aria-hidden="true"><i data-feather="x"></i></span>
         </button>
@@ -8,64 +8,35 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-7">
-                        <img id="imageSource" class="img-fluid modal-image" ref="imageExif" v-if="Object.keys(file).length !== 0" :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
-                        <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" :href="'/iptc/' + file.id">
+                        <img id="imageSource" class="img-fluid modal-image" ref="imageExif" 
+                        
+                        v-if="Object.keys(file).length !== 0 && file.extension == 'psd'"
+                          :src="'{{ asset('storage/thumbnails')}}' + '/' + file.name + '_' + '{{ Auth::user()->name . '_' . Auth::id() }}' + '.jpg'"
+                          :alt="file.extension"
+
+                        v-else-if="Object.keys(file).length !== 0" 
+                          :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" 
+                          :alt="file.extension" 
+
+                        style="max-height: 80vh;">
+                        <a class="mt-3 btn btn-primary" @click="buttonEditExif(file)" href="/iptc/' + file.id'">
                             <i data-feather="edit-2"></i>
                             &nbsp; Bearbeiten
                         </a>
                     </div>
                     <div class="col-md-5">
-                        {{--<form id="exportieren" action="#" method="#" @submit.prevent="exportieren(file)">
-                            <h2>Exportieren</h2>
-                            <div class="custom-form">
-                                <label>Breite</label>
-                                <input type="text" id="imageWidth" v-model="imageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
-                            </div>
-                            <div class="custom-form">
-                                <label>Höhe</label>
-                                <input type="text" class="form-control" id="imageHeight" v-model="imageHeight" aria-describedby="heightHelp" placeholder="Höhe aus File-Element ziehen?">
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="custom-form">
-                                        <label>Format</label>
-                                        <ul class="custom-select" id="format" v-model="format">
-                                            <li>jpg</li>
-                                            <li>png</li>
-                                            <li>gif</li>
-                                            <li>tif</li>
-                                            <li>bmp</li>
-                                            <li>ico</li>
-                                            <li>psd</li>
-                                            <li>pdf</li>
-                                        </ul>
-                                        <input type="hidden" id="format" v-model="format">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="custom-form">
-                                        <label>Farbraum</label>
-                                        <div class="custom-form">
-                                            <label>Format</label>
-                                            <ul class="custom-select" >
-                                                <li>RGB</li>
-                                                <li>SRGB</li>
-                                                <li>CMYK</li>
-                                                <li>GRAY</li>
-                                                <li>YUV</li>
-                                                <li>HSL</li>
-                                                <li>LAB</li>
-                                            </ul>
-                                            <input type="hidden" id="colorSpace" v-model="colorSpace">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Exportieren</button>
-                        </form>--}}
-                        <form id="exportieren" action="#" @submit.prevent="exportieren(file)">
+                      <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-bild" role="tab" aria-controls="nav-home" aria-selected="true">Bild</a>
+                          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-pdf" role="tab" aria-controls="nav-profile" aria-selected="false">PDF</a>
+                        </div>
+                      </nav>
+                      <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-bild" role="tabpanel" aria-labelledby="nav-home-tab">
+                          <form id="exportieren" action="#" method="#" @submit.prevent="exportieren(file)">
                             <div>
-                                <h2>Exportieren</h2>
+                              <br />
+                              <h3>Bild exportieren</h3>
                             </div>
                             <div class="form-group">
                                 <label for="imageWidth">Breite </label>
@@ -95,12 +66,11 @@
                                   <option>bmp</option>
                                   <option>ico</option>
                                   <option>psd</option>
-                                  <option>pdf</option>
                                 </select>
                               </div>
                             <div class="form-group">
-                                <label for="colorSpace">Farbraum </label>
-                                <select class="form-control" id="colorSpace" v-model="colorSpace">
+                                <label for="colorspace">Farbraum </label>
+                                <select class="form-control" id="colorspace" v-model="colorspace">
                                   <option>RGB</option>
                                   <option>SRGB</option>
                                   <option>CMYK</option>
@@ -111,10 +81,57 @@
                                 </select>
                               </div>
                             <button type="submit" class="btn btn-primary">Exportieren</button>
-                        </form>
+                            <img src="/images/spinner.jpg" id="spinner" width="20px" style="visibility:hidden;" />
+                          </form>
+                        </div>
+                        <div class="tab-pane fade" id="nav-pdf" role="tabpanel" aria-labelledby="nav-profile-tab">
+                          <form id="pdfExportieren" action="#" method="#" @submit.prevent="pdfExportieren(file)">
+                            <div>
+                              <br />
+                              <h3>PDF exportieren</h3>
+                            </div>
+                            <div class="form-group">
+                              <label for="pdfImageWidth">Breite </label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="pdfImageWidth" v-model="pdfImageWidth" aria-describedby="widthHelp" placeholder="Breite aus File-Element ziehen?">
+                                <div class="input-group-append">
+                                  <span class="input-group-text">mm</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="pdfImageHeight">Höhe </label>
+                              <div class="input-group">
+                                <input type="text" class="form-control" id="pdfImageHeight" v-model="pdfImageHeight" aria-describedby="heightHelp"  placeholder="Höhe aus File-Element ziehen?">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">mm</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="icc">Farbprofil </label>
+                              <select class="form-control" id="icc" v-model="icc">
+                                <option>sRGB_IEC61966-2-1.icc</option>
+                                <option>ISOcoated_v2_300_eci</option>
+                                <option>ISOcoated_v2_eci</option>
+                                <option>ISOuncoatedyellowish</option>
+                                <option>USWebCoatedSWOP</option>
+                                <option>AdobeRGB1998</option>
+                                <option>eciRGB_v2</option>
+                              </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Exportieren</button>
+                            <img src="/images/spinner.jpg" id="spinner1" width="20px" style="visibility:hidden;" />
+                          </form>
+                        </div>
+                      </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
