@@ -15,6 +15,7 @@ class MetaController extends Controller
     public function index($id)
     {
         $file = File::where('id', $id)->where('user_id', Auth::id())->first();
+        $fileextension = $file->extension;
         $user = Auth::user()->name;
         $path = storage_path('app/public/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension);
         $filePath = '/storage/'. $user . '_'. Auth::id(). '/image/'. $file->name .'.'  . $file->extension;
@@ -31,7 +32,7 @@ class MetaController extends Controller
         $caption = Image::make($path)->iptc('Caption');
         $creationdate = Image::make($path)->iptc('CreationDate');
         $creationtime = Image::make($path)->iptc('CreationTime');
-        return view('layouts.meta', compact('file','filePath', 'path', 'exif', 'documenttitle', 'category', 'subcategories', 'keywords',
+        return view('layouts.meta', compact('file','filePath', 'path', 'fileextension', 'exif', 'documenttitle', 'category', 'subcategories', 'keywords',
             'autor','city', 'country', 'photosource', 'copyright', 'caption', 'creationdate', 'creationtime' ));
     }
 
@@ -64,6 +65,7 @@ class MetaController extends Controller
             else {
                 Category::create([
                     'name' => $category,
+                    'user_id' => Auth::id(),
                 ]);
             }
         }
