@@ -255,7 +255,7 @@ class FileController extends Controller
         }
 
         if (($file->extension != "psd") and ($file->extension != "tif") and ($file->extension != "tiff")) {
-            $mpdf->imageVars['imagepath'] = $originalImagePath;
+            $thumbnailPath = '<img src="' . $originalImagePath . '" />'
         } else {
             $thumbnailPath1 = '/storage/thumbnails/' . $file->name . '_' . Auth::user()->name . '_' . Auth::id() . '.jpg';
             $thumbnailPath = '<img src="' . $thumbnailPath1 . '" width="' . $imageWidth . 'mm" height = "' . $imageHeight . 'mm" />';
