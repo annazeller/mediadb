@@ -30,7 +30,7 @@
                         </button>
                         <div class="card-image-top">
                             <div class="file-header-wrapper" v-if="file.type == 'image'" @click="showModal(file)">
-                                <img v-if="file.extension === '.psd'" src="">
+                                <img v-if="file.extension === 'psd'" :src="'{{ asset('storage/thumbnails') }}' + '/' + file.name + '_' + '{{ Auth::user()->name . '_' . Auth::id() }}' + '.jpg'">
                                 <img v-if="file === editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + savedFile.type + '/' + savedFile.name + '.' + savedFile.extension" :alt="file.name">
                                 <img v-if="file !== editingFile" src=""  :src="'{{ asset('storage/' . Auth::user()->name . '_' . Auth::id()) }}' + '/' + file.type + '/' + file.name + '.' + file.extension" :alt="file.name">
 

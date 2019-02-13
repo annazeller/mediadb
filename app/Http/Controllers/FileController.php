@@ -78,6 +78,14 @@ class FileController extends Controller
         $type = $file->getType($original_ext);
 
         if ($file->upload($type, $uploaded_file, $request['name'], $original_ext)) {
+
+            if ($original_ext == 'psd') {
+                $img = Image::make($uploaded_file);
+                $img->encode('jpg');
+                //$img->save(storage_path('app/thumbnails/' . $request['name'] . '_' . Auth::id() .'.jpg'));
+                $img->save(storage_path('app/public/thumbnails/' . $request['name'] . '_' . Auth::user()->name . '_' . Auth::id() .'.jpg'));
+            }
+
             return $file::create([
                     'name' => $request['name'],
                     'type' => $type,
@@ -123,63 +131,128 @@ class FileController extends Controller
 
     public function export($id, Request $request)
     {
-
         $file = File::where('id', $id)->where('user_id', Auth::id())->first();
 
+        if ($request['type'] == "file") {
+
+            $imageWidth = $request['imageWidth'];
+            $imageHeight = $request['imageHeight'];
+            $format = $request['format'];
+            $colorspace = $request['colorspace'];
+
+            $this->exportFile($file,$imageWidth,$imageHeight,$format,$colorspace);
+
+        } else if ($request['type'] == "pdf") {
+
+            $imageWidth = $request['pdfImageWidth'];
+            $imageHeight = $request['pdfImageHeight'];
+            $icc = $request['icc'];
+
+            $this->exportPDF($file,$imageWidth,$imageHeight,$icc);
+
+        } else {
+            return response()->json(false);
+        }
+
+        return response()->json(false);
+    }
+
+    public function exportFile($file,$imageWidth,$imageHeight,$format,$colorspace){
         $originalImage = $file->getName($file->type, $file->name, $file->extension);
         $originalImagePath = Storage::get($originalImage);
 
-        $imageHeight = $request['imageHeight'];
-        $imageWidth = $request['imageWidth'];
-        $format = $request['format'];
-        $colorspace = $request['colorspace'];
-        $imagePath = public_path('images/temp/' . $file->name . '.' . $format);
-        
-        //$imagePathh = public_path('images/download.' . $file->extension);
-
-        
         if ($img = Image::make($originalImagePath)) {
 
-            $img->resize($imageWidth,$imageHeight);
-            $img->encode($format);
-            //$img->save($imagePathh);
+            if ($imageWidth && $imageHeight) {
+                $img->resize($imageWidth,$imageHeight);
+            }
+            if ($format) {
+                $img->encode($format);
+                $imagePath = public_path('images/temp/' . $file->name . '.' . $format);
+            } else {
+                $imagePath = public_path('images/temp/' . $file->name . '.' . $file->extension);
+            }
             $img->save($imagePath);
             
-            //$this->generateCmykImage(public_path('images/download.' . $file->extension));
-
-            $i = new Imagick($imagePath);
-
-            switch ($colorspace) {
-                case "RGB":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_RGB);
-                    break;
-                case "SRGB":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_SRGB);
-                    break;
-                case "CMYK":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_CMYK);
-                    break;
-                case "GRAY":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_GRAY);
-                    break;
-                case "YUV":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_YUV);
-                    break;
-                case "HSL":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_HSL);
-                    break;
-                case "LAB":
-                    $i->transformImageColorspace(Imagick::COLORSPACE_LAB);
-                    break;
-            }
             
-            $i->writeImage($imagePath);
-            $i->clear();
+            if ($colorspace) {
+                $i = new Imagick($imagePath);
+
+                switch ($colorspace) {
+                    case "RGB":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_RGB);
+                        break;
+                    case "SRGB":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_SRGB);
+                        break;
+                    case "CMYK":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_CMYK);
+                        break;
+                    case "GRAY":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_GRAY);
+                        break;
+                    case "YUV":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_YUV);
+                        break;
+                    case "HSL":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_HSL);
+                        break;
+                    case "LAB":
+                        $i->transformImageColorspace(Imagick::COLORSPACE_LAB);
+                        break;
+                }
+                
+                $i->writeImage($imagePath);
+                $i->clear();
+            }
 
             //return response()->json([ 'fileNameAndPath' => '/images/' . $file->name . '.' . $format]);
             //return redirect()->to('/images/' . $file->name . '.' . $format);
             return response()->json(true);
+
         }
+        return response()->json(false);
+    }
+
+    public function exportPdf($file,$imageWidth,$imageHeight,$icc){
+        $originalImage = $file->getName($file->type, $file->name, $file->extension);
+        $originalImagePath = Storage::get($originalImage);
+
+        $iccFile = storage_path('app/icc/' . $icc . '.icc');
+
+        $pdfFilePath = public_path('images/temp/' . $file->name . '.pdf');
+        
+        if (!$imageWidth or !$imageHeight){
+            $mpdf = new \Mpdf\Mpdf([
+                'mode' => 'utf-8'
+            ]);
+        } else {
+            $mpdf = new \Mpdf\Mpdf([
+                'mode' => 'utf-8', 
+                'format' => [$imageWidth, $imageHeight], 
+            ]);
+        }
+
+        if ($file->extension != "psd") {
+            $mpdf->imageVars['imagepath'] = $originalImagePath;
+        }
+
+        $mpdf->imageVars['imageWidth'] = $imageWidth;
+        $mpdf->imageVars['imageHeight'] = $imageHeight;
+        
+        
+        $mpdf->img_dpi = 300;
+        $mpdf->ICCProfile = $iccFile;
+        $mpdf->PDFXauto = true;
+        $mpdf->PDFX = true;
+        $mpdf->SetTitle($file->name);
+        $html = '<img src="var:imagepath" />';
+        $mpdf->WriteHTML($html);
+        
+        if ($mpdf->Output($pdfFilePath)) {
+            return response()->json(true);
+        }
+    
 
         return response()->json(false);
     }
@@ -187,10 +260,6 @@ class FileController extends Controller
     public function download($filename, $fileextension) {
         $imagePath = public_path('images/temp/' . $filename . '.' . $fileextension);
         return response()->download($imagePath)->deleteFileAfterSend(true);
-    }
-
-    public function transformColorspace($image, $colorspace) {
-        
     }
 
     /**
